@@ -1,8 +1,6 @@
 # TaoInterests
 web project
 group A5
-branches:
-	LTY(Li Tianyi 515030910506) - github:FeloLjsia
-	DXJ(Dou Xiaojun 515030910514) - github:Manaka96
-	XH(Xiao Han 515030910113) - github:q6q9qqq
-	ZYF(Zhang Yifan 515030910513) - github:kaleidoscopekeir
+
+6.27 	“淘兴趣”系统架构文档 V1.0 -6.27
+6.28    “淘兴趣”系统架构文档 V1.0 -6.28 ； MongoDB安装与使用学习
