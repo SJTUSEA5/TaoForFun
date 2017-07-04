@@ -10,4 +10,8 @@ group A5
 
 6.29    项目基本代码架构
 
+
 6.30    学习JQuery，Ajax
+
+
+7.4     model,dao,service
