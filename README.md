@@ -15,3 +15,5 @@ group A5
 
 
 7.4     model,dao,service
+
+7.5     用户注册，登录，登出，修改个人基本信息
