@@ -20,6 +20,6 @@ public interface UserService {
 
 	public List<User> getAllUsers();
 	
-	public boolean checkUser(String loginname, String password);
+	public boolean checkUser(User user);
 	
 }

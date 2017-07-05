@@ -42,17 +42,43 @@ public class UserServiceImpl implements UserService{
 		return userDao.getAllUsers();
 	}
 
-	public boolean checkUser(String loginname, String password){
-		List<User> users1 = userDao.getUserByUsernameAndPassword(loginname, password);
+	public boolean checkUser(User user){
+		List<User> users1 = userDao.getUserByUsernameAndPassword(user.getUsername(), user.getPassword());
 		if(users1.size()>0){
+			user.setUsername(users1.get(0).getUsername());
+			user.setPassword(users1.get(0).getPassword());
+			user.setEmail(users1.get(0).getEmail());
+			user.setHeadsculptureAddr(users1.get(0).getHeadsculptureAddr());
+			user.setGender(users1.get(0).getGender());
+			user.setName(users1.get(0).getName());
+			user.setAge(users1.get(0).getAge());
+			user.setBirthday(users1.get(0).getBirthday());
+			user.setPhone(users1.get(0).getPhone());
+			user.setRole(users1.get(0).getRole());
+			user.setCity(users1.get(0).getCity());
+			user.setIntroduction(users1.get(0).getIntroduction());
 			return true;
 		}		
 		else{
-			List<User> users2 = userDao.getUserByEmailAndPassword(loginname, password);
-			if(users2.size()>0)
+			List<User> users2 = userDao.getUserByEmailAndPassword(user.getUsername(), user.getPassword());
+			if(users2.size()>0){
+				user.setUsername(users1.get(0).getUsername());
+				user.setPassword(users1.get(0).getPassword());
+				user.setEmail(users1.get(0).getEmail());
+				user.setHeadsculptureAddr(users1.get(0).getHeadsculptureAddr());
+				user.setGender(users1.get(0).getGender());
+				user.setName(users1.get(0).getName());
+				user.setAge(users1.get(0).getAge());
+				user.setBirthday(users1.get(0).getBirthday());
+				user.setPhone(users1.get(0).getPhone());
+				user.setRole(users1.get(0).getRole());
+				user.setCity(users1.get(0).getCity());
+				user.setIntroduction(users1.get(0).getIntroduction());
 				return true;
-			else 
+			}
+			else{ 
 				return false;
+			}
 		}	
 	}
 	

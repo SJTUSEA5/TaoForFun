@@ -8,23 +8,43 @@ public class User {
 	private String password;
 	private String email;
 	private String headsculptureAddr;
-	private String sex;
+	private String gender;
+	private String name;
+	private int age;
 	private Date birthday;
 	private String phone;
 	private String role;
+	private String city;
+	private String introduction;
 	
 	public User(){
 		
 	}
 	
-	public User(String username, String password, String email, String headsculptureAddr, String sex, Date birthday, String phone, String role){
+	public User(String username, String password, String email, String headsculptureAddr, String gender,String name,int age, Date birthday, 
+					String phone, String role, String introduction){
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.headsculptureAddr = headsculptureAddr;
-		this.sex = sex;
+		this.gender = gender;
+		this.name = name;
+		this.age = age;
 		this.birthday = birthday;
 		this.phone = phone;
+		this.role = role;
+		this.introduction = introduction;
+	}
+	
+	public User(String username, String password){
+		this.username = username;
+		this.password = password;
+	}
+	
+	public User(String username, String email, String password, String role){
+		this.username = username;
+		this.password = password;
+		this.email = email;
 		this.role = role;
 	}
 	
@@ -34,6 +54,22 @@ public class User {
 	
 	public void setUserid(int userid){
 		this.userid = userid;
+	}
+	
+	public int getAge(){
+		return this.age;
+	}
+	
+	public void setAge(int age){
+		this.age = age;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	
+	public void setName(String name){
+		this.name = name;
 	}
 	
 	public String getUsername(){
@@ -68,12 +104,12 @@ public class User {
 		this.headsculptureAddr = headsculptureAddr;
 	}
 	
-	public String getSex(){
-		return this.sex;
+	public String getGender(){
+		return this.gender;
 	}
 	
-	public void setSex(String sex){
-		this.sex = sex;
+	public void setGender(String gender){
+		this.gender = gender;
 	}
 	
 	public Date getBirthday(){
@@ -98,6 +134,22 @@ public class User {
 	
 	public void setRole(String role){
 		this.role = role;
+	}
+	
+	public String getCity(){
+		return this.city;
+	}
+	
+	public void setCity(String city){
+		this.city = city;
+	}
+	
+	public String getIntroduction(){
+		return this.introduction;
+	}
+	
+	public void setIntroduction(String introduction){
+		this.introduction = introduction;
 	}
 	
 }
