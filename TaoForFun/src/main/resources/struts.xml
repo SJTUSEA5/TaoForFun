@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Struts2 DTD -->
+
 <!DOCTYPE struts PUBLIC
 	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
 	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
@@ -7,6 +7,32 @@
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<constant name="struts.devMode" value="true" />
 	<package name="process" extends="struts-default">
+		
+		<!-- Log in and Sign in -->
+		<action name="loginPro" class="action.LoginAction">
+			<result name="input">/index.jsp</result>
+			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="registerPro" class="action.RegisterAction">
+			<result name="input">/taoforfun/jsp/register.jsp</result>
+			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="error">/taoforfun/jsp/register.jsp</result>
+		</action>
+		
+		<!-- User info -->
+		<action name="getUserHomePro">
+			<result>/taoforfun/jsp/userhome.jsp</result>
+		</action>
+		<action name="getUserProfilePro">
+			<result>/taoforfun/jsp/userprofile.jsp</result>
+		</action>
+		<action name="getUserAccountPro">
+			<result>/taoforfun/jsp/useraccount.jsp</result>
+		</action>
+		<action name="getUserPermissionPro">
+			<result>/taoforfun/jsp/userpermission.jsp</result>
+		</action>
 		
 		<action name="*">
 			<result>/{1}.jsp</result>

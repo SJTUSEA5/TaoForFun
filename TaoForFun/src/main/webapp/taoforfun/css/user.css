@@ -39,7 +39,7 @@ body{
 	display:block;
 	float:left;
 }
-.toplist a{
+.toplist a,.tab a{
 	padding:15px 20px 15px 20px;
 }
 .title{
@@ -50,6 +50,9 @@ body{
 
 ol,ul,li{
 	list-style-type:none;
+}
+.tab li{
+	float:left;
 }
 
 .topbar,.nav,.section{
@@ -72,17 +75,18 @@ ol,ul,li{
 .nav img{
 	border-radius:50%;
 }
-.nav ul{
+.nav ul,.tab ul{
 	padding:4px 0;
 	margin:0;
 	overflow:hidden;
 }
 
-.nav a{
+.nav a,.tab a{
 	text-decoration:none;
 	color:#000000;
+	display:block;
 }
-.nav a:hover{
+.nav a:hover,.tab a:hover{
 	background-color:#ff7878;
 }
 
@@ -93,4 +97,8 @@ ol,ul,li{
 	padding:30px;
 	float:left;
 	overflow:hidden;
+}
+
+.signinform{
+	text-align:center;
 }

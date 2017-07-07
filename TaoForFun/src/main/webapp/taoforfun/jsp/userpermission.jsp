@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="model.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,13 @@
 <link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
 </head>
 <body>
+
+<%
+	User user = new User();
+	if(request.getSession().getAttribute("user")!= null){
+		user = (User)request.getSession().getAttribute("user");
+	}
+%>
 
 <div class="topbar">
 <div class="topbody">
@@ -41,12 +49,11 @@
 
 <div class="section">
 <ul>
-	<li>Account level:</li>
-	<li>Athority level:</li>
+	<li>Account authority level: <%=user.getRole() %></li>
 	<li>
 	<form>
 		<p>Password:</p><input type="text" name="password"/>
-		<input type="submit" value="Change Athority"/>
+		<input type="submit" value="Change Authority"/>
 	</form>
 </ul>
 </div>

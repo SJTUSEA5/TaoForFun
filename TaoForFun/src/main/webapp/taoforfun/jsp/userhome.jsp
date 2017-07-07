@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="model.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +13,13 @@
 <link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
 </head>
 <body>
+
+<%
+	User user = new User();
+	if(request.getSession().getAttribute("user")!= null){
+		user = (User)request.getSession().getAttribute("user");
+	}
+%>
 
 <div class="topbar">
 <div class="topbody">
@@ -36,20 +44,19 @@
 		<li><a href="getUserAccountPro" class="active">Account</a></li>
 		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
 		<li><a href="logoutPro" class="active">Log out</a></li>
-</ul>
+	</ul>
 </div>
 
 <div class="section">
-	<form action="" method="get">
-		<p>Name<input type="text" name="username" placeholder="User Name"/></p>
-		<p>Age<input type="text" name="age"/></p>
-		<p>City<input type="text" name="city"/></p>
-		<p>Email<input type="text" name="email"/></p>
-		<p>Introduction<input type="text" name="intro"/></p>
-		<input type="submit" value="Update"/>
-	</form>
+
+	<ul class="tab">
+		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
+		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
+		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
+		<li><a href="getSettingsPro" class="active">Settings</a></li>
+	</ul>
+
 </div>
-	
 
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 
