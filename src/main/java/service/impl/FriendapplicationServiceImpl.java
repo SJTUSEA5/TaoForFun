@@ -10,6 +10,10 @@ public class FriendapplicationServiceImpl implements FriendapplicationService{
 	
 	private FriendapplicationDao friendapplicationDao;
 	
+	public void setFriendapplicationDao(FriendapplicationDao friendapplicationDao){
+		this.friendapplicationDao = friendapplicationDao;
+	}
+	
 	public boolean addFriendapplication(Friendapplication friendapplication){
 		Integer ref=(Integer) friendapplicationDao.save(friendapplication);
 		if(ref!=null)  

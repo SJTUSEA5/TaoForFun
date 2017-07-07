@@ -24,7 +24,7 @@ public class Weibo {
 	}
 	
 	public int getWeiboid(){
-		return this.weiboid;
+		return weiboid;
 	}
 	
 	public void setWeiboid(int weiboid){
@@ -32,7 +32,7 @@ public class Weibo {
 	}
 	
 	public String getAdder(){
-		return this.adder;
+		return adder;
 	}
 	
 	public void setAdder(String adder){
@@ -40,7 +40,7 @@ public class Weibo {
 	}
 	
 	public String getContent(){
-		return this.content;
+		return content;
 	}
 	
 	public void setContent(String content){
@@ -48,7 +48,7 @@ public class Weibo {
 	}
 	
 	public Date getTime(){
-		return this.time;
+		return time;
 	}
 	
 	public void setTime(Date time){

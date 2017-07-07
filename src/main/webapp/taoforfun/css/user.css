@@ -1,0 +1,104 @@
+body{
+	background-color:#fff8f8;
+	margin:0;
+	padding:0;
+}
+
+/* a:link,a:visited,a:hover,a:active {  */
+/* 	color:#000000;  */
+/* 	text-decoration:none; */
+/* } */
+/* a:hover{ */
+/* 	background-color:#ff7878 */
+/* } */
+
+.topbody{
+	width:auto;
+	margin:0 auto;
+}
+.topbar{
+	width:100%;
+	background-color:#ff7878;
+	display:inline-block;
+	float:right;
+}
+.topbar li{
+	float:left;
+}
+.toplist{
+	display:inline-block;
+	list-style-type:none;
+}
+.toplist a{
+	color:#000000;
+	text-decoration:none;
+}
+.title,.toplist a{
+	display:block;
+	
+	display:block;
+	float:left;
+}
+.toplist a,.tab a{
+	padding:15px 20px 15px 20px;
+}
+.title{
+	color:#ffff33;
+	text-decoration:none;
+	padding:1px;
+}
+
+ol,ul,li{
+	list-style-type:none;
+}
+.tab li{
+	float:left;
+}
+
+.topbar,.nav,.section{
+	box-shadow:10px 10px 8px #cccccc;
+	overflow:hidden;
+}
+.nav,.section{
+	margin:20px 20px 20px 50px;
+}
+
+.nav{
+	background-color:#ffffff;
+	height:auto;
+	width:120px;
+	padding:30px;
+	float:left;
+	text-align:center;
+	line-height:30px;	
+}
+.nav img{
+	border-radius:50%;
+}
+.nav ul,.tab ul{
+	padding:4px 0;
+	margin:0;
+	overflow:hidden;
+}
+
+.nav a,.tab a{
+	text-decoration:none;
+	color:#000000;
+	display:block;
+}
+.nav a:hover,.tab a:hover{
+	background-color:#ff7878;
+}
+
+.section{
+	background-color:#ffffff;
+	height:auto;
+	width:65%;
+	padding:30px;
+	float:left;
+	overflow:hidden;
+}
+
+.signinform{
+	text-align:center;
+}

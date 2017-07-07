@@ -10,6 +10,10 @@ public class FriendpairServiceImpl implements FriendpairService{
 
 	private FriendpairDao friendpairDao;
 	
+	public void setFriendpairDao(FriendpairDao friendpairDao){
+		this.friendpairDao = friendpairDao;
+	}
+	
 	public boolean addFriendpair(Friendpair friendpair){
 		Integer ref=(Integer) friendpairDao.save(friendpair);
 		if(ref!=null)  

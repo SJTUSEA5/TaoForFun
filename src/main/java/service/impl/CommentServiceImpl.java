@@ -10,6 +10,10 @@ public class CommentServiceImpl implements CommentService{
 	
 	private CommentDao commentDao;
 	
+	public void setCommentDao(CommentDao commentDao){
+		this.commentDao = commentDao;
+	}
+	
 	public boolean addComment(Comment comment){
 		Integer ref=(Integer) commentDao.save(comment);
 		if(ref!=null)  

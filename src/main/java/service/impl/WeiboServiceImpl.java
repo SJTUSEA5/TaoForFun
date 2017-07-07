@@ -10,6 +10,10 @@ public class WeiboServiceImpl implements WeiboService{
 	
 	private WeiboDao weiboDao;
 	
+	public void setWeiboDao(WeiboDao weiboDao){
+		this.weiboDao = weiboDao;
+	}
+	
 	public boolean addWeibo(Weibo weibo){
 		Integer ref=(Integer) weiboDao.save(weibo);
 		if(ref!=null)  
