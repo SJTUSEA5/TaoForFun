@@ -26,7 +26,7 @@
 		user = (User)request.getSession().getAttribute("user");
 		ArrayList<Friendapplication> applis = new ArrayList<Friendapplication>();
 		if(request.getSession().getAttribute("applis")!=null)
-			applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");
+			applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");	
 %>
 
 <div class="topbar">
@@ -60,8 +60,8 @@
 	<ul class="tab">
 		<li><a href="getMyFriendsPro">Friends</a></li>
 		<li><a href="getMyWeibosPro">My Weibos</a></li>
-		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
-		<li><a href="getMyNoticesPro">Notices</a></li>
+		<li><a href="getMyMessagesPro">Messages</a></li>
+		<li><a href="getMyNoticesPro" class="active">Notices</a></li>
 	</ul>
 <br>
 <br>

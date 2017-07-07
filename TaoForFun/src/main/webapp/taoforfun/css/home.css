@@ -19,6 +19,11 @@ body{
 	text-align:center;
 }
 
+#warn h1{
+	text-align:center;
+	color:#ffff33;
+}
+
 #loginform{
 	text-align:center;
 }

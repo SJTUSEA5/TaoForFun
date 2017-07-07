@@ -16,9 +16,11 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
 	}
+	else{
+		user = (User)request.getSession().getAttribute("user");
 %>
 
 <div class="topbar">
@@ -38,7 +40,7 @@
 <div class="nav">
 	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
 	<ul>
-		<li>UserName</li>
+		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
 		<li><a href="getUserProfilePro" class="active">Profile</a></li>
 		<li><a href="getUserAccountPro" class="active">Account</a></li>
@@ -57,7 +59,9 @@
 	</ul>
 
 </div>
-
+<%
+}
+%>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 
 </body>

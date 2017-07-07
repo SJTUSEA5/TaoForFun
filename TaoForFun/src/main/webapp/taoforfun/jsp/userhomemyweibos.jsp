@@ -18,13 +18,14 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
 	}
-	ArrayList<Weibo>myweibos = new ArrayList<Weibo>();
-	if(request.getSession().getAttribute("myweibos")!= null){
-		myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
-	}
+	else{
+		user = (User)request.getSession().getAttribute("user");	
+		ArrayList<Weibo>myweibos = new ArrayList<Weibo>();
+		if(request.getSession().getAttribute("myweibos")!= null)
+			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
 %>
 
 <div class="topbar">
@@ -44,27 +45,28 @@
 <div class="nav">
 	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
 	<ul>
-		<li>UserName</li>
+		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro" class="active">Profile</a></li>
-		<li><a href="getUserAccountPro" class="active">Account</a></li>
-		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
-		<li><a href="logoutPro" class="active">Log out</a></li>
+		<li><a href="getUserProfilePro">Profile</a></li>
+		<li><a href="getUserAccountPro">Account</a></li>
+		<li><a href="getUserPermissionPro">Permissions</a></li>
+		<li><a href="logoutPro">Log out</a></li>
 	</ul>
 </div>
 
 <div class="section">
-	
+
 	<ul class="tab">
-		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
+		<li><a href="getMyFriendsPro">Friends</a></li>
 		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
-		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
-		<li><a href="getSettingsPro" class="active">Settings</a></li>
+		<li><a href="getMyMessagesPro">Messages</a></li>
+		<li><a href="getMyNoticesPro" class="active">Notices</a></li>
 	</ul>
-	<button class="btn btn-default" type="button" id="add">write weibo</button>
-						
 <br>
 <br>
+<div>
+<p>Write Weibo</p>
+</div>
 	<div class="dataTable">
 	<table>
 		<thead>
@@ -90,58 +92,17 @@
 				</td>
 			</tr>
 <% 
-	} 
+	}
+}
 %>
 	</tbody>
 	</table>
 	</div>
 	
+
 </div>
 
-<div class="modal fade" id="modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					<h4 class="modal-title" id="modalTitle"></h4>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-lg-12">
-							<form role="form">
-								<div class="form-group">
-									<label>Username</label> <input class="form-control" name="username">
-								</div>
-								<div class="form-group">
-									<label>Password</label> <input class="form-control"
-										name="password">
-								</div>
-								<div class="form-group">
-									<label>Role</label> <input class="form-control" name="role">
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" id="save">Save</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 
-	<script src="<%=path%>/taoforfun/js/jquery.min.js"></script>
-	<script src="<%=path%>/taoforfun/js/bootstrap.min.js"></script>
-	<script src="<%=path%>/taoforfun/js/jquery.dataTables.min.js"></script>
-	<script src="<%=path%>/taoforfun/js/dataTables.bootstrap.min.js"></script>
-	<script src="<%=path%>/taoforfun/js/bookstore.js"></script>
-	<script src="<%=path%>/taoforfun/js/bootbox.min.js"></script>
-	<script src="<%=path%>/taoforfun/js/user.js"></script>
-
-	
 </body>
 </html>

@@ -27,11 +27,10 @@
 </div>
 
 <div class="section">
-<h2>Input your email address to change the password.</h2>
-<div class="signinform">
-	<form action="" method="post">
-		<p>Email<input type="text" name="email"/></p>
-		<input type="submit" value="Send" onclick="psfunc()"/>
+<form action="" method="get">
+		<p>New Password<input type="password" name="newpassword"/></p>
+		<p>Confirm New Password<input type="password" name="newpassword"/></p>
+		<p><input type="submit" value="Change Password"/>
 	</form>
 <br>
 <br>
@@ -40,7 +39,7 @@
 <br><br>
 <a href="/TaoForFun/index.jsp">Home page</a>
 </div>
-</div>
+
 
 <script>
 function psfunc(){

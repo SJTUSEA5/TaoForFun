@@ -18,18 +18,15 @@
 <div id="centraltitle">
 	<h2>TaoForFun Project</h2>
 </div>
-<script>
-function login(){
-	if(true)
-		document.write("<p>incorrect username or password.</p>");
-}
-</script>
+
+<div class="warn"><h1>${sessionScope.re}</h1></div>
+
 <div id="loginform">
-	<form action="loginPro" method="get">
-		<p>UserName<input type="text" name="loginname"/></p>
-		<p>Password<input type="password" name="password"/></p>
-		<input type="submit" value="login"/>
-	</form>
+	<form action="loginPro" method="get">  
+       				<h2>Username:<input type="text" name="loginname"></h2> <br/><br/> 
+      				<h2>Password:<input type="password" name="password" value=""></h2> <br/><br/>  
+    				<h2><input type="submit" name="submit" value="Login"></h2>
+    			</form> 
 </div>
 <br><br><br><br><br>
 <br><br><br><br><br>
