@@ -18,13 +18,12 @@
 
 <%
 	User user = new User();
+	ArrayList<Friendapplication> applis = new ArrayList<Friendapplication>();
 	if(request.getSession().getAttribute("user")== null){
-		response.sendRedirect("homePro");
-		
+		response.sendRedirect("homePro");	
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");
-		ArrayList<Friendapplication> applis = new ArrayList<Friendapplication>();
 		if(request.getSession().getAttribute("applis")!=null)
 			applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");
 %>

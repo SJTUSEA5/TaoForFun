@@ -17,12 +17,12 @@
 
 <%
 	User user = new User();
+	ArrayList<User>friends = new ArrayList<User>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
-		user = (User)request.getSession().getAttribute("user");
-		ArrayList<User>friends = new ArrayList<User>();
+		user = (User)request.getSession().getAttribute("user");	
 		if(request.getSession().getAttribute("friends")!= null)
 			friends = (ArrayList<User>)request.getSession().getAttribute("friends");	
 %>
@@ -77,12 +77,15 @@
 			<tr>
 				<td><%= friend.getUsername()%></td>
 				<td>
-					<form action="">
-						<input type="submit" value="message"/>
+					<form action="messageFriendPro">
+						<input type="hidden" name="weiboid" value="<%=friend.getUserid() %>"/>
+						<input type="submit" value="Message"/>
 					</form>
-					<form action="">
-						<input type="submit" value="edit"/>
+					<form action="visitFriendHomePro">
+						<input type="hidden" name="weiboid" value="<%=friend.getUserid() %>"/>
+						<input type="submit" value="Visit"/>
 					</form>
+
 				</td>
 			</tr>
 <% 

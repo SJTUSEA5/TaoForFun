@@ -18,13 +18,13 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")== null){
+	User friend = new User();
+	if(request.getSession().getAttribute("user") == null){
 		response.sendRedirect("homePro");
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");
-		User friend = new User();
-		if(request.getSession().getAttribute("friend")== null)
+		if(request.getSession().getAttribute("friend") != null)
 			friend = (User)request.getSession().getAttribute("friend");
 %>
 
@@ -52,13 +52,11 @@
 	</ul>
 </div>
 
-<%
-	
-%>
+
 
 <div class="section">
 	<ul>
-		<li>Name: <%=friend.getUsername()%>"/></li>
+		<li>Name: <%=friend.getUsername()%></li>
 		<li>Gender: </li>
 		<li>Age: </li>
 		<li>City: </li>
@@ -69,11 +67,21 @@
 	</ul>
 	<h2>Latest Weibos</h2>
 	<br>
-	
-
+<%
+	ArrayList<Weibo> fweibos = new ArrayList<Weibo>();
+	int i = 0;
+	for(;i < fweibos.size();i++){
+		Weibo fweibo = fweibos.get(i);
+		
+%>	
+	<ul>
+	<li><%=fweibo.getTime() %></li>
+	<li><%=fweibo.getContent() %></li>
+	</ul>
 </div>
 <%
-}
+		}
+	}
 %>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 

@@ -18,12 +18,12 @@
 
 <%
 	User user = new User();
+	ArrayList<Weibo>myweibos = new ArrayList<Weibo>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");	
-		ArrayList<Weibo>myweibos = new ArrayList<Weibo>();
 		if(request.getSession().getAttribute("myweibos")!= null)
 			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
 %>
@@ -60,12 +60,12 @@
 		<li><a href="getMyFriendsPro">Friends</a></li>
 		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
 		<li><a href="getMyMessagesPro">Messages</a></li>
-		<li><a href="getMyNoticesPro" class="active">Notices</a></li>
+		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
 <br>
 <br>
 <div>
-<p>Write Weibo</p>
+<a href="">Write Weibo</a>
 </div>
 	<div class="dataTable">
 	<table>
@@ -83,10 +83,8 @@
 				<td><%= myweibo.getAdder()%></td>
 				<td><%= myweibo.getContent()%></td>
 				<td>
-					<form action="">
-						<input type="submit" value="edit"/>
-					</form>
-					<form action="">
+					<form action="deleteWeiboPro">
+						<input type="hidden" name="weiboid" value="<%=myweibo.getWeiboid() %>"/>
 						<input type="submit" value="delete"/>
 					</form>
 				</td>
