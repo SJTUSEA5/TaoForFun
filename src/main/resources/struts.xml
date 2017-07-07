@@ -19,6 +19,21 @@
 		</action>
 		
 		
+		
+		
+		<action name="addPersonalWeiboAction" class="action.AddPersonalWeiboAction">
+			<result name="success" type="redirectAction">showPersonalWeiboAction?username=${username}</result>
+		</action>
+		
+		<action name="getMyWeibosPro" class="action.ShowPersonalWeiboAction">
+			<result name="success">/taoforfun/jsp/userhomemyweibos.jsp</result>
+		</action>
+		
+		<action name="deleteMyWeiboPro" class="action.DeletePersonalWeiboAction">
+			<result name="success" type="redirectAction">getMyWeibosPro?username=${username}</result>
+		</action>
+		
+		
 		<action name="*">
 			<result>/{1}.jsp</result>
 		</action>

@@ -21,7 +21,7 @@ public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 	public List<Weibo> getWeiboByUsername(String username){
 		@SuppressWarnings("unchecked")
 		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate().find(
-				"from Weibo as b where b.username=?", username);
+				"from Weibo as w where w.adder=?", username);
 		return weibos;
 	}
 	
@@ -30,5 +30,14 @@ public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate()
 				.find("from Weibo");
 		return weibos;
+	}
+
+
+	public Weibo getWeiboByWeiboid(int weiboid) {
+		@SuppressWarnings("unchecked")
+		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate()
+				.find("from Weibo as w where w.weiboid=?", weiboid);
+		Weibo weibo = weibos.size() > 0 ? weibos.get(0) : null;
+		return weibo;
 	}
 }

@@ -79,12 +79,7 @@
 				<td><%= myweibo.getAdder()%></td>
 				<td><%= myweibo.getContent()%></td>
 				<td>
-					<form action="">
-						<input type="submit" value="edit"/>
-					</form>
-					<form action="">
-						<input type="submit" value="delete"/>
-					</form>
+					<a href="deleteMyWeiboPro?weiboid=<%=myweibo.getWeiboid()%>&&username=<%=myweibo.getAdder()%>"><button>delete</button></a>
 				</td>
 			</tr>
 <% 

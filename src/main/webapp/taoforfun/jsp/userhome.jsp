@@ -51,7 +51,7 @@
 
 	<ul class="tab">
 		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
-		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
+		<li><a href="getMyWeibosPro?username=<%=user.getUsername()%>" class="active">My Weibos</a></li>
 		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
 		<li><a href="getSettingsPro" class="active">Settings</a></li>
 	</ul>

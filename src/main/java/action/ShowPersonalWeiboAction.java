@@ -1,16 +1,14 @@
 package action;
 
-import java.sql.Date;
+import java.util.List;
 
 import model.Weibo;
 import service.WeiboService;
 
-public class AddPersonalWeiboAction extends BaseAction{
+public class ShowPersonalWeiboAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
-
+	
 	private String username;
-	private String content;
-	private Date time;
 	
 	private WeiboService weiboService;
 	
@@ -22,30 +20,16 @@ public class AddPersonalWeiboAction extends BaseAction{
 		this.username = username;
 	}
 	
-	public String getContent(){
-		return content;
-	}
-	
-	public void setContent(String content){
-		this.content = content;
-	}
-	
-	public Date getTime(){
-		return time;
-	}
-	
-	public void setTime(Date time){
-		this.time = time;
-	}
-	
 	public void setWeiboService(WeiboService weiboService){
 		this.weiboService = weiboService;
 	}
 	
 	@Override
 	public String execute() throws Exception {
-		Weibo weibo = new Weibo(username, content, time);
-		weiboService.addWeibo(weibo);
+		System.out.println(username);
+		List<Weibo> myweibos = weiboService.getWeiboByUsername(username);
+		session().setAttribute("myweibos", myweibos);
+		
 		return SUCCESS;
 	}
 	

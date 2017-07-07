@@ -1,5 +1,6 @@
 package action;
 
-public class DeleteWeiboAction {
-
+public class DeleteWeiboAction{
+	
+	
 }

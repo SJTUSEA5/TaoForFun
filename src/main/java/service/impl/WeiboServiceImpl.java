@@ -34,4 +34,8 @@ public class WeiboServiceImpl implements WeiboService{
 		return weiboDao.getAllWeibo();
 	}
 
+	public Weibo getWeiboByWeiboid(int weiboid) {
+		return weiboDao.getWeiboByWeiboid(weiboid);
+	}
+
 }
