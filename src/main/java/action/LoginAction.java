@@ -41,6 +41,7 @@ public class LoginAction extends BaseAction{
 	@Override
 	public String execute() throws Exception {
 		session.put("re", "");
+		System.out.println(userService);
 		if (userService.checkUser(loginname, password)){
 			if(userService.getUserByUsername(loginname) == null){
 				User user = userService.getUserByEmail(loginname);

@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import dao.WeiboDao;
 
-public class WeiboDapImpl extends HibernateDaoSupport implements WeiboDao{
+public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 	
 	public Integer save(Weibo weibo){
 		return (Integer) getHibernateTemplate().save(weibo);

@@ -51,21 +51,28 @@ public class RegisterAction extends BaseAction{
 	}
 	
 	public String registerUser() {
-		if(password == confirmpassword){
+		System.out.println(username);
+		session.put("msg", "");
+		if(password.equals(confirmpassword)){
 			User user1 = userService.getUserByUsername(username); 
         	User user2 = userService.getUserByEmail(email);
         	if (user1 == null && user2 == null){  
         		User newUser = new User(username, email, password, "normal");
-        		if (userService.addUser(newUser) == true)
+        		if (userService.addUser(newUser) == true){
+        			session.put("user", newUser);
         			return "success";
-        		else
+        		}
+        		else{
         			return "input";
+        		}
         	}
         	else{
+        		session.put("msg", "the username or email has been used");
         		return "input";
         	}
 		}
 		else{
+			session.put("msg", "not the same password");
 			return "input";
 		}
 	}

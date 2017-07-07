@@ -13,6 +13,11 @@
 			<result name="input">/index.jsp</result>
 		</action>
 		
+		<action name="registerPro" method="registerUser" class="action.RegisterAction">
+			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="input">/taoforfun/jsp/register.jsp</result>
+		</action>
+		
 		
 		<action name="*">
 			<result>/{1}.jsp</result>

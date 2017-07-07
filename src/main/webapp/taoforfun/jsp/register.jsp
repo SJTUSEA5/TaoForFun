@@ -28,8 +28,9 @@
 
 <div class="section">
 <h2>Input your information to join us!</h2>
+<h2>${sessionScope.msg}</h2>
 <div class="signinform">
-	<form action="registerPro" method="get">
+	<form action="registerPro" method="post">
 		<p>UserName<input type="text" name="username"/></p>
 		<p>Email<input type="text" name="email"/></p>
 		<p>Password<input type="password" name="password"/></p>

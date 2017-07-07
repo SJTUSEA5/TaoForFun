@@ -7,7 +7,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import dao.FriendapplicationDao;
 import model.Friendapplication;
 
-public class FriendapplicationImpl extends HibernateDaoSupport implements FriendapplicationDao{
+public class FriendapplicationDaoImpl extends HibernateDaoSupport implements FriendapplicationDao{
 	
 	public Integer save(Friendapplication friendapplication){
 		return (Integer) getHibernateTemplate().save(friendapplication);		
