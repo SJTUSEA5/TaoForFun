@@ -19,13 +19,13 @@
 	<h2>TaoForFun Project</h2>
 </div>
 
-<div class="warn"><h1>${sessionScope.re}</h1></div>
+<h1>${sessionScope.re}</h1>
 
 <div id="loginform">
-	<form action="loginPro" method="get">  
+	<form action="loginPro" method="post">  
        				<h2>Username:<input type="text" name="loginname"></h2> <br/><br/> 
       				<h2>Password:<input type="password" name="password" value=""></h2> <br/><br/>  
-    				<h2><input type="submit" name="submit" value="Login"></h2>
+    				<h2><input type="submit" value="Login"></h2>
     			</form> 
 </div>
 <br><br><br><br><br>

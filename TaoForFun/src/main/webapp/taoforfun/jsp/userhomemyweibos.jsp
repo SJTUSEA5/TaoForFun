@@ -43,7 +43,7 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
 		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
@@ -65,7 +65,7 @@
 <br>
 <br>
 <div>
-<a href="">Write Weibo</a>
+<a href="<%=path %>/taoforfun/jsp/userhomewriteweibo.jsp">Write Weibo</a>
 </div>
 	<div class="dataTable">
 	<table>
@@ -78,17 +78,19 @@
 	for(; i < myweibos.size(); i++){
 		Weibo myweibo = myweibos.get(i);
 %>
+		<div  class="message">
 			<tr>
 				<td><%= myweibo.getTime()%></td>
 				<td><%= myweibo.getAdder()%></td>
 				<td><%= myweibo.getContent()%></td>
 				<td>
-					<form action="deleteWeiboPro">
-						<input type="hidden" name="weiboid" value="<%=myweibo.getWeiboid() %>"/>
-						<input type="submit" value="delete"/>
-					</form>
+					<a href="deleteMyWeiboPro?weiboid=<%=myweibo.getWeiboid()%>&&username=<%=myweibo.getAdder()%>">
+						<button>delete</button>
+					</a>
 				</td>
+				<td></td>
 			</tr>
+		</div>
 <% 
 	}
 }

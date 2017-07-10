@@ -55,7 +55,7 @@ ol,ul,li{
 	float:left;
 }
 
-.topbar,.nav,.section{
+.topbar,.nav,.section,.message{
 	box-shadow:10px 10px 8px #cccccc;
 	overflow:hidden;
 }
@@ -101,4 +101,15 @@ ol,ul,li{
 
 .signinform{
 	text-align:center;
+}
+
+.message .weiboForm{
+	border:1px solid #aaaaaa;
+	border-radius:1%;
+	height:auto;
+	width:55%;
+	padding:10px;
+}
+ .message .head{
+	border-radius:50%;
 }

@@ -19,11 +19,11 @@
 <%
 	User user = new User();
 	ArrayList<Weibo>myweibos = new ArrayList<Weibo>();
-// 	if(request.getSession().getAttribute("user")== null){
-// 		response.sendRedirect("homePro");
-// 	}
-// 	else{
-// 		user = (User)request.getSession().getAttribute("user");	
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
+	}
+	else{
+		user = (User)request.getSession().getAttribute("user");	
 // 		if(request.getSession().getAttribute("myweibos")!= null)
 // 			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
 %>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
 		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
@@ -69,22 +69,36 @@
 </div>
 	<div class="weiboForm">
 	<h2>Write Weibo</h2>
-	<form action="addWeiboPro" method="post" class="Form">
+	<form action="addPersonalWeiboPro" method="post" class="Form">
 		<div class="wordCount" id="wordCount">
-	    	<p>words remaining</p>
-	    	<span class="wordage"><span id="sy">140</span></span><br>
-				<textarea rows="12" cols="50" id="TextArea1" onkeyup="checkLength(this);" name="content">
-				</textarea><br>
-				<input type="submit" value="submit"/>
+			<span id="weibowarn"></span><br>
+	    	<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+				<input type="hidden" name="content" id="submitContent"/><br>
+				<textarea rows="12" cols="50" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
+				<input type="submit" value="submit" onclick="return getContent()"/>
 		</div>		
 	</form>
 	
 
 <script type="text/javascript">
+function getContent(){
+	var c = document.getElementById("weiboContent").value;
+	document.getElementById("submitContent").value = document.getElementById("weiboContent").value;
+	if(c == ""){
+		document.getElementById("weibowarn").innerHTML = "Empty content cannot be submitted!";
+		return false;
+	}
+	else{
+// 		alert("Ok!");
+		return true;
+	}
+}
+
 function checkLength(which) {
-	var maxChars = 140; //
+	var maxChars = 140;
+	document.getElementById("weibowarn").innerHTML = "";
 	if(which.value.length > maxChars){
-		alert("140 words only!");
+		document.getElementById("weibowarn").innerHTML = "140 words only!";
 		
 		which.value = which.value.substring(0,maxChars);
 		return false;
@@ -99,9 +113,9 @@ function clearDefault(el) {
 	   } 
 </script>	
 
-<%-- <%  --%>
-<!-- } -->
-<%-- %> --%>
+<% 
+}
+%>
 
 	</div>
 

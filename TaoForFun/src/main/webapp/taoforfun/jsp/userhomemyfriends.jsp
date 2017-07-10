@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.User"%>
-<%@ page import="model.Friendapplication"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,15 +17,14 @@
 
 <%
 	User user = new User();
-	ArrayList<Friendapplication> applis = new ArrayList<Friendapplication>();
+	ArrayList<User>friends = new ArrayList<User>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
-		
 	}
 	else{
-		user = (User)request.getSession().getAttribute("user");
-		if(request.getSession().getAttribute("applis")!=null)
-			applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");	
+		user = (User)request.getSession().getAttribute("user");	
+		if(request.getAttribute("friends")!= null)
+			friends = (ArrayList<User>)request.getAttribute("friends");	
 %>
 
 <div class="topbar">
@@ -46,7 +44,7 @@
 <div class="nav">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
-		<li><%=user.getUsername() %></li>
+<%-- 		<li><%=user.getUsername() %></li> --%>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
 		<li><a href="getUserProfilePro">Profile</a></li>
 		<li><a href="getUserAccountPro">Account</a></li>
@@ -58,37 +56,40 @@
 <div class="section">
 
 	<ul class="tab">
-		<li><a href="getMyFriendsPro">Friends</a></li>
+		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
 		<li><a href="getMyWeibosPro">My Weibos</a></li>
 		<li><a href="getMyMessagesPro">Messages</a></li>
-		<li><a href="getMyNoticesPro" class="active">Notices</a></li>
+		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
-<br>
-<br>
-	<div class="dataTable message">
+	<br>
+	<br>
+	<div class="dataTable">
 	<table>
 		<thead>
-		<tr><th>My Messages</th></tr>
+		<tr><th>My Friends</th></tr>
 		</thead>
 		<tbody>
 <%
-	int i = 0;
-	for(; i < applis.size(); i++){
-		Friendapplication appli = applis.get(i);
+	for(int i = 0; i < friends.size(); i++){
+		User friend = friends.get(i);
 %>
-			<tr>
-				<td><%= appli.getUsername2()%></td>
-				<td>
-					<form action="">
-						<input type="submit" value="reply"/>
-					</form>
-					<form action="">
-						<input type="submit" value="ignore"/>
-					</form>
-				</td>
-			</tr>
+			<div class="message">
+				<tr>
+					<td>Friend Name: <%= friend.getUsername()%></td>
+					<td>
+						<form action="messageFriendPro" method="post">
+							<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
+							<input type="submit" value="Message"/>
+						</form>
+						<form action="visitFriendHomePro" method="post">
+							<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
+							<input type="submit" value="Visit"/>
+						</form>
+					</td>
+				</tr>
+			</div>
 <% 
-	}
+	} 
 }
 %>
 	</tbody>
@@ -96,7 +97,6 @@
 	</div>
 	
 
-</div>
 </div>
 
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>

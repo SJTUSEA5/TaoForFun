@@ -38,7 +38,7 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
 		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro">Home</a></li>
@@ -50,7 +50,8 @@
 </div>
 
 <div class="section">
-	<form action="" method="get">
+	<form action="updateUserProfilePro" method="post">
+		<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
 		<p>Name<input type="text" name="username" value="<%=user.getUsername()%>"/></p>
 		<p>Gender<input type="text" name="gender" value=""/></p>
 		<p>Age<input type="text" name="age" value=""/></p>

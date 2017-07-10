@@ -36,7 +36,7 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
 		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
@@ -48,22 +48,32 @@
 </div>
 
 <div class="section">	
-	<form action="changePasswordPro" method="post">
+	<form action="updateUserProfilePro" method="post">
 		<p>New Password<input type="password" name="newpassword"/></p>
-		<p>Confirm New Password<input type="password" name="newpassword"/></p>
+		<p>Confirm New Password<input type="password" name="confirmnew"/></p>
 		<p><input type="submit" value="Change Password"/>
 	</form>
 	
 	<p><a href="findPasswordPro">forget the old password?</a></p>
 	
-	<form action="deleteAccountPro" method="get">
-		<input type="submit" value="Delete Account"/>Warning: This operation cannot be undone!
+	<form action="#" method="post">
+		<input type="hidden" name="userid" value="<%=user.getUserid()%>">
+		<input type="submit" value="Delete Account" onclick="warnDelete()"/>Warning: This operation cannot be undone!
 	</form>
 	
 </div>
 <%
 }
 %>
-
+<script>
+function warnDelete(){
+	if(confirm("Are you sure to delete your account and all related information?")){
+		;
+	}else{
+		;
+	}
+		
+}
+</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.User"%>
-<%@ page import="model.Weibo"%>
+<%@ page import="model.Friendpair"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,13 +19,13 @@
 <%
 	User user = new User();
 	User friend = new User();
-	if(request.getSession().getAttribute("user") == null){
+	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
-		user = (User)request.getSession().getAttribute("user");
-		if(request.getSession().getAttribute("friend") != null)
-			friend = (User)request.getSession().getAttribute("friend");
+		user = (User)request.getSession().getAttribute("user");	
+		if(request.getAttribute("friend")!= null)
+			friend = (User)request.getAttribute("friend");	
 %>
 
 <div class="topbar">
@@ -45,43 +45,33 @@
 <div class="nav">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
-		<li><%=friend.getUsername() %></li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getMessageBoxPro" class="active">Send Message</a></li>
-		<li><a href="deleteFriendPro" class="active">Delete Friend</a></li>
+		<li>Friend Name</li>
+		<li><a href="visitFriendHomePro" class="active">Home</a></li>
+		<li><a href="getUserProfilePro">Send Message</a></li>
+		<li><a href="deleteFriendPro">Delete Friend</a></li>
 	</ul>
 </div>
-
-
 
 <div class="section">
-	<ul>
-		<li>Name: <%=friend.getUsername()%></li>
-		<li>Gender: </li>
-		<li>Age: </li>
-		<li>City: </li>
-		<li>Email: <%=friend.getEmail()%></li>
-		<li>Birthday: </li>
-		<li>Phone: </li>
-		<li>Introduction: </li>
-	</ul>
-	<h2>Latest Weibos</h2>
-	<br>
-<%
-	ArrayList<Weibo> fweibos = new ArrayList<Weibo>();
-	int i = 0;
-	for(;i < fweibos.size();i++){
-		Weibo fweibo = fweibos.get(i);
-		
-%>	
-	<ul>
-	<li><%=fweibo.getTime() %></li>
-	<li><%=fweibo.getContent() %></li>
-	</ul>
+
+<!-- 	<ul class="tab"> -->
+<!-- 		<li><a href="getMyFriendsPro" class="active">Friends</a></li> -->
+<!-- 		<li><a href="getMyWeibosPro">My Weibos</a></li> -->
+<!-- 		<li><a href="getMyMessagesPro">Messages</a></li> -->
+<!-- 		<li><a href="getMyNoticesPro">Notices</a></li> -->
+<!-- 	</ul> -->
+<!-- 	<br> -->
+<!-- 	<br> -->
+	<div class="dataTable">
+		<h2>Friend Chatting</h2>
+		<form action="#" method="post" class="Form">
+				<textarea rows="12" cols="50" id="TextArea2" name="content"></textarea><br>
+				<input type="submit" value="send"/>	
+		</form>
+	</div>
 </div>
-<%
-		}
-	}
+<% 
+}
 %>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 

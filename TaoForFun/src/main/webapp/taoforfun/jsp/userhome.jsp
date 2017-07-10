@@ -38,7 +38,7 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.PNG" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
 		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>

@@ -19,10 +19,10 @@
 <%
 	User user = new User();
 	ArrayList<Friendapplication> applis = new ArrayList<Friendapplication>();
-	if(request.getSession().getAttribute("user")== null){
-		response.sendRedirect("homePro");	
-	}
-	else{
+// 	if(request.getSession().getAttribute("user")== null){
+// 		response.sendRedirect("homePro");	
+// 	}
+// 	else{
 		user = (User)request.getSession().getAttribute("user");
 		if(request.getSession().getAttribute("applis")!=null)
 			applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");
@@ -43,9 +43,9 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
-		<li><%=user.getUsername() %></li>
+<%-- 		<li><%=user.getUsername() %></li> --%>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
 		<li><a href="getUserProfilePro">Profile</a></li>
 		<li><a href="getUserAccountPro">Account</a></li>
@@ -64,19 +64,20 @@
 	</ul>
 <br>
 <br>
-	<div class="dataTable">
+	<div class="dataTable message">
 	<table>
 		<thead>
 		<tr><th>My Messages</th></tr>
 		</thead>
 		<tbody>
 <%
-	int i = 0;
-	for(; i < applis.size(); i++){
-		Friendapplication appli = applis.get(i);
+// 	int i = 0;
+// 	for(; i < applis.size(); i++){
+// 		Friendapplication appli = applis.get(i);
 %>
 			<tr>
-				<td><%= appli.getUsername2()%></td>
+<%-- 				<td><%= appli.getUsername2()%></td> --%>
+				<td>Friend Application Request</td>
 				<td>
 					<form action="">
 						<input type="submit" value="reply"/>
@@ -87,8 +88,8 @@
 				</td>
 			</tr>
 <% 
-	}
-}
+// 	}
+// }
 %>
 	</tbody>
 	</table>
