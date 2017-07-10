@@ -25,10 +25,10 @@ public class SearchUserAction extends BaseAction{
 	public String execute() throws Exception {
 		User user = userService.getUserByUsername(username);
 		if(user == null){
-			return "input";
+			return "success";
 		}
 		else{
-			request().setAttribute("user", user);
+			request().setAttribute("searchuser", user);
 			return "success";
 		}
 		
