@@ -21,15 +21,15 @@ public class FriendpairDaoImpl extends HibernateDaoSupport implements Friendpair
 	public List<Friendpair> getPairByUsername(String username){
 		@SuppressWarnings("unchecked")
 		List<Friendpair> pairs = (List<Friendpair>) getHibernateTemplate().find(
-				"from Friendpair as fp where fp.username1=? or fp.username2=?", username, username);
+				"from Friendpair as fp where fp.username1=?", username);
 		return pairs;
 	}
 	
 	public List<Friendpair> getPairByUsernames(String username1, String username2){
 		@SuppressWarnings("unchecked")
 		List<Friendpair> pairs = (List<Friendpair>) getHibernateTemplate().find(
-				"from Friendpair as fp where (fp.username1=? and fp.username2=?) or (fp.username1=? and fp.username2=?)",
-																		username1, username2, username2, username1);
+				"from Friendpair as fp where fp.username1=? and fp.username2=?",
+																		username1, username2);
 		return pairs;
 	}
 

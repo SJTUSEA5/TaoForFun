@@ -16,14 +16,16 @@
 <body>
 
 <%
-	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
-	}
-	ArrayList<User>friends = new ArrayList<User>();
-	if(request.getSession().getAttribute("friends")!= null){
-		friends = (ArrayList<User>)request.getSession().getAttribute("friends");
-	}
+// 	User user = new User();
+// 	ArrayList<User>friends = new ArrayList<User>();
+// 	if(request.getSession().getAttribute("user")== null){
+// 		response.sendRedirect("homePro");
+// 	}
+// 	else{
+// 	else
+// 		user = (User)request.getSession().getAttribute("user");	
+// 		if(request.getSession().getAttribute("friends")!= null)
+// 			friends = (ArrayList<User>)request.getSession().getAttribute("friends");	
 %>
 
 <div class="topbar">
@@ -43,12 +45,12 @@
 <div class="nav">
 	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
 	<ul>
-		<li>UserName</li>
+<%-- 		<li><%=user.getUsername() %></li> --%>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro" class="active">Profile</a></li>
-		<li><a href="getUserAccountPro" class="active">Account</a></li>
-		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
-		<li><a href="logoutPro" class="active">Log out</a></li>
+		<li><a href="getUserProfilePro">Profile</a></li>
+		<li><a href="getUserAccountPro">Account</a></li>
+		<li><a href="getUserPermissionPro">Permissions</a></li>
+		<li><a href="logoutPro">Log out</a></li>
 	</ul>
 </div>
 
@@ -56,36 +58,41 @@
 
 	<ul class="tab">
 		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
-		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
-		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
-		<li><a href="getSettingsPro" class="active">Settings</a></li>
+		<li><a href="getMyWeibosPro">My Weibos</a></li>
+		<li><a href="getMyMessagesPro">Messages</a></li>
+		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
 	<br>
 	<br>
-	<div class="dataTable">
+	<div class="dataTable message">
 	<table>
 		<thead>
 		<tr><th>My Friends</th></tr>
 		</thead>
 		<tbody>
 <%
-	int i = 0;
-	for(; i < friends.size(); i++){
-		User friend = friends.get(i);
+// 	int i = 0;
+// 	for(; i < friends.size(); i++){
+// 		User friend = friends.get(i);
 %>
 			<tr>
-				<td><%= friend.getUsername()%></td>
+<%-- 				<td><%= friend.getUsername()%></td> --%>
+					<td>Friend Name</td>
 				<td>
-					<form action="">
-						<input type="submit" value="message"/>
+					<form action="messageFriendPro">
+<%-- 						<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/> --%>
+						<input type="submit" value="Message"/>
 					</form>
-					<form action="">
-						<input type="submit" value="edit"/>
+					<form action="visitFriendHomePro">
+<%-- 						<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/> --%>
+						<input type="submit" value="Visit"/>
 					</form>
+
 				</td>
 			</tr>
 <% 
-	} 
+// 	} 
+// }
 %>
 	</tbody>
 	</table>

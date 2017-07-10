@@ -22,7 +22,7 @@
 		
 		
 		<action name="addPersonalWeiboAction" class="action.AddPersonalWeiboAction">
-			<result name="success" type="redirectAction">showPersonalWeiboAction?username=${username}</result>
+			<result name="success" type="redirectAction">showPersonalWeiboAction</result>
 		</action>
 		
 		<action name="getMyWeibosPro" class="action.ShowPersonalWeiboAction">
@@ -30,7 +30,11 @@
 		</action>
 		
 		<action name="deleteMyWeiboPro" class="action.DeletePersonalWeiboAction">
-			<result name="success" type="redirectAction">getMyWeibosPro?username=${username}</result>
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
+		
+		<action name="addPersonalWeiboPro" class="action.AddPersonalWeiboAction">
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
 		</action>
 		
 		

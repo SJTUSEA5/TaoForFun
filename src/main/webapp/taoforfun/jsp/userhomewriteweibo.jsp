@@ -24,8 +24,8 @@
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");	
-		if(request.getSession().getAttribute("myweibos")!= null)
-			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
+// 		if(request.getSession().getAttribute("myweibos")!= null)
+// 			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
 %>
 
 <div class="topbar">
@@ -65,41 +65,47 @@
 <br>
 <br>
 <div>
-<a href="<%=path %>/taoforfun/jsp/userhomewriteweibo.jsp">Write Weibo</a>
+
 </div>
-	<div class="dataTable message">
-	<table>
-		<thead>
-		<tr><th>My Weibos</th></tr>
-		</thead>
-		<tbody>
-<%
-	int i = 0;
-	for(; i < myweibos.size(); i++){
-		Weibo myweibo = myweibos.get(i);
-%>
-			<tr>
-				<td><%= myweibo.getTime()%></td>
-				<td><%= myweibo.getAdder()%></td>
-				<td><%= myweibo.getContent()%></td>
-				<td>
-					<a href="deleteMyWeiboPro?weiboid=<%=myweibo.getWeiboid()%>&&username=<%=myweibo.getAdder()%>">
-						<button>delete</button>
-					</a>
-				</td>
-			</tr>
-<% 
-	}
-}
-%>
-	</tbody>
-	</table>
-	</div>
+	<div class="weiboForm">
+	<h2>Write Weibo</h2>
+	<form action="addPersonalWeiboPro" method="post" class="Form">
+		<div class="wordCount" id="wordCount">
+	    	<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+				<input type="text" rows="12" cols="50" id="TextArea1" onkeyup="checkLength(this);" name="content"></textarea><br>
+				<input type="submit" value="submit"/>
+		</div>		
+	</form>
 	
 
+<script type="text/javascript">
+function checkLength(which) {
+	var maxChars = 140;
+	if(which.value.length > maxChars){
+		alert("140 words only!");
+		
+		which.value = which.value.substring(0,maxChars);
+		return false;
+	}else{
+		var curr = maxChars - which.value.length; 
+		document.getElementById("sy").innerHTML = curr.toString();
+		return true;
+	}
+}
+function clearDefault(el) { 
+	if (el.defaultValue==el.value) el.value = "" 
+	   } 
+</script>	
+
+<% 
+}
+%>
+
+	</div>
+
 </div>
 
-<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-
+<!-- <script type="text/javascript" src="jquery-1.11.1.min.js"></script> -->
+<script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
 </body>
 </html>

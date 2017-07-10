@@ -30,4 +30,8 @@ public class CommentServiceImpl implements CommentService{
 		return commentDao.getCommentByWeiboid(weiboid);
 	}
 
+	public Comment getCommentByCommentid(int commentid) {
+		return commentDao.getCommentByCommentid(commentid);
+	}
+
 }
