@@ -1,0 +1,6 @@
+/UI/*
+/pdf/*
+/TaoForFun/*
+!/TaoForFun/src/main/java/
+!/TaoForFun/src/main/webapp/taoforfun/
+!/TaoForFun/src/main/webapp/index.jsp
