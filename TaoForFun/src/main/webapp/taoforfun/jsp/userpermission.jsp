@@ -29,7 +29,7 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
-	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>

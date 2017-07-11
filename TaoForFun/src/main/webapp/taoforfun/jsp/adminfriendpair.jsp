@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="model.User"%>
+<%@ page import="model.Friendpair"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,12 +16,19 @@
 </head>
 <body>
 <%
-	User user = new User();
+	User admin = new User();
+	ArrayList<Friendpair> friendpairlist = new ArrayList<Friendpair>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
-		user = (User)request.getSession().getAttribute("user");
+		admin = (User)request.getSession().getAttribute("user");
+		if(!admin.getRole().regionMatches(true,0,"admin",0,5)){
+			response.sendRedirect("homePro");//undone
+		}
+		else{
+			if(request.getAttribute("friendpairs")!=null)
+				friendpairlist = (ArrayList<Friendpair>)request.getAttribute("friendpairs");
 %>
 <div class="topbar">
 <div class="topbody">
@@ -38,31 +47,45 @@
 <div class="nav">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
-		<li><%=user.getUsername() %></li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro" class="active">Profile</a></li>
-		<li><a href="getUserAccountPro" class="active">Account</a></li>
-		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
+		<li>*<%=admin.getUsername() %>*</li>
+		<li><a href="getAllUsersPro" class="active">Users</a></li>
+		<li><a href="getAllWeibosPro" class="active">Weibos</a></li>
+		<li><a href="getAllFriendpairsPro" class="active">Friendpairs</a></li>
+		<li><a href="getAllMessagesPro" class="active">Messages</a></li>
 		<li><a href="logoutPro" class="active">Log out</a></li>
 	</ul>
 </div>
 
-<div class="section">	
-	<form action="updateUserProfilePro" method="post">
-		<p>New Password<input type="password" name="newpassword"/></p>
-		<p>Confirm New Password<input type="password" name="confirmnew"/></p>
-		<p><input type="submit" value="Change Password"/>
-	</form>
-	
-	<p><a href="findPasswordPro">forget the old password?</a></p>
-	
-	<form action="deleteAccountPro" method="post">
-		<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
-		<input type="submit" value="Delete Account" onclick="return warnDelete()"/>Warning: This operation cannot be undone!
-	</form>
-	<a href="getAllUsersPro">Admin-Users</a>
+<div class="section">
+	<table>
+	<thead>
+	<tr>
+	<th>Pair ID</th>
+	<th>User 1</th>
+	<th>User 2</th>
+	<th>Operation</th>
+	</tr>
+	</thead>
+	<tbody>
+<%
+	for(int i = 0; i < friendpairlist.size(); i++){
+		Friendpair friendpair = friendpairlist.get(i);	
+%>
+	<tr>
+	<td><%=friendpair.getPairid()%></td>
+	<td><%=friendpair.getUsername1()%></td>
+	<td><%=friendpair.getUsername2()%></td>
+	<td><a href="Javascript: void(0)" class="friendpairDetail" id="<%=friendpair.getPairid()%>">Detail</a></td>
+	<td></td>
+	</tr>
+<%
+}
+%>
+	</tbody>
+	</table>
 </div>
 <%
+	}
 }
 %>
 <script>
