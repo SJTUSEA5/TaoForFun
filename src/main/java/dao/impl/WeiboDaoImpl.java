@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Weibo;
 
+import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import dao.WeiboDao;
@@ -22,6 +23,13 @@ public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 		@SuppressWarnings("unchecked")
 		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate().find(
 				"from Weibo as w where w.adder=?", username);
+		return weibos;
+	}
+	
+	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, java.sql.Timestamp limitTime){
+		@SuppressWarnings("unchecked")
+		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate().find(
+				"from Weibo as w where w.adder in (?) and w.time > ?", friendnames, limitTime);
 		return weibos;
 	}
 	
