@@ -9,9 +9,47 @@
 <style type="text/css">
 body {font-family: Georgia;}
 </style>
-
+<%
+	String path = request.getContextPath();
+%>
+<link href="<%=path%>/taoforfun/css/dataTables.bootstrap.css"
+	rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/dataTables.responsive.css"
+	rel="stylesheet">
 </head>
 <body>
 <h2>This is a test file of Tao For Fun.</h2>
+<table id="dataTables">
+<thead>
+</thead>
+<tbody>
+<tr>
+<td><div id="day2-meal-expense" data-drink="coffee" data-food="sushi" data-meal="lunch">¥20.12</div></td>
+</tr>
+</tbody>
+</table>
+
+<button id="button">click</button>
+<script>
+
+// var expenseday2 = document.getElementById("day2-meal-expense");  
+// var typeOfDrink = expenseday2.dataset && expenseday2.dataset.drink;
+
+document.getElementById("button").onclick = function(e) {
+// 	var typeOfDrink = e.currentTarget.dataset && e.currentTarget.dataset.drink;
+	var typeOfDrink = e.currentTarget.dataset.drink;
+    alert("drink:" + typeOfDrink);
+};
+</script>
+<script>
+	$(document).ready(function() {
+		$('#dataTables').DataTable({
+			responsive : true
+	});
+});
+</script>
+	<script src="<%=path%>/taoforfun/js/jquery.dataTables.min.js"></script>
+	<script src="<%=path%>/taoforfun/js/dataTables.bootstrap.min.js"></script>
+
 </body>
 </html>

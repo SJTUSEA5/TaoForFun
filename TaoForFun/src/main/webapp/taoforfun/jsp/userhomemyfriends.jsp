@@ -41,16 +41,20 @@
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
+	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	<ul>
-<%-- 		<li><%=user.getUsername() %></li> --%>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro">Profile</a></li>
-		<li><a href="getUserAccountPro">Account</a></li>
-		<li><a href="getUserPermissionPro">Permissions</a></li>
-		<li><a href="logoutPro">Log out</a></li>
-	</ul>
+	</div>
+	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
+	<div class="nav-list">
+			<p><a href="getUserHomePro">Home</a></p>
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">
@@ -61,45 +65,42 @@
 		<li><a href="getMyMessagesPro">Messages</a></li>
 		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
-	<br>
-	<br>
-	<div class="dataTable">
-	<table>
-		<thead>
-		<tr><th>My Friends</th></tr>
-		</thead>
-		<tbody>
+<br>
+<br>
+<div class="section-content">
+<div id="dataTables">
+	<h2>My Friends</h2>
 <%
 	for(int i = 0; i < friends.size(); i++){
 		User friend = friends.get(i);
 %>
-			<div class="message">
-				<tr>
-					<td>Friend Name: <%= friend.getUsername()%></td>
-					<td>
-						<form action="messageFriendPro" method="post">
-							<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
-							<input type="submit" value="Message"/>
-						</form>
-						<form action="visitFriendHomePro" method="post">
-							<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
-							<input type="submit" value="Visit"/>
-						</form>
-					</td>
-				</tr>
-			</div>
+
+<div class="message firendForm">
+	<div class="section-data-header">
+		<p>Friend Name: <%= friend.getUsername()%></p>
+	</div>
+	<div class="section-data-body"></div>
+	<div class="section-data-footer">
+		<form action="messageFriendPro" method="post">
+			<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
+			<input type="submit" value="Message"/>
+		</form>
+		<form action="visitFriendHomePro" method="post">
+			<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
+			<input type="submit" value="Visit"/>
+		</form>
+	</div>
+</div>
 <% 
 	} 
-}
 %>
-	</tbody>
-	</table>
-	</div>
-	
 
 </div>
+</div>
+</div>	
 
+</div>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-
+<%} %>
 </body>
 </html>

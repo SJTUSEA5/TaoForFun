@@ -42,29 +42,30 @@
 </div>
 </div>
 
+<div class="page">
 <div class="nav">
+	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	<ul>
-		<li><%=friend.getUsername() %></li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getMessageBoxPro" class="active">Send Message</a></li>
-		<li><a href="deleteFriendPro" class="active">Delete Friend</a></li>
-	</ul>
+	</div>
+	<div class="nav-gap"><p>Friend Name</p></div>
+	<div class="nav-list">
+		<p><a href="visitFriendHomePro" class="active">Home</a></p>
+		<p><a href="getUserProfilePro">Send Message</a></p>
+		<p><a href="deleteFriendPro">Delete Friend</a></p>
+	</div>
 </div>
 
-
-
 <div class="section">
-	<ul>
-		<li>Name: <%=friend.getUsername()%></li>
-		<li>Gender: </li>
-		<li>Age: </li>
-		<li>City: </li>
-		<li>Email: <%=friend.getEmail()%></li>
-		<li>Birthday: </li>
-		<li>Phone: </li>
-		<li>Introduction: </li>
-	</ul>
+	<div class="section-content">
+		<p>Name: <%=friend.getUsername()%></p>
+		<p>Gender: </p>
+		<p>Age: </p>
+		<p>City: </p>
+		<p>Email: <%=friend.getEmail()%></p>
+		<p>Birthday: </p>
+		<p>Phone: </p>
+		<p>Introduction: </p>
+<br>
 	<h2>Latest Weibos</h2>
 	<br>
 <%
@@ -75,15 +76,25 @@
 		
 %>	
 	<ul>
-	<li><%=fweibo.getTime() %></li>
-	<li><%=fweibo.getContent() %></li>
+		<li><%=fweibo.getTime() %></li>
+		<li><%=fweibo.getAdder() %></li>
+		<li><%=fweibo.getContent() %></li>
+		<li>
+			<a href="#">
+				<button>like</button>
+			</a>
+			<a href="commentMyWeiboPro?weiboid=<%=fweibo.getWeiboid()%>&&username=<%=fweibo.getAdder()%>">
+				<button>comment</button>
+			</a>
+		</li>
 	</ul>
-</div>
 <%
 		}
 	}
 %>
+</div>
+</div>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-
+</div>
 </body>
 </html>
