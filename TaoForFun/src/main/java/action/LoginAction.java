@@ -14,7 +14,7 @@ public class LoginAction extends BaseAction{
 		return loginname;
 	}
 
-	public void setLoginnamename(String loginname) {
+	public void setLoginname(String loginname) {
 		this.loginname = loginname;
 	}
 
@@ -34,19 +34,29 @@ public class LoginAction extends BaseAction{
 		if(session.get("user") == null)
 			return "success";
 		else
-			return INPUT;
+			return "input";
 	}
 	
 	
 	@Override
 	public String execute() throws Exception {
-		User user = new User(loginname, password);
-		if (userService.checkUser(user)){
-			session.put("user", user);
-			return SUCCESS;
+		session.put("re", "");
+		System.out.println(userService);
+		if (userService.checkUser(loginname, password)){
+			if(userService.getUserByUsername(loginname) == null){
+				User user = userService.getUserByEmail(loginname);
+				session.put("user", user);
+				return "success";
+			}
+			else{
+				User user = userService.getUserByUsername(loginname);
+				session.put("user", user);
+				return "success";
+			}
 		}
 		else{
-			return INPUT;
+			session.put("re","incorrect username or password.");
+			return "input";
 		}
 	}
 	

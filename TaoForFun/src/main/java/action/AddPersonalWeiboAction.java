@@ -1,14 +1,15 @@
 package action;
 
+import model.User;
 import model.Weibo;
 import service.WeiboService;
 
-public class AddPersonalWeiboAction extends BaseAction {
+public class AddPersonalWeiboAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
-	
-	private WeiboService weiboService;
+
 	private String content;
 	
+	private WeiboService weiboService;
 	
 	public String getContent(){
 		return content;
@@ -22,15 +23,14 @@ public class AddPersonalWeiboAction extends BaseAction {
 		this.weiboService = weiboService;
 	}
 	
-	public String checkContent(){
-		if(session.get("content") == null)
-			if (!((content == null || content.length()<=0)||(content.length()>140)))
-				return "success";
-			else
-				return "input";
-		else
-			return "input";
+	@Override
+	public String execute() throws Exception {
+		String username = ((User) session.get("user")).getUsername();
+		java.sql.Date time = new java.sql.Date(new java.util.Date().getTime());
+		//java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
+		Weibo weibo = new Weibo(username, content, time);
+		weiboService.addWeibo(weibo);
+		return SUCCESS;
 	}
-	
 	
 }

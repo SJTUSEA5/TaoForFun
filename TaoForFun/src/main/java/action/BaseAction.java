@@ -48,21 +48,21 @@ public class BaseAction extends ActionSupport implements RequestAware,SessionAwa
 		return ServletActionContext.getResponse();
 	}	
 	
-	//Óò¶ÔÏó
+	//åŸŸå¯¹è±¡
 	protected Map<String, Object> request;
 	protected Map<String, Object> session;
 	protected Map<String, Object> application;
 	
-	//@Override
+	@Override
 	public void setApplication(Map<String, Object> application) {
 		this.application = application;
 	}
 	
-	//@Override
+	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	//@Override
+	@Override
 	public void setRequest(Map<String, Object> request) {
 		this.request = request;
 	}
