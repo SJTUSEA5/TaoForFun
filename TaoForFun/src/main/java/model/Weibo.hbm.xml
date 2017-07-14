@@ -17,5 +17,9 @@
 		<property name="time" type="java.sql.Date">
 			<column name="time" />
 		</property>
+		<set name="comments" lazy="false" inverse="true">
+			<key column="weiboid" />
+			<one-to-many class="model.Comment" />
+		</set>
 	</class>
 </hibernate-mapping>

@@ -16,7 +16,7 @@ public class Friendpair {
 	}
 	
 	public int getPairid(){
-		return this.pairid;
+		return pairid;
 	}
 	
 	public void setPairid(int pairid){
@@ -24,7 +24,7 @@ public class Friendpair {
 	}
 	
 	public String getUsername1(){
-		return this.username1;
+		return username1;
 	}
 	
 	public void setUsername1(String username1){
@@ -32,7 +32,7 @@ public class Friendpair {
 	}
 	
 	public String getUsername2(){
-		return this.username2;
+		return username2;
 	}
 	
 	public void setUsername2(String username2){

@@ -37,54 +37,39 @@
 </div>
 </div>
 
-<div class="page">
-
 <div class="nav">
-	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	</div>
-	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
-	<div class="nav-list">
-			<p><a href="getUserHomePro">Home</a></p>
-			<p><a href="getUserProfilePro">Profile</a></p>
-			<p><a href="getUserAccountPro">Account</a></p>
-			<p><a href="getUserPermissionPro">Permissions</a></p>
-			<p><a href="logoutPro">Log out</a></p>
-	</div>
+	<ul>
+		<li><%=user.getUsername() %></li>
+		<li><a href="getUserHomePro">Home</a></li>
+		<li><a href="getUserProfilePro">Profile</a></li>
+		<li><a href="getUserAccountPro">Account</a></li>
+		<li><a href="getUserPermissionPro">Permissions</a></li>
+		<li><a href="logoutPro">Log out</a></li>
+</ul>
 </div>
 
 <div class="section">
-	<div class="section-content">
-		<form action="updateUserProfilePro" method="post">
-			<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
-			<p>Name<input type="text" name="username" value="<%=user.getUsername()%>"/></p>
-			<p>Gender<input type="text" name="gender" value=""/></p>
-			<p>Age<input type="text" name="age" value=""/></p>
-			<p>City<input type="text" name="city" value=""/></p>
-			<p>Email<input type="text" name="email" value="<%=user.getEmail()%>"/></p>
-			<p>Birthday<input type="text" name="birthday" value=""/></p>
-			<p>Phone<input type="text" name="phone" value=""/></p>
-			<p>Introduction</p>
-			<textarea rows="8" cols="25" id="introContent" ></textarea><br>
-			<input type="hidden" name="intro" id="submitContent"/>
-			<input type="submit" value="Update" onclick="return getContent()"/>
-		</form>
-	</div>
+	<form action="updateUserProfilePro" method="post">
+		<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
+		<p>Name<input type="text" name="username" value="<%=user.getUsername()%>"/></p>
+		<p>Gender<input type="text" name="gender" value=""/></p>
+		<p>Age<input type="text" name="age" value=""/></p>
+		<p>City<input type="text" name="city" value=""/></p>
+		<p>Email<input type="text" name="email" value="<%=user.getEmail()%>"/></p>
+		<p>Birthday<input type="text" name="birthday" value=""/></p>
+		<p>Phone<input type="text" name="phone" value=""/></p>
+		<p>Introduction<input type="text" name="intro" value=""/></p>
+		<input type="submit" value="Update"/>
+	</form>
 </div>
 
 <%
 }
 %>	
 
-</div>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-<script>
-function getContent(){
-	var c = document.getElementById("introContent").value;
-	document.getElementById("submitContent").value = document.getElementById("introContent").value;
-	return true;
-}
-</script>
+
 
 </body>
 </html>

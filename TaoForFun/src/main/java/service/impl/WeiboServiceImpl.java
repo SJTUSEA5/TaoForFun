@@ -4,14 +4,13 @@ import java.util.List;
 
 import model.Weibo;
 import service.WeiboService;
-import dao.UserDao;
 import dao.WeiboDao;
 
 public class WeiboServiceImpl implements WeiboService{
 	
 	private WeiboDao weiboDao;
 	
-	public void setWeiboDao(WeiboDao weiboDao) {
+	public void setWeiboDao(WeiboDao weiboDao){
 		this.weiboDao = weiboDao;
 	}
 	
@@ -33,6 +32,10 @@ public class WeiboServiceImpl implements WeiboService{
 	
 	public List<Weibo> getAllWeibo(){
 		return weiboDao.getAllWeibo();
+	}
+
+	public Weibo getWeiboByWeiboid(int weiboid) {
+		return weiboDao.getWeiboByWeiboid(weiboid);
 	}
 
 }

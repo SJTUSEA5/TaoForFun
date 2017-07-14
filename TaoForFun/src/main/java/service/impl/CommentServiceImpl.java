@@ -5,13 +5,12 @@ import java.util.List;
 import model.Comment;
 import service.CommentService;
 import dao.CommentDao;
-import dao.FriendpairDao;
 
 public class CommentServiceImpl implements CommentService{
 	
 	private CommentDao commentDao;
 	
-	public void setCommentDao(CommentDao commentDao) {
+	public void setCommentDao(CommentDao commentDao){
 		this.commentDao = commentDao;
 	}
 	
@@ -29,6 +28,10 @@ public class CommentServiceImpl implements CommentService{
 	
 	public List<Comment> getCommentByWeiboid(int weiboid){
 		return commentDao.getCommentByWeiboid(weiboid);
+	}
+
+	public Comment getCommentByCommentid(int commentid) {
+		return commentDao.getCommentByCommentid(commentid);
 	}
 
 }

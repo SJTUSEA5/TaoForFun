@@ -42,17 +42,14 @@
 </div>
 </div>
 
-<div class="page">
 <div class="nav">
-	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	</div>
-	<div class="nav-gap"><p>Friend Name</p></div>
-	<div class="nav-list">
-		<p><a href="visitFriendHomePro" class="active">Home</a></p>
-		<p><a href="getUserProfilePro">Send Message</a></p>
-		<p><a href="deleteFriendPro">Delete Friend</a></p>
-	</div>
+	<ul>
+		<li>Friend Name</li>
+		<li><a href="visitFriendHomePro" class="active">Home</a></li>
+		<li><a href="getUserProfilePro">Send Message</a></li>
+		<li><a href="deleteFriendPro">Delete Friend</a></li>
+	</ul>
 </div>
 
 <div class="section">
@@ -77,6 +74,6 @@
 }
 %>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-</div>
+
 </body>
 </html>

@@ -12,6 +12,8 @@ public interface WeiboDao {
 	
 	public List<Weibo> getWeiboByUsername(String username);
 	
+	public Weibo getWeiboByWeiboid(int weiboid);
+	
 	public List<Weibo> getAllWeibo();
 	
 }

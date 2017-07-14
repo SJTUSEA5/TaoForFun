@@ -4,14 +4,13 @@ import java.util.List;
 
 import model.Friendpair;
 import dao.FriendpairDao;
-import dao.UserDao;
 import service.FriendpairService;
 
 public class FriendpairServiceImpl implements FriendpairService{
 
 	private FriendpairDao friendpairDao;
 	
-	public void setFriendpairDao(FriendpairDao friendpairDao) {
+	public void setFriendpairDao(FriendpairDao friendpairDao){
 		this.friendpairDao = friendpairDao;
 	}
 	

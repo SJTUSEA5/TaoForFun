@@ -24,7 +24,7 @@ public class Friendapplication {
 	}
 	
 	public String getUsername1(){
-		return this.username1;
+		return username1;
 	}
 	
 	public void setUsername1(String username1){
@@ -32,7 +32,7 @@ public class Friendapplication {
 	}
 	
 	public String getUsername2(){
-		return this.username2;
+		return username2;
 	}
 	
 	public void setUsername2(String username2){

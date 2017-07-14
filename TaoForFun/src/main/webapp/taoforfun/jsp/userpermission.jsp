@@ -35,32 +35,28 @@
 </div>
 </div>
 
-<div class="page">
-
 <div class="nav">
-	<div class="nav-head">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	</div>
-	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
-	<div class="nav-list">
-			<p><a href="getUserHomePro">Home</a></p>
-			<p><a href="getUserProfilePro">Profile</a></p>
-			<p><a href="getUserAccountPro">Account</a></p>
-			<p><a href="getUserPermissionPro">Permissions</a></p>
-			<p><a href="logoutPro">Log out</a></p>
-	</div>
+<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+<ul>
+	<li><%=user.getUsername() %></li>
+	<li><a href="getUserHomePro" class="active">Home</a></li>
+	<li><a href="getUserProfilePro" class="active">Profile</a></li>
+	<li><a href="getUserAccountPro" class="active">Account</a></li>
+	<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
+	<li><a href="logoutPro" class="active">Log out</a></li>
+</ul>
 </div>
 
 <div class="section">
-	<div class="section-content">
-		<p>Account authority level: <%=user.getRole() %></p>
-		<form>
-			<p>Password:</p><input type="text" name="password"/>
-			<input type="submit" value="Change Authority"/>
-		</form>
-	</div>
+<ul>
+	<li>Account authority level: <%=user.getRole() %></li>
+	<li>
+	<form>
+		<p>Password:</p><input type="text" name="password"/>
+		<input type="submit" value="Change Authority"/>
+	</form>
+</ul>
 </div>
 
-</div>
 </body>
 </html>

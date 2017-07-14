@@ -21,7 +21,7 @@ public class Comment {
 	}
 	
 	public int getCommentid(){
-		return this.commentid;
+		return commentid;
 	}
 	
 	public void setCommentid(int commentid){
@@ -29,7 +29,7 @@ public class Comment {
 	}
 	
 	public int getWeiboid(){
-		return this.weiboid;
+		return weiboid;
 	}
 	
 	public void setWeiboid(int weiboid){
@@ -37,7 +37,7 @@ public class Comment {
 	}
 	
 	public String getAdder(){
-		return this.adder;
+		return adder;
 	}
 	
 	public void setAdder(String adder){
@@ -45,7 +45,7 @@ public class Comment {
 	}
 	
 	public String getContent(){
-		return this.content;
+		return content;
 	}
 	
 	public void setContent(String content){
@@ -53,7 +53,7 @@ public class Comment {
 	}
 	
 	public Date getTime(){
-		return this.time;
+		return time;
 	}
 	
 	public void setTime(Date time){

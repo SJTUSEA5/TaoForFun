@@ -4,6 +4,14 @@ body{
 	padding:0;
 }
 
+/* a:link,a:visited,a:hover,a:active {  */
+/* 	color:#000000;  */
+/* 	text-decoration:none; */
+/* } */
+/* a:hover{ */
+/* 	background-color:#ff7878 */
+/* } */
+
 .topbody{
 	width:auto;
 	margin:0 auto;
@@ -47,47 +55,30 @@ ol,ul,li{
 	float:left;
 }
 
-.page{
-	width:100%;
-}
 .topbar,.nav,.section,.message{
 	box-shadow:10px 10px 8px #cccccc;
 	overflow:hidden;
 }
 .nav,.section{
-/* 	border:1px solid #aaaaaa; */
-/* 	border-radius:1%; */
-	margin:20px 20px 20px 20px;
+	margin:20px 20px 20px 50px;
 }
 
 .nav{
-	border:1px solid #aaaaaa;
-	border-radius:1%;
 	background-color:#ffffff;
 	height:auto;
-	width:20%;
-	padding-bottom:20%;
+	width:120px;
+	padding:30px;
 	float:left;
 	text-align:center;
 	line-height:30px;	
-	min-width:15%;
 }
-.nav-head{
-	padding: 10px;
+.nav img{
 	border-radius:50%;
 }
-.nav-gap{
-	border-bottom:1px solid #aaaaaa;
-}
-.nav-list,.tab ul{
-	padding:5px 5px 5px 5px;
-	margin:auto;
-	display:table;
-	text-align:center;
+.nav ul,.tab ul{
+	padding:4px 0;
+	margin:0;
 	overflow:hidden;
-}
-.nav-list p{
-	line-height:45px;
 }
 
 .nav a,.tab a{
@@ -95,25 +86,15 @@ ol,ul,li{
 	color:#000000;
 	display:block;
 }
-.nav a{
-	font-size:20px;
-}
 .nav a:hover,.tab a:hover{
 	background-color:#ff7878;
 }
 
 .section{
-	border:1px solid #aaaaaa;
-	border-radius:1%;
 	background-color:#ffffff;
 	height:auto;
 	width:65%;
-	float:right;
-	display:inline;
-	min-width:60%;
-}
-.section-content{
-	padding:40px;
+	padding:30px;
 	float:left;
 	overflow:hidden;
 }
@@ -122,36 +103,13 @@ ol,ul,li{
 	text-align:center;
 }
 
-.message{
+.message .weiboForm{
 	border:1px solid #aaaaaa;
 	border-radius:1%;
-	height:200px;
-	width:500px;
+	height:auto;
+	width:55%;
 	padding:10px;
 }
-
-
  .message .head{
 	border-radius:50%;
-}
-/* .promote{ */
-/* 	color:#999999; */
-/* } */
-.section-data-header{
-	border:1px solid #aaaaaa;
-	border-style:none none solid none;
-	padding:5px 5px 5px 5px;
-}
-.section-data-body{
-	border:1px solid #aaaaaa;
-	border-style:solid none solid none;
-	padding:5px 5px 5px 5px;
-}
-.section-data-footer{
-	border:1px solid #aaaaaa;
-	border-style:solid none none none;
-	padding:5px 5px 5px 5px;
-}
-.submitbtn{
-	color:#ff7878;
 }
