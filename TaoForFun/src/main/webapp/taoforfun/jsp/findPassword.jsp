@@ -26,7 +26,8 @@
 </div>
 </div>
 
-<div class="section">
+<div class="full-section">
+<div class="full-section-content">
 <h2>Input your email address to change the password.</h2>
 <div class="signinform">
 	<form action="" method="post">
@@ -39,6 +40,8 @@
 <p id=sent></p>
 <br><br>
 <a href="/TaoForFun/index.jsp">Home page</a>
+<br>
+</div>
 </div>
 </div>
 

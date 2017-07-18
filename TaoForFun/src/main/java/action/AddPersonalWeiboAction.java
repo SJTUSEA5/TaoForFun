@@ -26,8 +26,7 @@ public class AddPersonalWeiboAction extends BaseAction{
 	@Override
 	public String execute() throws Exception {
 		String username = ((User) session.get("user")).getUsername();
-		java.sql.Date time = new java.sql.Date(new java.util.Date().getTime());
-		//java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
+		java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
 		Weibo weibo = new Weibo(username, content, time);
 		weiboService.addWeibo(weibo);
 		return SUCCESS;

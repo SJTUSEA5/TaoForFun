@@ -10,7 +10,7 @@ import model.Weibo;
 import service.WeiboService;
 import service.FriendpairService;
 
-class ShowFriendsWeiboAction extends BaseAction{
+public class ShowFriendsWeiboAction extends BaseAction{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -27,17 +27,18 @@ class ShowFriendsWeiboAction extends BaseAction{
 	
 	@Override
 	public String execute() throws Exception{
-//		String username = ((User)session.get("user")).getUsername();
-//		java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
-//		java.sql.Timestamp limitTime = new java.sql.Timestamp(time.getTime() - 3*24*60*60*1000);
-//		List<Friendpair> pairs = friendpairService.getPairByUsername(username);
-//		List<String> friendnames = new ArrayList<String>();
-//		for(Friendpair pair : pairs){
-//			friendnames.add(pair.getUsername2());
-//		}
-//		List<Weibo> weibos = weiboService.getWeiboByFriendlist(friendnames, limitTime);
-//		Collections.reverse(weibos);
-//		request().setAttribute("weibos", weibos);
+		String username = ((User)session.get("user")).getUsername();
+		java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
+		java.sql.Timestamp limitTime = new java.sql.Timestamp(time.getTime() - 3*24*60*60*1000);
+		List<Friendpair> pairs = friendpairService.getPairByUsername(username);
+		List<String> friendnames = new ArrayList<String>();
+		for(Friendpair pair : pairs){
+			friendnames.add(pair.getUsername2());
+		}
+		friendnames.add(username);
+		List<Weibo> weibos = weiboService.getWeiboByFriendlist(friendnames, limitTime);
+		Collections.reverse(weibos);
+		request().setAttribute("weibos", weibos);
 		return SUCCESS;
 	}
 	

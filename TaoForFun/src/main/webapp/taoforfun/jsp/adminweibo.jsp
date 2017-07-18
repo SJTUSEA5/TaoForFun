@@ -44,19 +44,24 @@
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
+	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	<ul>
-		<li>*<%=admin.getUsername() %>*</li>
-		<li><a href="getAllUsersPro" class="active">Users</a></li>
-		<li><a href="getAllWeibosPro" class="active">Weibos</a></li>
-		<li><a href="getAllFriendpairsPro" class="active">Friendpairs</a></li>
-		<li><a href="getAllMessagesPro" class="active">Messages</a></li>
-		<li><a href="logoutPro" class="active">Log out</a></li>
-	</ul>
+	</div>
+	<div class="nav-gap"><p>*<%=admin.getUsername() %>*</p></div>
+	<div class="nav-list">	
+		<p><a href="getAllUsersPro" class="active">Users</a></p>
+		<p><a href="getAllWeibosPro" class="active">Weibos</a></p>
+		<p><a href="getAllFriendpairsPro" class="active">Friendpairs</a></p>
+		<p><a href="getAllMessagesPro" class="active">Messages</a></p>
+		<p><a href="logoutPro" class="active">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">
+<div class="section-content">
 	<table>
 	<thead>
 	<tr>
@@ -78,8 +83,8 @@
 	<td><%=weibo.getAdder()%></td>
 	<td><%=weibo.getContent()%></td>
 	<td><%=weibo.getTime()%></td>
-	<td><a href="Javascript: void(0)" class="weiboDetail" id="<%=weibo.getWeiboid()%>">Detail</a></td>
-	<td></td>
+	<td><a href="Javascript: void(0)" class="weiboDetail" data-weiboid="<%=weibo.getWeiboid()%>">Detail</a></td>
+	<td><a href="Javascript: void(0)" class="weibo-delete"  data-weiboid="<%=weibo.getWeiboid()%>">Delete</a></td>
 	</tr>
 <%
 }
@@ -87,19 +92,15 @@
 	</tbody>
 	</table>
 </div>
+</div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="<%=path%>/taoforfun/js/admin.js"></script>
 <%
 	}
 }
 %>
-<script>
-function warnDelete(){
-	if(confirm("Are you sure to delete your account and all related information?")){
-		return true;
-	}else{
-		return false;
-	}
-		
-}
-</script>
 </body>
 </html>

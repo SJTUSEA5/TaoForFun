@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-	<beans xmlns="http://www.springframework.org/schema/beans"
+<!-- Spring Schema -->
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:p="http://www.springframework.org/schema/p"    
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd
-	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
-	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-	http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-<!-- <beans xmlns="http://www.springframework.org/schema/beans" -->
-<!-- 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" -->
-<!-- 	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx" -->
-<!-- 	xsi:schemaLocation="http://www.springframework.org/schema/beans  -->
-<!-- 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd -->
-<!-- 		http://www.springframework.org/schema/tx -->
-<!-- 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd -->
-<!-- 		http://www.springframework.org/schema/aop -->
-<!-- 		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"> -->
-
-
+	<!-- Bean -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close" p:driverClass="com.mysql.jdbc.Driver"
 		p:jdbcUrl="jdbc:mysql://localhost:3306/taoforfun" p:user="root"
@@ -38,11 +25,11 @@
 				<value>model/User.hbm.xml</value>
 				<value>model/Weibo.hbm.xml</value>
 				<value>model/Comment.hbm.xml</value>
-				<value>model/Friendpair.hbm.xml</value>
 				<value>model/Friendapplication.hbm.xml</value>
+				<value>model/Friendpair.hbm.xml</value>
 			</list>
 		</property>
-
+		<!-- Hibernate SessionFatory -->
 		<property name="hibernateProperties">
 			<value>
 				hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
@@ -53,39 +40,41 @@
 		</property>
 	</bean>
 
- 
-	<bean id="UserDao" class="dao.impl.UserDaoImpl">
+	<!-- DAO Bean -->
+	<bean id="userDao" class="dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="WeiboDao" class="dao.impl.WeiboDaoImpl">
+	<bean id="weiboDao" class="dao.impl.WeiboDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="CommentDao" class="dao.impl.CommentDaoImpl">
+	<bean id="commentDao" class="dao.impl.CommentDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
- 	<bean id="FriendpairDao" class="dao.impl.FriendpairDaoImpl">
+	<bean id="friendapplicationDao" class="dao.impl.FriendapplicationDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="FriendapplicationDao" class="dao.impl.FriendapplicationDaoImpl">
+	<bean id="friendpairDao" class="dao.impl.FriendpairDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
- 
-	<bean id="UserService" class="service.impl.UserServiceImpl">
-		<property name="userDao" ref="UserDao"></property>
+
+	<!-- Service -->
+	<bean id="userService" class="service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
 	</bean>
-	<bean id="WeiboService" class="service.impl.WeiboServiceImpl">
-		<property name="weiboDao" ref="WeiboDao"></property>
+	<bean id="weiboService" class="service.impl.WeiboServiceImpl">
+		<property name="weiboDao" ref="weiboDao"></property>
 	</bean>
-	<bean id="CommentService" class="service.impl.CommentServiceImpl">
-		<property name="commentDao" ref="CommentDao"></property>
+	<bean id="commentService" class="service.impl.CommentServiceImpl">
+		<property name="commentDao" ref="commentDao"></property>
 	</bean>
-	<bean id="FriendpairService" class="service.impl.FriendpairServiceImpl">
-		<property name="friendpairDao" ref="FriendpairDao"></property>
+	<bean id="friendapplicationService" class="service.impl.FriendapplicationServiceImpl">
+		<property name="friendapplicationDao" ref="friendapplicationDao"></property>
 	</bean>
-	<bean id="FriendapplicationService" class="service.impl.FriendapplicationServiceImpl">
-		<property name="friendapplicationDao" ref="FriendapplicationDao"></property>
+	<bean id="friendpairService" class="service.impl.FriendpairServiceImpl">
+		<property name="friendpairDao" ref="friendpairDao"></property>
 	</bean>
- 
+
+	<!-- HibernateTransactionManager -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
 		p:sessionFactory-ref="sessionFactory" />
@@ -97,9 +86,17 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-			<aop:pointcut id="writeLog" expression="execution(* service.impl.*.*(..))"/>
-			<aop:advisor advice-ref="txAdvice" pointcut-ref="writeLog"/>
+		<!-- Service Bean -->
+		<aop:pointcut id="userbeanPointcut" expression="bean(userService)" />
+		<aop:pointcut id="weibobeanPointcut" expression="bean(weiboService)" />
+		<aop:pointcut id="commentbeanPointcut" expression="bean(commentService)" />
+		<aop:pointcut id="friendapplicationbeanPointcut" expression="bean(friendapplicationService)" />
+		<aop:pointcut id="friendpairbeanPointcut" expression="bean(friendpairService)" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="userbeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="weibobeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="commentbeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="friendapplicationbeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="friendpairbeanPointcut" />
 	</aop:config>
-
 
 </beans>

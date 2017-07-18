@@ -24,8 +24,6 @@
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");	
-// 		if(request.getSession().getAttribute("myweibos")!= null)
-// 			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
 %>
 
 <div class="topbar">
@@ -42,16 +40,20 @@
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
+	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	<ul>
-		<li><%=user.getUsername() %></li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro">Profile</a></li>
-		<li><a href="getUserAccountPro">Account</a></li>
-		<li><a href="getUserPermissionPro">Permissions</a></li>
-		<li><a href="logoutPro">Log out</a></li>
-	</ul>
+	</div>
+	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
+	<div class="nav-list">
+			<p><a href="getUserHomePro">Home</a></p>
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">
@@ -64,20 +66,18 @@
 	</ul>
 <br>
 <br>
-<div>
-
-</div>
-	<div class="weiboForm">
+<div class="section-content">
 	<h2>Write Weibo</h2>
-	<form action="addPersonalWeiboPro" method="post" class="Form">
-		<div class="wordCount" id="wordCount">
-			<span id="weibowarn"></span><br>
-	    	<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+	<div class="weiboForm">
+		<form action="addPersonalWeiboPro" method="post" class="Form">
+			<div class="wordCount" id="wordCount">
+				<span id="weibowarn"></span><br>
+	    		<span class="wordage">words remaining: <span id="sy">140</span></span><br>
 				<input type="hidden" name="content" id="submitContent"/><br>
 				<textarea rows="12" cols="50" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
 				<input type="submit" value="submit" onclick="return getContent()"/>
-		</div>		
-	</form>
+			</div>		
+		</form>
 	
 
 <script type="text/javascript">
@@ -89,7 +89,6 @@ function getContent(){
 		return false;
 	}
 	else{
-// 		alert("Ok!");
 		return true;
 	}
 }
@@ -113,14 +112,15 @@ function clearDefault(el) {
 	   } 
 </script>	
 
-<% 
-}
-%>
-
 	</div>
 
 </div>
+</div>
 
+</div>
+<% 
+}
+%>
 <!-- <script type="text/javascript" src="jquery-1.11.1.min.js"></script> -->
 <script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
 </body>

@@ -16,9 +16,13 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
 	}
+	else{
+		user = (User)request.getSession().getAttribute("user");
+		boolean isadmin = false;
+		if(user.getRole().regionMatches(true,0,"admin",0,5))isadmin = true;
 %>
 
 <div class="topbar">
@@ -35,28 +39,34 @@
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
-<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-<ul>
-	<li><%=user.getUsername() %></li>
-	<li><a href="getUserHomePro" class="active">Home</a></li>
-	<li><a href="getUserProfilePro" class="active">Profile</a></li>
-	<li><a href="getUserAccountPro" class="active">Account</a></li>
-	<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
-	<li><a href="logoutPro" class="active">Log out</a></li>
-</ul>
+	<div class="nav-head">
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	</div>
+	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
+	<div class="nav-list">
+			<p><a href="getUserHomePro">Home</a></p>
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">
-<ul>
-	<li>Account authority level: <%=user.getRole() %></li>
-	<li>
-	<form>
-		<p>Password:</p><input type="text" name="password"/>
-		<input type="submit" value="Change Authority"/>
-	</form>
-</ul>
+	<div class="section-content">
+		<p>Account authority level: <%=user.getRole() %></p>
+		<%if(isadmin){%><p>You are permitted to <a href="getAllUsersPro">Admin</a></p><%} %>
+		<form>
+			<p>Password:</p><input type="text" name="password"/>
+			<input type="submit" value="Change Authority"/>
+		</form>
+	</div>
 </div>
 
+</div>
+<%} %>
 </body>
 </html>

@@ -25,8 +25,9 @@
 	<form action="loginPro" method="post">  
        				<h2>Username:<input type="text" name="loginname"></h2> <br/><br/> 
       				<h2>Password:<input type="password" name="password" value=""></h2> <br/><br/>  
-    				<h2><input type="submit" value="Login"></h2>
+    				<h2><input type="submit" value="Login" class="button button-login"></h2>
     			</form> 
+<!--     			<button>Login</button> -->
 </div>
 <br><br><br><br><br>
 <br><br><br><br><br>

@@ -60,15 +60,17 @@
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
 		</action>
 		<!-- friend -->
-		<action name="visitFriendHomePro">
+		<action name="visitFriendHomePro" class="action.ShowFriendHomeAction">
 			<result name="input">/taoforfun/jsp/userhomemyfriends.jsp</result>
 			<result name="success">/taoforfun/jsp/friendhome.jsp</result>
 		</action>
-		<action name="messageFriendPro">
-			<result name="success">/taoforfun/jsp/friendchat.jsp</result>
+		<action name="messageFriendPro" class="action.MessageBoxAction">
+			<result name="input">/taoforfun/jsp/userhomemyfriends.jsp</result>
+			<result name="success">/taoforfun/jsp/messagebox.jsp</result>
 		</action>
-		<action name="getMessageBoxPro">
-			<result name="success">/taoforfun/jsp/friendchat.jsp</result>
+		<action name="getMessageBoxPro" class="action.MessageBoxAction">
+			<result name="input">/taoforfun/jsp/friendhome.jsp</result>
+			<result name="success">/taoforfun/jsp/messagebox.jsp</result>
 		</action>
 <!-- 		<action name="deleteFriendPro" class="action.DeleteFriendAction"> -->
 <!-- 			<result name="success" type="redirectAction">getMyFriendsPro</result> -->
@@ -89,6 +91,20 @@
 		<action name="getFriendsWeibosPro" class="action.ShowFriendsWeiboAction">
 			<result name="success">/taoforfun/jsp/weibos.jsp</result>
 		</action>
+		<action name="commentMyWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
+		<action name="commentFriendsWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">visitFriendHomePro</result>
+		</action>
+		<action name="commentWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">getAllWeibosPro</result>
+		</action>
+		
+		<!-- comments -->
+		<action name="deleteMyCommentPro" class="action.DeleteCommentAction">
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
 		
 		<!-- admin -->
 		<action name="getAllUsersPro" class="action.AllUsersAction">
@@ -97,17 +113,30 @@
 		<action name="getAllWeibosPro" class="action.AllWeibosAction">
 			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
 		</action>
-		<action name="getAllFriendpairsPro" class="action.AllFriendpairsAction">
+		<action name="getAllFriendpairsPro">
 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result>
 		</action>
 <!-- 		<action name="getAllMessagesPro" class="action.AllMessagesAction"> -->
 <!-- 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result> -->
 <!-- 		</action> -->
-		
+		<action name="deleteUserPro" class="action.DeleteUserAction">
+			<result name="success">/taoforfun/jsp/adminuser.jsp</result>
+		</action>
+		<action name="deleteWeiboPro" class="action.DeleteWeiboAction">
+			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
+		</action>
 		
 		<action name="*">
 			<result>/{1}.jsp</result>
 		</action>
 		
+	</package>
+	<package name="json" extends="struts-default,json-default">
+<!-- 	<action name="commentMyWeiboPro" class="action.AddCommentAction"> -->
+<!-- 			<result type="json"> -->
+<!--                 <param name="root">jcomment</param> -->
+<!--             </result> -->
+<!-- 		</action> -->
+	
 	</package>
 </struts>
