@@ -29,7 +29,11 @@ public class FriendpairDaoImpl extends HibernateDaoSupport implements Friendpair
 		@SuppressWarnings("unchecked")
 		List<Friendpair> pairs = (List<Friendpair>) getHibernateTemplate().find(
 				"from Friendpair as fp where fp.username1=? and fp.username2=?",
+<<<<<<< HEAD
 																		username1, username2, username2, username1);
+=======
+																		username1, username2);
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 		return pairs;
 	}
 

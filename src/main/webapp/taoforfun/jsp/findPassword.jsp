@@ -51,5 +51,11 @@ function psfunc(){
 }
 </script>
 
+<script>
+function psfunc(){
+	alert("We've sent an email to your email address. Please check it.");
+}
+</script>
+
 </body>
 </html>

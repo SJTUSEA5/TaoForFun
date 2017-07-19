@@ -27,6 +27,16 @@ public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 		return weibos;
 	}
 	
+	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, java.sql.Timestamp limitTime){
+		String hql = "from Weibo as w where w.adder in (:friendlist) and w.time > :limitTime";
+		Query query = getSession().createQuery(hql);
+		query.setParameterList("friendlist", friendnames);
+		query.setParameter("limitTime", limitTime);
+		@SuppressWarnings("unchecked")
+		List<Weibo> weibos = query.list();
+		return weibos;
+	}
+	
 	public List<Weibo> getAllWeibo(){
 		@SuppressWarnings("unchecked")
 		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate()

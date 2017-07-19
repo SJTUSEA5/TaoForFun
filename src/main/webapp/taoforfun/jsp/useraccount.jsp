@@ -38,6 +38,7 @@
 <div class="page">
 
 <div class="nav">
+<<<<<<< HEAD
 	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	</div>
@@ -54,6 +55,21 @@
 <div class="section">	
 <div class="section-content">
 	<form action="updateUserProfilePro" method="post">
+=======
+	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<ul>
+		<li><%=user.getUsername() %></li>
+		<li><a href="getUserHomePro" class="active">Home</a></li>
+		<li><a href="getUserProfilePro" class="active">Profile</a></li>
+		<li><a href="getUserAccountPro" class="active">Account</a></li>
+		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
+		<li><a href="logoutPro" class="active">Log out</a></li>
+	</ul>
+</div>
+
+<div class="section">	
+	<form action="changePasswordPro" method="post">
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 		<p>New Password<input type="password" name="newpassword"/></p>
 		<p>Confirm New Password<input type="password" name="confirmnew"/></p>
 		<p><input type="submit" value="Change Password"/>
@@ -82,5 +98,12 @@ function warnDelete(){
 }
 </script>
 </div>
+<<<<<<< HEAD
+=======
+<%
+}
+%>
+
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 </body>
 </html>

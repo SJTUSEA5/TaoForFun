@@ -10,6 +10,8 @@ public interface CommentDao {
 
 	public void delete(Comment comment);
 	
+	public Comment getCommentByCommentid(int commentid);
+	
 	public List<Comment> getCommentByWeiboid(int weiboid);
 	
 	public Comment getCommentByCommentid(int commentid);

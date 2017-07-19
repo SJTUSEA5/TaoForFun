@@ -27,7 +27,15 @@ public class DeleteCommentAction extends BaseAction{
 		
 		Comment comment = commentService.getCommentByCommentid(commentid);
 		commentService.deleteComment(comment);
+<<<<<<< HEAD
 		return SUCCESS;
 	}
 	
 }
+=======
+		
+		return SUCCESS;
+	}
+	
+}
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676

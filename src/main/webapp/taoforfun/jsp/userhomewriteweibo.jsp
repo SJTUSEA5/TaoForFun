@@ -36,12 +36,17 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
+<<<<<<< HEAD
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
+=======
+	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
+<<<<<<< HEAD
 <div class="page">
 
 <div class="nav">
@@ -56,6 +61,18 @@
 			<p><a href="getUserPermissionPro">Permissions</a></p>
 			<p><a href="logoutPro">Log out</a></p>
 	</div>
+=======
+<div class="nav">
+	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<ul>
+		<li><%=user.getUsername() %></li>
+		<li><a href="getUserHomePro" class="active">Home</a></li>
+		<li><a href="getUserProfilePro">Profile</a></li>
+		<li><a href="getUserAccountPro">Account</a></li>
+		<li><a href="getUserPermissionPro">Permissions</a></li>
+		<li><a href="logoutPro">Log out</a></li>
+	</ul>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 </div>
 
 <div class="section">
@@ -68,6 +85,7 @@
 	</ul>
 <br>
 <br>
+<<<<<<< HEAD
 <div class="section-content">
 	<h2>Write Weibo</h2>
 	<div class="weiboForm">
@@ -100,6 +118,27 @@ function checkLength(which) {
 	document.getElementById("weibowarn").innerHTML = "";
 	if(which.value.length > maxChars){
 		document.getElementById("weibowarn").innerHTML = "140 words only!";
+=======
+<div>
+
+</div>
+	<div class="weiboForm">
+	<h2>Write Weibo</h2>
+	<form action="addPersonalWeiboPro" method="post" class="Form">
+		<div class="wordCount" id="wordCount">
+	    	<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+				<input type="text" rows="12" cols="50" id="TextArea1" onkeyup="checkLength(this);" name="content"></textarea><br>
+				<input type="submit" value="submit"/>
+		</div>		
+	</form>
+	
+
+<script type="text/javascript">
+function checkLength(which) {
+	var maxChars = 140;
+	if(which.value.length > maxChars){
+		alert("140 words only!");
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 		
 		which.value = which.value.substring(0,maxChars);
 		return false;
@@ -114,6 +153,7 @@ function clearDefault(el) {
 	   } 
 </script>	
 
+<<<<<<< HEAD
 	</div>
 
 </div>
@@ -123,6 +163,16 @@ function clearDefault(el) {
 <% 
 }
 %>
+=======
+<% 
+}
+%>
+
+	</div>
+
+</div>
+
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 <!-- <script type="text/javascript" src="jquery-1.11.1.min.js"></script> -->
 <script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
 </body>

@@ -36,12 +36,17 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
+<<<<<<< HEAD
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
+=======
+	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
+<<<<<<< HEAD
 <div class="page">
 <div class="nav">
 	<div class="nav-head">
@@ -66,6 +71,31 @@
 		<p>Phone: </p>
 		<p>Introduction: </p>
 <br>
+=======
+<div class="nav">
+	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<ul>
+		<li><%=friend.getUsername() %></li>
+		<li><a href="getUserHomePro" class="active">Home</a></li>
+		<li><a href="getMessageBoxPro" class="active">Send Message</a></li>
+		<li><a href="deleteFriendPro" class="active">Delete Friend</a></li>
+	</ul>
+</div>
+
+
+
+<div class="section">
+	<ul>
+		<li>Name: <%=friend.getUsername()%></li>
+		<li>Gender: </li>
+		<li>Age: </li>
+		<li>City: </li>
+		<li>Email: <%=friend.getEmail()%></li>
+		<li>Birthday: </li>
+		<li>Phone: </li>
+		<li>Introduction: </li>
+	</ul>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	<h2>Latest Weibos</h2>
 	<br>
 <%
@@ -76,6 +106,7 @@
 		
 %>	
 	<ul>
+<<<<<<< HEAD
 		<li><%=fweibo.getTime() %></li>
 		<li><%=fweibo.getAdder() %></li>
 		<li><%=fweibo.getContent() %></li>
@@ -88,13 +119,24 @@
 			</a>
 		</li>
 	</ul>
+=======
+	<li><%=fweibo.getTime() %></li>
+	<li><%=fweibo.getContent() %></li>
+	</ul>
+</div>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 <%
 		}
 	}
 %>
+<<<<<<< HEAD
 </div>
 </div>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 </div>
+=======
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 </body>
 </html>

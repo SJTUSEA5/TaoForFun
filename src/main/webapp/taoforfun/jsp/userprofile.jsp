@@ -40,6 +40,7 @@
 <div class="page">
 
 <div class="nav">
+<<<<<<< HEAD
 	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/UserHeadImg/<%=user.getHeadimg() %>" alt="userPNG" style="width:100px;height:100px;"/>
 	<p><a href="<%=path%>/taoforfun/jsp/updateHeadimg.jsp">Update HeadImg</a></p>
@@ -52,6 +53,17 @@
 			<p><a href="getUserPermissionPro">Permissions</a></p>
 			<p><a href="logoutPro">Log out</a></p>
 	</div>
+=======
+	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<ul>
+		<li><%=user.getUsername() %></li>
+		<li><a href="getUserHomePro">Home</a></li>
+		<li><a href="getUserProfilePro">Profile</a></li>
+		<li><a href="getUserAccountPro">Account</a></li>
+		<li><a href="getUserPermissionPro">Permissions</a></li>
+		<li><a href="logoutPro">Log out</a></li>
+</ul>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 </div>
 
 <div class="section">
@@ -72,6 +84,13 @@
 		</form>
 	</div>
 </div>
+<<<<<<< HEAD
+=======
+
+<%
+}
+%>	
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 
 <%
 }

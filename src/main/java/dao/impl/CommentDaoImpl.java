@@ -18,6 +18,14 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao{
 		getHibernateTemplate().delete(comment);		
 	}
 	
+	public Comment getCommentByCommentid(int commentid){
+		@SuppressWarnings("unchecked")
+		List<Comment> comments = (List<Comment>) getHibernateTemplate().find(
+				"from Comment as c where c.commentid=?", commentid);
+		Comment comment = comments.size()>0 ? comments.get(0) : null;
+		return comment;
+	}
+	
 	public List<Comment> getCommentByWeiboid(int weiboid){
 		@SuppressWarnings("unchecked")
 		List<Comment> comments = (List<Comment>) getHibernateTemplate().find(

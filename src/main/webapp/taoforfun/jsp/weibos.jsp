@@ -2,7 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="model.User"%>
 <%@ page import="model.Weibo"%>
+<<<<<<< HEAD
 <%@ page import="java.util.ArrayList"%>
+=======
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +20,7 @@
 <body>
 
 <%
+<<<<<<< HEAD
 	User user = new User();
 //  ArrayList<User> friends = new ArrayList<User>();
  ArrayList<Weibo> weibos = new ArrayList<Weibo>();
@@ -29,24 +33,50 @@
 // 			friends = (ArrayList<User>)request.getAttribute("friends");
 		if(request.getAttribute("weibos")!=null)
 				weibos = (ArrayList<Weibo>)request.getAttribute("weibos");
+=======
+// 	User user = new User();
+//  ArrayList<User> friends = new ArrayList<User>();
+//  ArrayList<Weibo> weibos = new ArrayList<Weibo>();
+// 	if(request.getSession().getAttribute("user")== null){
+// 		response.sendRedirect("homePro");
+// 	}
+// 	else{
+// 		user = (User)request.getSession().getAttribute("user");
+//		if(request.getAttribute("friends")!=null)
+//			friends = (ArrayList<User>)request.getAttribute("friends");
+//		if(request.getAttribute("weibos")!=null)
+	//			weibos = (ArrayList<Weibo>)request.getAttribute("weibos");
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 %>
 
 <div class="topbar">
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
+<<<<<<< HEAD
 	<li><form action="#" method="get" id="search">
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
+=======
+	<li><form id="search">
+		<input type="text" name="search" placeholder="search something"/>
+		<input type="submit" value="Search"/>
+	</form></li>
+	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
 <div class="nav">
+<<<<<<< HEAD
 <%-- 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/> --%>
+=======
+<%-- 	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/> --%>
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 <!-- 	<ul> -->
 <%-- 		<li><%=user.getUsername() %></li> --%>
 <!-- 		<li><a href="getUserHomePro" class="active">Home</a></li> -->
@@ -70,6 +100,7 @@
 
 <div class="section">
 
+<<<<<<< HEAD
 <div class="section-content">
 <%
 for(int i = 0; i < weibos.size();i++){
@@ -93,6 +124,33 @@ for(int i = 0; i < weibos.size();i++){
 <%
 
 }
+=======
+<!-- 	<ul class="tab"> -->
+<!-- 		<li><a href="getMyFriendsPro" class="active">Friends</a></li> -->
+<!-- 		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li> -->
+<!-- 		<li><a href="getMyMessagesPro" class="active">Messages</a></li> -->
+<!-- 		<li><a href="getSettingsPro" class="active">Settings</a></li> -->
+<!-- 	</ul> -->
+<%
+// for(int i = 0; i < weibos.size();i++){
+// 	Weibo weibo = weibos.get(i);
+%>		
+		<ul class="message">
+			<li><img class="head" src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/></li>
+			<li>UserName</li>
+			<li>date</li>
+			<li>content</li>
+			<li><a href="#">comment</a></li>
+			<li><a href="#">like</a></li>
+		</ul>
+<%
+//}
+%>
+</div>
+<%
+
+// }
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 %>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 

@@ -45,4 +45,8 @@ public class AddCommentAction extends BaseAction{
 		
 	}
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
