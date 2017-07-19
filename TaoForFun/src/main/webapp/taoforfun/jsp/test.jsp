@@ -7,157 +7,176 @@
 <%
 	String path = request.getContextPath();
 %>
+<script src="https://code.jquery.com/jquery.js"></script>
+<style type="text/css">
+        .imgbox,.imgbox1
+        {
+            float: left;
+            margin-right: 20px;
+            margin-top: 20px;
+            position: relative;
+            width: 182px;
+            height: 142px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        .imgbox1{border: 1px solid blue;
+        }
 
-<link rel="stylesheet" type="text/css" href="${basePath}css/imgcss/imgareaselect-default.css" />
-<script src="${basePath}js/jQuery-1.7.1.min.js" ></script>
-<script src="${basePath}js/jquery.form.js" ></script>
-<script src="${basePath}js/jquery.imgareaselect.pack.js" type="text/JavaScript"></script>
-<script type="text/javascript"> 
-var realImgWidth = 0;
- var realImgHeight = 0;
- var scissorX = 50;
- var scissorY = 50; 
- 
- function scissor(){
-        var imagePath = document.getElementById("imagePath").value;
-        var tt = document.getElementById("imagePath");
-        var aa = $("#imagePath");
-    if(imagePath=="" || imagePath==null){
-          alert("<bean:message key='label.uploadPhoto' />！");
-          return false;
-    }else{
-        //先把图片上传到服务器
-        $("#headForm").ajaxSubmit({
-               type: "POST",
-               url: "${basePath}myzonePar.do?method=uploadPic&param="+Math.random(),
-              //data: "classId="+classId,
-               dataType: "json",
-                success: function(result){
-                $("#imgtarget").attr("src","${basePath}upload/"+ result.picName);
-                $("#ximg").attr("src", "${basePath}upload/"+ result.picName);
-                $("#qietu").show();
-      
-                document.getElementById("uploadImg").value = result.picName; 
-                setTimeout(function(){
-                           realImgWidth = $("#imgtarget").width();
-                          realImgHeight = $("#imgtarget").height();
-                         var ias = $('#imgtarget').imgAreaSelect({ instance: true });
-          
-                          if(parseInt(realImgWidth)<50){
-                                   scissorX = parseInt(realImgWidth);
-                         }
-                         if(parseInt(realImgHeight)<50){
-                                  scissorY = parseInt(realImgHeight);
-                         }
-                           ias.setSelection(0, 0, scissorX, scissorY, true);     
-                           ias.setOptions({ show: true });    
-                           ias.update();
-                            $('.imgareaselect-selection').show();
-      },1000); 
-      
-     }
-       });
-  }
-   }
-  
-function preview(img, selection) {
-    if (!selection.width || !selection.height)
-        return;
-    
-    var scaleX = scissorX / selection.width;
- var scaleY = scissorY / selection.height;
-    $('#preview img').css({
-        width: Math.round(scaleX* parseInt(realImgWidth) ),
-        height: Math.round(scaleY * parseInt(realImgHeight) ),
-        marginLeft: -Math.round(scaleX * selection.x1),
-        marginTop: -Math.round(scaleY * selection.y1)
-    });
-    $('#x1').val(selection.x1);
-    $('#y1').val(selection.y1);
-    $('#x2').val(selection.x2);
-    $('#y2').val(selection.y2);
-    $('#scaleWidth').val(selection.width);
-    $('#scaleHeight').val(selection.height);    
-}
-$(function () {
-    $('#imgtarget').imgAreaSelect({ aspectRatio: '1:1', handles: true,show:true,
-        fadeSpeed: 200, maxHeight:50, maxWidth:50, minHeight:50, minWidth:50, onSelectChange: preview, onInit:preview });
-});
-</script>
+
+        .imgnum{
+            left: 0px;
+            top: 0px;
+            margin: 0px;
+            padding: 0px;
+        }
+        .imgnum input,.imgnum1 input {
+            position: absolute;
+            width: 182px;
+            height: 142px;
+            opacity: 0;
+        }
+        .imgnum img,.imgnum1 img {
+            width: 100%;
+            height: 100%;
+        }
+        .close,
+        .close1 {
+            color: red;
+            position: absolute;
+            left: 170px;
+            top: 0px;
+            display: none;
+        }
+
+
+
+
+
+    </style>
 </head>
 <body>
-<form id="headForm" name="headForm" method="post" enctype="multipart/form-data" action="${basePath}myzonePar.do?method=toUpdateHeadImage">
-         <div class="shangchuan">
-          <div class="shangchuan_left">
-              <div >
-                   <c:choose>
-          <c:when test="${!empty headImage}">
-              <img src="${basePath}showImage.do?uuid=${uuid}" width="50" height="50" /><br/>
-          </c:when>
-          <c:otherwise>
-              <img src="${basePath}jsp/parents/image/qshead.jpg" width="50" height="50" /><br/>
-          </c:otherwise>
-         </c:choose>
-              </div>
-             </div>
-             <div class="shangchuan_right">
-                    <input id="imagePath" name="file" size="30" style=" margin-top:20px; height:25px;" type="file" onChange="scissor()"/>
-                    <div style="width:150px; float:left; padding-top:5px;"></div>
-                    <div style="float:left; margin-left:99px; width:190px;"><img src="${basePath}/jsp/parents/<bean:message key='label.image' />/tianjia01.png" id="updateHeadImg" name="updateHeadImg" onClick="updateImgFun()"style="margin-top:5px; float:right; cursor:pointer;"/></div>               
-              </div> 
-        </div>
-        <div id="qietu" style="height: 150px; margin:2px 0 0 100px; display:none;">
-             <div style="width:150px; height: 150px; float:left; ">
-                  <div id="imgg" style=" border:1px solid green; float:left; overflow: hidden;">
-                       <img id="imgtarget" src="" />
-                  </div>
-             </div>     
-             <div style="width:20px; height:150px; border:0px; float:left;"></div>
-             <div class="frame" style="margin:10px 10px 0 30px;  width: 50px; height: 150px; float:left;">
-            <div id="preview" style="width: 50px; height: 50px; overflow: hidden;">
-                 <img id="ximg" name="ximg" src="" >
-            </div>
-          </div>
-          <input type="text" id="uploadImg" name="uploadImg" value="" style="display:none;"/>
-          <table style="margin-top: 1em; height:150px; display:none;">
-          <thead>
-           <tr>
-             <th colspan="2" style="font-size: 110%; font-weight: bold; text-align: left; padding-left: 0.1em;">
-               Coordinates
-             </th>
-             <th colspan="2" style="font-size: 110%; font-weight: bold; text-align: left; padding-left: 0.1em;">
-               Dimensions
-             </th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-                <td style="width:20px;"><b>X<sub>1</sub>:</b></td>
-           <td><input id="x1" name="x1" value="0" type="text" size="5" readonly="true"></td>
-           <td style="width:20px;"><b>Width:</b></td>
-             <td><input value="-" id="scaleWidth" name="scaleWidth" type="text" size="5" readonly="true"></td>
-           </tr>
-           <tr>
-             <td><b>Y<sub>1</sub>:</b></td>
-             <td><input id="y1" name="y1" value="0" type="text" size="5" readonly="true"></td>
-             <td><b>Height:</b></td>
-             <td><input id="scaleHeight" name="scaleHeight" value="-" type="text" size="5" readonly="true"></td>
-           </tr>
-           <tr>
-             <td><b>X<sub>2</sub>:</b></td>
-             <td><input id="x2" name="x2" value="50" type="text" size="5" readonly="true"></td>
-             <td></td>
-             <td></td>
-           </tr>
-           <tr>
-             <td><b>Y<sub>2</sub>:</b></td>
-             <td><input id="y2" name="y2" value="50" type="text" size="5" readonly="true"></td>
-             <td></td>
-             <td></td>
-           </tr>
-         </tbody>
-       </table>
-    </div>   
-       </form>
+<div id="img">
+<div class="imgbox">
+    <div class="imgnum">
+        <input type="file" class="filepath" />
+        <span class="close">X</span>
+        <img src="<%=path%>/taoforfun/img/user.png" class="img1" />
+        <img src="" class="img2" />
+    </div>
+</div>
+
+<div class="imgbox1">
+    <div class="imgnum">
+        <input type="file" class="filepath1" />
+        <span class="close1">X</span>
+        <img src="<%=path%>/taoforfun/img/user.png" class="img11" />
+        <img src="" class="img22" />
+    </div>
+</div>
+
+</div>
+
 </body>
+<script type="text/javascript">
+    $(function() {
+        $(".filepath").on("change",function() {
+            alert($('.imgbox').length);
+            var srcs = getObjectURL(this.files[0]);   //获取路径
+            $(this).nextAll(".img1").hide();   //this指的是input
+            $(this).nextAll(".img2").show();  //fireBUg查看第二次换图片不起做用
+            $(this).nextAll('.close').show();   //this指的是input
+            $(this).nextAll(".img2").attr("src",srcs);    //this指的是input
+            $(this).val('');    //必须制空
+            $(".close").on("click",function() {
+                $(this).hide();     //this指的是span
+                $(this).nextAll(".img2").hide();
+                $(this).nextAll(".img1").show();
+            })
+        })
+    })
+
+
+
+
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjectURL != undefined) {
+            url = window.createObjectURL(file)
+        } else if (window.URL != undefined) {
+            url = window.URL.createObjectURL(file)
+        } else if (window.webkitURL != undefined) {
+            url = window.webkitURL.createObjectURL(file)
+        }
+        return url
+    };
+
+
+
+
+
+    $(function() {
+        $("#img").on("change",".filepath1",function() {
+            //alert($('.imgbox1').length);
+            var srcs = getObjectURL(this.files[0]);   //获取路径
+            alert(srcs);
+            //this指的是input
+            /* $(this).nextAll(".img22").attr("src",srcs);    //this指的是input
+             $(this).nextAll(".img22").show();  //fireBUg查看第二次换图片不起做用*/
+            var htmlImg='<div class="imgbox1">'+
+                    '<div class="imgnum1">'+
+                    '<input type="file" class="filepath1" />'+
+                    '<span class="close1">X</span>'+
+                    '<img src="'+<%=path%>+'/taoforfun/img/user.png'"+ 'class='img11' />'+
+                    '<img src="'+srcs+'" class="img22" />'+
+                    '</div>'+
+                    '</div>';
+
+            $(this).parent().parent().before(htmlImg);
+            $(this).val('');    //必须制空
+            $(this).parent().parent().prev().find(".img11").hide();   //this指的是input
+            $(this).parent().parent().prev().find('.close1').show();
+
+            $(".close1").on("click",function() {
+                $(this).hide();     //this指的是span
+                $(this).nextAll(".img22").hide();
+                $(this).nextAll(".img11").show();
+                if($('.imgbox1').length>1){
+                    $(this).parent().parent().remove();
+                }
+
+            })
+        })
+    })
+    
+    $(function() {
+  $('#upload_image').change(function(event) {
+    // 根据这个 <input> 获取文件的 HTML5 js 对象
+    var files = event.target.files, file;        
+    if (files && files.length > 0) {
+      // 获取目前上传的文件
+      file = files[0];
+      // 来在控制台看看到底这个对象是什么
+      console.log(file);
+      // 那么我们可以做一下诸如文件大小校验的动作
+      if(file.size > 1024 * 1024 * 2) {
+        alert('图片大小不能超过 2MB!');
+        return false;
+      }
+      // !!!!!!
+      // 下面是关键的关键，通过这个 file 对象生成一个可用的图像 URL
+      // 获取 window 的 URL 工具
+      var URL = window.URL || window.webkitURL;
+      // 通过 file 生成目标 url
+      var imgURL = URL.createObjectURL(file);
+      // 用这个 URL 产生一个 <img> 将其显示出来
+      $('body').append($('<img/>').attr('src', imgURL));
+      // 使用下面这句可以在内存中释放对此 url 的伺服，跑了之后那个 URL 就无效了
+      // URL.revokeObjectURL(imgURL);
+    }
+  });
+});
+
+</script>
+
 </html>

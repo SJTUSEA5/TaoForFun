@@ -15,8 +15,9 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
 </head>
 <body>
 
@@ -64,12 +65,15 @@
 
 <div class="section">
 
+<!-- <div class="tab"> -->
 	<ul class="tab">
 		<li><a href="getMyFriendsPro">Friends</a></li>
 		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
 		<li><a href="getMyMessagesPro">Messages</a></li>
 		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
+<!-- </div> -->
+
 <br>
 <br>
 <div>

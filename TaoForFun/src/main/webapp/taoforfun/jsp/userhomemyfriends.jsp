@@ -59,12 +59,15 @@
 
 <div class="section">
 
-	<ul class="tab">
+<div class="tab">
+	<ul>
 		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
 		<li><a href="getMyWeibosPro">My Weibos</a></li>
 		<li><a href="getMyMessagesPro">Messages</a></li>
 		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
+</div>
+
 <br>
 <br>
 <div class="section-content">
@@ -77,7 +80,7 @@
 
 <div class="message firendForm">
 	<div class="section-data-header">
-		<p>Friend Name: <%= friend.getUsername()%></p>
+		<p><img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:60px;height:60px;"/><%= friend.getUsername()%></p>
 	</div>
 	<div class="section-data-body">
 		<h4>Latest Weibo</h4>

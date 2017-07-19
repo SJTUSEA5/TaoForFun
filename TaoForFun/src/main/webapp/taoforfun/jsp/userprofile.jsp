@@ -42,7 +42,7 @@
 
 <div class="nav">
 	<div class="nav-head">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	<img src="<%=path %>/taoforfun/img/UserHeadImg/<%=user.getHeadimg() %>" alt="userPNG" style="width:100px;height:100px;"/>
 	</div>
 	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
 	<div class="nav-list">
@@ -82,15 +82,22 @@
                 <h4 class="modal-title" id="picModalLabel">Upload A Picture</h4>
             </div>
             <div class="modal-body">
-            	<form id="imgform">
-            		<input type="file" size="30" name="pic" id="picpath" accept="image/*" />
-            	</form>
-				
-				
+            	<p>nax size:2MB</p>
+	            <div class="img-body">
+	            	<form enctype="multipart/form-data" method="post" name="headimgform" id="headimgform">
+	            		<input type="file" name="pic" id="picpath" accept="image/*" />
+	            	</form>
+	            	<span class="close close-img" style="display:none">&times;</span>
+	            	<img src="" class="img1" />
+					
+				</div>
+				<div class="img-view">
+					<img src="" class="img1" />
+				</div>
 			</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary" id="pic-save">Save</button>
             </div>
         </div>
     </div>
@@ -103,6 +110,7 @@
 </div>
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
+<script src="<%=path %>/taoforfun/js/user.js"></script>
 <script>
 function getContent(){
 	var c = document.getElementById("introContent").value;

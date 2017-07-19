@@ -49,6 +49,9 @@
 		<action name="getUserProfilePro">
 			<result>/taoforfun/jsp/userprofile.jsp</result>
 		</action>
+		<action name="updateHeadimgPro" class="action.UpdateHeadimgAction">
+			<result name="success" type="redirectAction">getUserProfilePro</result>
+		</action>
 		<action name="getUserAccountPro">
 			<result>/taoforfun/jsp/useraccount.jsp</result>
 		</action>

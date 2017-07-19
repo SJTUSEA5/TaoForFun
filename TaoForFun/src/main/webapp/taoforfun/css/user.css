@@ -55,8 +55,6 @@ ol,ul,li{
 	overflow:hidden;
 }
 .nav,.section,.full-section{
-/* 	border:1px solid #aaaaaa; */
-/* 	border-radius:1%; */
 	margin:20px 20px 20px 20px;
 }
 
@@ -141,6 +139,32 @@ ol,ul,li{
 	min-width:95%;
 }
 
+.tab ul{
+	width:100%;
+	margin:0px auto;
+	height:38px;
+	padding:0;
+}
+.tab ul li{
+	float:left;
+}
+
+.tab ul li a{
+	width:80px;
+	height:28px;
+	line-height:28px;
+	color:#000000;
+	margin:5px 10px;
+	font-size:16px;
+	display:block;
+	text-align:center;
+	text-decoration:none;
+}
+
+.nav ul li a:hover{
+	background:#ff7878;
+}
+
 .signinform{
 	text-align:center;
 }
@@ -173,6 +197,36 @@ ol,ul,li{
 	border-style:solid none none none;
 	padding:5px 5px 5px 5px;
 }
-.submitbtn{
-	color:#ff7878;
+
+.img-body, .img-view{
+	margin-right: 20px;
+	margin-top: 20px;
+	position: relative;
+	width: 300px;
+	height: 240px;
+	border: 1px solid red;
+	overflow: hidden;
+	border: 1px solid #aaaaaa;
 }
+.img-view{
+	width:100px;
+	height:100px;
+}
+
+#picpath{
+	position: absolute;
+	width: 300px;
+	height: 240px;
+	opacity: 0;
+}
+.img1{
+	width: auto;
+	height: 100%;
+}
+
+
+
+
+
+
+
