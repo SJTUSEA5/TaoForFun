@@ -1,6 +1,7 @@
 package action;
 
 public class LogoutAction extends BaseAction{
+	
 	private static final long serialVersionUID = 1L;
 	
 	public String checkLogout(){

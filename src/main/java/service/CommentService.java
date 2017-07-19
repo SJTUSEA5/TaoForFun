@@ -12,4 +12,6 @@ public interface CommentService {
 	
 	public List<Comment> getCommentByWeiboid(int weiboid);
 	
+	public Comment getCommentByCommentid(int commentid);
+	
 }

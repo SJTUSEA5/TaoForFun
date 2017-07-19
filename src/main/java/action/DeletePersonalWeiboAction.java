@@ -7,7 +7,6 @@ public class DeletePersonalWeiboAction extends BaseAction{
 private static final long serialVersionUID = 1L;
 	
 	private int weiboid;
-	private String username;
 	
 	private WeiboService weiboService;
 	
@@ -17,14 +16,6 @@ private static final long serialVersionUID = 1L;
 	
 	public void setWeiboid(int weiboid){
 		this.weiboid = weiboid;
-	}
-	
-	public String getUsername(){
-		return username;
-	}
-	
-	public void setUsername(String username){
-		this.username = username;
 	}
 	
 	public void setWeiboService(WeiboService weiboService){

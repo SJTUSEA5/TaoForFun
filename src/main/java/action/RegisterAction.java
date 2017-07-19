@@ -57,7 +57,7 @@ public class RegisterAction extends BaseAction{
 			User user1 = userService.getUserByUsername(username); 
         	User user2 = userService.getUserByEmail(email);
         	if (user1 == null && user2 == null){  
-        		User newUser = new User(username, email, password, "normal");
+        		User newUser = new User(username,  password, email, "guest");
         		if (userService.addUser(newUser) == true){
         			session.put("user", newUser);
         			return "success";

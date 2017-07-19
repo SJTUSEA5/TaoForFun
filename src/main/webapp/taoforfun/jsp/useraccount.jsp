@@ -15,9 +15,11 @@
 <body>
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
 	}
+	else{
+		user = (User)request.getSession().getAttribute("user");
 %>
 <div class="topbar">
 <div class="topbody">
@@ -27,40 +29,58 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
-	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
-	<ul>
-		<li>UserName</li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro" class="active">Profile</a></li>
-		<li><a href="getUserAccountPro" class="active">Account</a></li>
-		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
-		<li><a href="logoutPro" class="active">Log out</a></li>
-	</ul>
+	<div class="nav-head">
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	</div>
+	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
+	<div class="nav-list">
+			<p><a href="getUserHomePro">Home</a></p>
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">	
-	<form action="" method="get">
-		<p>Old Password<input type="password" name="password"/></p>
+<div class="section-content">
+	<form action="updateUserProfilePro" method="post">
 		<p>New Password<input type="password" name="newpassword"/></p>
-		<p>Confirm New Password<input type="password" name="newpassword"/></p>
+		<p>Confirm New Password<input type="password" name="confirmnew"/></p>
 		<p><input type="submit" value="Change Password"/>
 	</form>
 	
 	<p><a href="findPasswordPro">forget the old password?</a></p>
 	
-	<form action="deleteAccountPro" method="get">
-		<input type="submit" value="Delete Account"/>Warning: This operation cannot be undone!
+	<form action="deleteAccountPro" method="post">
+		<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
+		<input type="submit" value="Delete Account" onclick="return warnDelete()"/>Warning: This operation cannot be undone!
 	</form>
-	
+	<a href="getAllUsersPro">Admin-Users</a>
 </div>
-
-
+</div>
+<%
+}
+%>
+<script>
+function warnDelete(){
+	if(confirm("Are you sure to delete your account and all related information?")){
+		return true;
+	}else{
+		return false;
+	}
+		
+}
+</script>
+</div>
 </body>
 </html>

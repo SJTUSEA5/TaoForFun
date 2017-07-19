@@ -25,10 +25,12 @@
 </ul>
 </div>
 </div>
-
-<div class="section">
+<div class="page">
+<div class="full-section">
+<div class="full-section-content">
 <h2>Input your information to join us!</h2>
 <h2>${sessionScope.msg}</h2>
+<% session.setAttribute("msg", ""); %>
 <div class="signinform">
 	<form action="registerPro" method="post">
 		<p>UserName<input type="text" name="username"/></p>
@@ -40,6 +42,7 @@
 	<a href="/TaoForFun/index.jsp">back</a>
 </div>
 </div>
-
+</div>
+</div>
 </body>
 </html>

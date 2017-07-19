@@ -1,19 +1,19 @@
 package model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comment {
 	private int commentid;
 	private int weiboid;
 	private String adder;
 	private String content;
-	private Date time;
+	private Timestamp time;
 	
 	public Comment(){
 		
 	}
 	
-	public Comment(int weiboid, String adder, String content, Date time){
+	public Comment(int weiboid, String adder, String content, Timestamp time){
 		this.weiboid = weiboid;
 		this.adder = adder;
 		this.content = content;
@@ -52,11 +52,11 @@ public class Comment {
 		this.content = content;
 	}
 	
-	public Date getTime(){
+	public Timestamp getTime(){
 		return time;
 	}
 	
-	public void setTime(Date time){
+	public void setTime(Timestamp time){
 		this.time = time;
 	}
 	

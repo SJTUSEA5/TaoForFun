@@ -16,9 +16,11 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
 	}
+	else{
+		user = (User)request.getSession().getAttribute("user");
 %>
 
 <div class="topbar">
@@ -29,16 +31,16 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
-	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.PNG" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
-		<li>UserName</li>
+		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
 		<li><a href="getUserProfilePro" class="active">Profile</a></li>
 		<li><a href="getUserAccountPro" class="active">Account</a></li>
@@ -51,13 +53,15 @@
 
 	<ul class="tab">
 		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
-		<li><a href="getMyWeibosPro?username=<%=user.getUsername()%>" class="active">My Weibos</a></li>
+		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
 		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
 		<li><a href="getSettingsPro" class="active">Settings</a></li>
 	</ul>
 
 </div>
-
+<%
+}
+%>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
 
 </body>

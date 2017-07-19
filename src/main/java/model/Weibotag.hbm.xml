@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="model.Weibotag" table="weibotags">
+		<id name="tagid" type="int">
+			<column name="tagid" />
+			<generator class="assigned" />
+		</id>
+		<property name="weiboid" type="int">
+			<column name="weiboid" />
+		</property>
+		<property name="tag" type="java.lang.String">
+			<column name="tag" />
+		</property>
+
+	</class>
+</hibernate-mapping>

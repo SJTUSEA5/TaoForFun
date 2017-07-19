@@ -17,7 +17,7 @@
 		<property name="content" type="java.lang.String">
 			<column name="content" />
 		</property>
-		<property name="time" type="java.sql.Date">
+		<property name="time" type="java.sql.Timestamp">
 			<column name="time" />
 		</property>
 	</class>

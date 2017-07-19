@@ -18,13 +18,14 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")!= null){
-		user = (User)request.getSession().getAttribute("user");
-	}
 	ArrayList<Friendapplication> applis = new ArrayList<Friendapplication>();
-	if(request.getSession().getAttribute("applis")!=null){
-		applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");
-	}
+// 	if(request.getSession().getAttribute("user")== null){
+// 		response.sendRedirect("homePro");	
+// 	}
+// 	else{
+		user = (User)request.getSession().getAttribute("user");
+		if(request.getSession().getAttribute("applis")!=null)
+			applis = (ArrayList<Friendapplication>)request.getSession().getAttribute("applis");
 %>
 
 <div class="topbar">
@@ -35,47 +36,48 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
-	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
+	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
+	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	<ul>
-		<li>UserName</li>
+<%-- 		<li><%=user.getUsername() %></li> --%>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro" class="active">Profile</a></li>
-		<li><a href="getUserAccountPro" class="active">Account</a></li>
-		<li><a href="getUserPermissionPro" class="active">Permissions</a></li>
-		<li><a href="logoutPro" class="active">Log out</a></li>
+		<li><a href="getUserProfilePro">Profile</a></li>
+		<li><a href="getUserAccountPro">Account</a></li>
+		<li><a href="getUserPermissionPro">Permissions</a></li>
+		<li><a href="logoutPro">Log out</a></li>
 	</ul>
 </div>
 
 <div class="section">
 
 	<ul class="tab">
-		<li><a href="getMyFriendsPro" class="active">Friends</a></li>
-		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
+		<li><a href="getMyFriendsPro">Friends</a></li>
+		<li><a href="getMyWeibosPro">My Weibos</a></li>
 		<li><a href="getMyMessagesPro" class="active">Messages</a></li>
-		<li><a href="getSettingsPro" class="active">Settings</a></li>
+		<li><a href="getMyNoticesPro">Notices</a></li>
 	</ul>
 <br>
 <br>
-	<div class="dataTable">
+	<div class="dataTable message">
 	<table>
 		<thead>
 		<tr><th>My Messages</th></tr>
 		</thead>
 		<tbody>
 <%
-	int i = 0;
-	for(; i < applis.size(); i++){
-		Friendapplication appli = applis.get(i);
+// 	int i = 0;
+// 	for(; i < applis.size(); i++){
+// 		Friendapplication appli = applis.get(i);
 %>
 			<tr>
-				<td><%= appli.getUsername2()%></td>
+<%-- 				<td><%= appli.getUsername2()%></td> --%>
+				<td>Friend Application Request</td>
 				<td>
 					<form action="">
 						<input type="submit" value="reply"/>
@@ -86,7 +88,8 @@
 				</td>
 			</tr>
 <% 
-	} 
+// 	}
+// }
 %>
 	</tbody>
 	</table>

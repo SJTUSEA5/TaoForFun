@@ -14,12 +14,17 @@
 		<property name="content" type="java.lang.String">
 			<column name="content" />
 		</property>
-		<property name="time" type="java.sql.Date">
+		<property name="time" type="java.sql.Timestamp">
 			<column name="time" />
 		</property>
 		<set name="comments" lazy="false" inverse="true">
 			<key column="weiboid" />
 			<one-to-many class="model.Comment" />
 		</set>
+		<set name="weibotags" lazy="false" inverse="true">
+			<key column="weiboid" />
+			<one-to-many class="model.Weibotag" />
+		</set>
+		
 	</class>
 </hibernate-mapping>

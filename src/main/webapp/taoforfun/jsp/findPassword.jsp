@@ -26,17 +26,30 @@
 </div>
 </div>
 
-<div class="section">
+<div class="full-section">
+<div class="full-section-content">
 <h2>Input your email address to change the password.</h2>
 <div class="signinform">
-	<form action="registerPro" method="get">
+	<form action="" method="post">
 		<p>Email<input type="text" name="email"/></p>
-		<input type="submit" value="Send"/>
+		<input type="submit" value="Send" onclick="psfunc()"/>
 	</form>
 <br>
+<br>
+<br>
+<p id=sent></p>
+<br><br>
 <a href="/TaoForFun/index.jsp">Home page</a>
+<br>
 </div>
 </div>
+</div>
+
+<script>
+function psfunc(){
+	alert("We've sent an email to your email address. Please check it.");
+}
+</script>
 
 </body>
 </html>
