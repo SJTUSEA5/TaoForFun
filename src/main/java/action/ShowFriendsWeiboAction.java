@@ -10,11 +10,7 @@ import model.Weibo;
 import service.WeiboService;
 import service.FriendpairService;
 
-<<<<<<< HEAD
 public class ShowFriendsWeiboAction extends BaseAction{
-=======
-class ShowFriendsWeiboAction extends BaseAction{
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -39,10 +35,7 @@ class ShowFriendsWeiboAction extends BaseAction{
 		for(Friendpair pair : pairs){
 			friendnames.add(pair.getUsername2());
 		}
-<<<<<<< HEAD
 		friendnames.add(username);
-=======
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 		List<Weibo> weibos = weiboService.getWeiboByFriendlist(friendnames, limitTime);
 		Collections.reverse(weibos);
 		request().setAttribute("weibos", weibos);

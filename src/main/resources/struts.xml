@@ -18,8 +18,11 @@
 		</action>
 		<action name="registerPro" method="registerUser" class="action.RegisterAction">
 			<result name="input">/taoforfun/jsp/register.jsp</result>
-			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="success">/taoforfun/jsp/message.jsp</result>
 			<result name="error">/taoforfun/jsp/register.jsp</result>
+		</action>
+		<action name="validateRegisterPro" class="action.ValidateRegisterAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
 		</action>
 		<action name="logoutPro" class="action.LogoutAction">
 			<result name="success">/index.jsp</result>
@@ -78,7 +81,6 @@
 <!-- 			<result name="success" type="redirectAction">getMyFriendsPro</result> -->
 <!-- 		</action> -->
 		
-<<<<<<< HEAD
 		<!-- weibos -->
 		<action name="writeWeiboPro" class="action.AddPersonalWeiboAction">
 			<result name="success">/taoforfun/jsp/userhomewriteweibo.jsp</result>
@@ -103,11 +105,6 @@
 		</action>
 		<action name="commentWeiboPro" class="action.AddCommentAction">
 			<result name="success" type="redirectAction">getAllWeibosPro</result>
-=======
-		
-		<action name="addPersonalWeiboAction" class="action.AddPersonalWeiboAction">
-			<result name="success" type="redirectAction">showPersonalWeiboAction</result>
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 		</action>
 		
 		<!-- comments -->
@@ -115,18 +112,9 @@
 			<result name="success" type="redirectAction">getMyWeibosPro</result>
 		</action>
 		
-<<<<<<< HEAD
 		<!-- admin -->
 		<action name="getAllUsersPro" class="action.AllUsersAction">
 			<result name="success">/taoforfun/jsp/adminuser.jsp</result>
-=======
-		<action name="deleteMyWeiboPro" class="action.DeletePersonalWeiboAction">
-			<result name="success" type="redirectAction">getMyWeibosPro</result>
-		</action>
-		
-		<action name="addPersonalWeiboPro" class="action.AddPersonalWeiboAction">
-			<result name="success" type="redirectAction">getMyWeibosPro</result>
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 		</action>
 		<action name="getAllWeibosPro" class="action.AllWeibosAction">
 			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>

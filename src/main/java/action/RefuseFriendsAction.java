@@ -36,8 +36,4 @@ private static final long serialVersionUID = 1L;
 		
 	}
 	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676

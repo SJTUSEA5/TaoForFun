@@ -56,6 +56,7 @@ public class UpdateHeadimgAction extends BaseAction{
 			String filename = user.getUsername() + headimgFileName.substring(headimgFileName.lastIndexOf("."));
 			FileUtils.copyFile(headimg, new File(filePath, filename));
 			if(user.getHeadimg() != null){
+				user.setHeadimg(null);
 				String oldfilename = filePath +"\\" + user.getHeadimg();
 				File file = new File(oldfilename);
 				file.delete();

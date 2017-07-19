@@ -1,5 +1,8 @@
 package model;
 
+import java.beans.Transient;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +13,9 @@ public class User {
 	private String email;
 	private String role;
 	private String headimg;
+	private int status;
+	private String validatecode;
+	private Date registertime;
 	
 	
 	public User(){
@@ -21,6 +27,19 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.role = role;
+	}
+	
+	public User(String username, String password, String email, String role,
+						int status, String validatecode, Date registertime)
+	{
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.role = role;
+		this.status = status;
+		this.validatecode = validatecode;
+		this.registertime = registertime;
+		
 	}
 	
 	public User(String username, String password){
@@ -76,6 +95,30 @@ public class User {
 		this.headimg = headimg;
 	}
 	
+	public int getStatus(){
+		return status;
+	}
+	
+	public void setStatus(int status){
+		this.status = status;
+	}
+	
+	public String getValidatecode(){
+		return validatecode;
+	}
+	
+	public void setValidatecode(String validatecode){
+		this.validatecode = validatecode;
+	}
+	
+	public Date getRegistertime(){
+		return registertime;
+	}
+	
+	public void setRegistertime(Date registertime){
+		this.registertime = registertime;
+	}
+	
 	private Set<Usertag> usertags = new HashSet<Usertag>();
 
 	public Set<Usertag> getUsertags() {
@@ -84,6 +127,14 @@ public class User {
 
 	public void setUsertags(Set<Usertag> usertags) {
 		this.usertags = usertags;
+	}
+	
+	@Transient
+	public Date getLastActivateTime(){
+		Calendar cl = Calendar.getInstance();
+		cl.setTime(registertime);
+		cl.add(Calendar.DATE, 2);
+		return cl.getTime();
 	}
 	
 }

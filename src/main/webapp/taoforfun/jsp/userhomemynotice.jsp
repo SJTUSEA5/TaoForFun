@@ -37,22 +37,14 @@
 		<input type="text" name="search" placeholder="search something"/>
 		<input type="submit" value="Search"/>
 	</form></li>
-<<<<<<< HEAD
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
-=======
-	<li><a href="getAllWeibosPro" class="active">Weibos  </a></li>
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
 <div class="nav">
-<<<<<<< HEAD
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-=======
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 	<ul>
 		<li><%=user.getUsername() %></li>
 		<li><a href="getUserHomePro" class="active">Home</a></li>

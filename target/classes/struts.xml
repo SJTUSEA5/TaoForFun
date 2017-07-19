@@ -8,39 +8,136 @@
 	<constant name="struts.devMode" value="true" />
 	<package name="process" extends="struts-default">
 		
+		<!-- user account -->
+		<action name="homePro">
+			<result>/index.jsp</result>
+		</action>
 		<action name="loginPro" class="action.LoginAction">
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
-		
 		<action name="registerPro" method="registerUser" class="action.RegisterAction">
-			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
 			<result name="input">/taoforfun/jsp/register.jsp</result>
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+			<result name="error">/taoforfun/jsp/register.jsp</result>
+		</action>
+		<action name="validateRegisterPro" class="action.ValidateRegisterAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="logoutPro" class="action.LogoutAction">
+			<result name="success">/index.jsp</result>
+			<result name="error">/index.jsp</result>
+		</action>
+		<action name="deleteAccountPro" class="action.DeleteUserAction">
+			<result name="input">/taoforfun/jsp/useraccount.jsp</result>
+			<result name="success" type="redirectAction">homePro</result>
 		</action>
 		
-		
-		
-		
-		<action name="addPersonalWeiboAction" class="action.AddPersonalWeiboAction">
-			<result name="success" type="redirectAction">showPersonalWeiboAction</result>
-		</action>
-		
-		<action name="getMyWeibosPro" class="action.ShowPersonalWeiboAction">
+		<!-- user info -->
+		<action name="getUserHomePro" class="action.ShowPersonalWeiboAction">
 			<result name="success">/taoforfun/jsp/userhomemyweibos.jsp</result>
 		</action>
+			<action name="getMyWeibosPro" class="action.ShowPersonalWeiboAction">
+				<result name="success">/taoforfun/jsp/userhomemyweibos.jsp</result>
+			</action>
+			<action name="getMyFriendsPro" class="action.ShowFriendsAction">
+				<result name="success">/taoforfun/jsp/userhomemyfriends.jsp</result>
+			</action>
+			<action name="getMyMessagesPro" class="action.ShowMessagesAction">
+				<result name="success">/taoforfun/jsp/userhomemymessages.jsp</result>
+			</action>
+			<action name="getMyNoticesPro" class="action.ShowNoticesAction">
+				<result name="success">/taoforfun/jsp/userhomemynotices.jsp</result>
+			</action>
+		<action name="getUserProfilePro">
+			<result>/taoforfun/jsp/userprofile.jsp</result>
+		</action>
+		<action name="getUserAccountPro">
+			<result>/taoforfun/jsp/useraccount.jsp</result>
+		</action>
+		<action name="getUserPermissionPro">
+			<result>/taoforfun/jsp/userpermission.jsp</result>
+		</action>
+		<action name="updateUserProfilePro" class="action.UpdateUserAction">
+			<result name="input">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+		</action>
+		<action name="updateHeadimgPro" class ="action.UpdateHeadimgAction">
+			<result name="success" type="redirect">/taoforfun/jsp/userprofile.jsp</result>
+		</action>	
 		
+		<!-- friend -->
+		<action name="visitFriendHomePro">
+			<result name="input">/taoforfun/jsp/userhomemyfriends.jsp</result>
+			<result name="success">/taoforfun/jsp/friendhome.jsp</result>
+		</action>
+		<action name="messageFriendPro">
+			<result name="success">/taoforfun/jsp/friendchat.jsp</result>
+		</action>
+		<action name="getMessageBoxPro">
+			<result name="success">/taoforfun/jsp/friendchat.jsp</result>
+		</action>
+<!-- 		<action name="deleteFriendPro" class="action.DeleteFriendAction"> -->
+<!-- 			<result name="success" type="redirectAction">getMyFriendsPro</result> -->
+<!-- 		</action> -->
+		
+		<!-- weibos -->
+		<action name="writeWeiboPro" class="action.AddPersonalWeiboAction">
+			<result name="success">/taoforfun/jsp/userhomewriteweibo.jsp</result>
+		</action>
+		<action name="addPersonalWeiboPro" class="action.AddPersonalWeiboAction">
+			<result name="input">/taoforfun/jsp/userhomewriteweibo.jsp</result>
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
+
 		<action name="deleteMyWeiboPro" class="action.DeletePersonalWeiboAction">
 			<result name="success" type="redirectAction">getMyWeibosPro</result>
 		</action>
-		
-		<action name="addPersonalWeiboPro" class="action.AddPersonalWeiboAction">
+		<action name="getFriendsWeibosPro" class="action.ShowFriendsWeiboAction">
+			<result name="success">/taoforfun/jsp/weibos.jsp</result>
+		</action>
+		<action name="commentMyWeiboPro" class="action.AddCommentAction">
+<!-- 			<result name="input">/taoforfun/jsp/userhomemyweibos.jsp</result> -->
 			<result name="success" type="redirectAction">getMyWeibosPro</result>
 		</action>
+		<action name="commentFriendsWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">visitFriendHomePro</result>
+		</action>
+		<action name="commentWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">getAllWeibosPro</result>
+		</action>
+		
+		<!-- comments -->
+		<action name="deleteMyCommentPro" class="action.DeleteCommentAction">
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
+		
+		<!-- admin -->
+		<action name="getAllUsersPro" class="action.AllUsersAction">
+			<result name="success">/taoforfun/jsp/adminuser.jsp</result>
+		</action>
+		<action name="getAllWeibosPro" class="action.AllWeibosAction">
+			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
+		</action>
+		<action name="getAllFriendpairsPro">
+			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result>
+		</action>
+<!-- 		<action name="getAllMessagesPro" class="action.AllMessagesAction"> -->
+<!-- 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result> -->
+<!-- 		</action> -->
 		
 		
 		<action name="*">
 			<result>/{1}.jsp</result>
 		</action>
 		
+	</package>
+	<package name="json" extends="struts-default,json-default">
+<!-- 	<action name="commentMyWeiboPro" class="action.AddCommentAction"> -->
+<!-- 			<result type="json"> -->
+<!--                 <param name="root">jcomment</param> -->
+<!--             </result> -->
+<!-- 		</action> -->
+	
 	</package>
 </struts>

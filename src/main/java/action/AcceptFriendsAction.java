@@ -8,7 +8,6 @@ import service.FriendpairService;
 import service.FriendapplicationService;
 
 public class AcceptFriendsAction extends BaseAction{
-	
 	private static final long serialVersionUID = 1L;
 	
 	private String username2;

@@ -23,6 +23,15 @@
 		<property name="headimg" type="java.lang.String">
 			<column name="headimg" />
 		</property>
+		<property name="status" type="int">
+			<column name="status" />
+		</property>
+		<property name="validatecode" type="java.lang.String">
+			<column name="validatecode" />
+		</property>
+		<property name="registertime" type="java.util.Date">
+			<column name="registertime" />
+		</property>		
 		<set name="usertags" lazy="false" inverse="true">
 			<key column="userid" />
 			<one-to-many class="model.Usertag" />

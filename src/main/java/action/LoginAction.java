@@ -45,13 +45,25 @@ public class LoginAction extends BaseAction{
 		if (userService.checkUser(loginname, password)){
 			if(userService.getUserByUsername(loginname) == null){
 				User user = userService.getUserByEmail(loginname);
-				session.put("user", user);
-				return "success";
+				if(user.getStatus()==1){
+					session.put("user", user);
+					return "success";
+				}
+				else{
+					session.put("re", "have not been validated");
+					return "input";
+				}
 			}
 			else{
 				User user = userService.getUserByUsername(loginname);
-				session.put("user", user);
-				return "success";
+				if(user.getStatus()==1){
+					session.put("user", user);
+					return "success";
+				}
+				else{
+					session.put("re", "have not been validated");
+					return "input";
+				}
 			}
 		}
 		else{

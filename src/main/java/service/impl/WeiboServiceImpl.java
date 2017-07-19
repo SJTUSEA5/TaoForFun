@@ -31,10 +31,6 @@ public class WeiboServiceImpl implements WeiboService{
 		return weiboDao.getWeiboByUsername(username);
 	}
 	
-	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, java.sql.Timestamp limitTime){
-		return weiboDao.getWeiboByFriendlist(friendnames, limitTime);
-	}
-	
 	public List<Weibo> getAllWeibo(){
 		return weiboDao.getAllWeibo();
 	}

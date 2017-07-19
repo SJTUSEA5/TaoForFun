@@ -4,8 +4,7 @@ import model.Weibo;
 import service.WeiboService;
 
 public class DeletePersonalWeiboAction extends BaseAction{
-	
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	private int weiboid;
 	

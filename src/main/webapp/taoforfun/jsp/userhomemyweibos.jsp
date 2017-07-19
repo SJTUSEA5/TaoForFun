@@ -51,7 +51,6 @@
 <div class="page">
 
 <div class="nav">
-<<<<<<< HEAD
 	<div class="nav-head">
 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
 	</div>
@@ -63,17 +62,6 @@
 		<p><a href="getUserPermissionPro">Permissions</a></p>
 		<p><a href="logoutPro">Log out</a></p>
 	</div>
-=======
-	<img src="<%=path%>/taoforfun/img/testGIF.gif" alt="testGIF" style="width:100px;height:100px;"/>
-	<ul>
-		<li><%=user.getUsername() %></li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro">Profile</a></li>
-		<li><a href="getUserAccountPro">Account</a></li>
-		<li><a href="getUserPermissionPro">Permissions</a></li>
-		<li><a href="logoutPro">Log out</a></li>
-	</ul>
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 </div>
 
 <div class="section">
@@ -89,25 +77,15 @@
 <div>
 <a href="<%=path %>/taoforfun/jsp/userhomewriteweibo.jsp">Write Weibo</a>
 </div>
-<<<<<<< HEAD
 <div class="section-content">
 <div id="dataTables">
 	<h2>My Weibos</h2>
-=======
-	<div class="dataTable message">
-	<table>
-		<thead>
-		<tr><th>My Weibos</th></tr>
-		</thead>
-		<tbody>
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 <%
 	int i = 0;
 	for(; i < myweibos.size(); i++){
 		Weibo myweibo = myweibos.get(i);
 		Set<Comment> comments = myweibo.getComments();
 %>
-<<<<<<< HEAD
 	<div  class="message weiboForm">
 		<div class="section-data-header">
 			<p><%= myweibo.getAdder()%>   <%= myweibo.getTime()%></p>
@@ -122,21 +100,6 @@
 		Iterator iterator = comments.iterator();     
 		while(iterator.hasNext()){
 			Comment comment = (Comment)iterator.next();
-=======
-			<tr>
-				<td><%= myweibo.getTime()%></td>
-				<td><%= myweibo.getAdder()%></td>
-				<td><%= myweibo.getContent()%></td>
-				<td>
-					<a href="deleteMyWeiboPro?weiboid=<%=myweibo.getWeiboid()%>&&username=<%=myweibo.getAdder()%>">
-						<button>delete</button>
-					</a>
-				</td>
-			</tr>
-<% 
-	}
-}
->>>>>>> aceffecc6d8735884cd1f6c21333303a2d6c4676
 %>
 			<p><%=comment.getAdder() %>: <%=comment.getContent() %>
 			<%if(comment.getAdder().equals(user.getUsername())){ %>

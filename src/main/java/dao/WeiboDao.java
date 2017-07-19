@@ -13,8 +13,6 @@ public interface WeiboDao {
 	
 	public List<Weibo> getWeiboByUsername(String username);
 	
-	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, java.sql.Timestamp limitTime);
-	
 	public Weibo getWeiboByWeiboid(int weiboid);
 	
 	public List<Weibo> getAllWeibo();

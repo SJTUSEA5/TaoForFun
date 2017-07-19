@@ -1,0 +1,32 @@
+body{
+	background-color:#f47878;
+}
+
+@font-face{
+	font-family:LithosPro-Black;
+	src:url('/taoforfun/fonts/LithosPro-Black.otf');
+}
+
+#logo{
+	font-family:LithosPro-Black;
+	font-size:16px;
+	color:#ffff33;
+}
+
+#centraltitle{
+	color:#ffff33;
+	font-size:48px;
+	text-align:center;
+}
+
+#loginform{
+	text-align:center;
+}
+
+#ps{
+	text-align:right;
+}
+
+#signinform{
+	text-align:center;
+}
