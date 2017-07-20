@@ -51,6 +51,7 @@ public class UpdateHeadimgAction extends BaseAction{
 		System.out.println(headimg);
 		System.out.println(headimgFileName);
 		User user = (User) session.get("user");
+		System.out.println(user);
 		if(headimg != null){
 			String filePath=ServletActionContext.getServletContext().getRealPath("/taoforfun/img/UserHeadImg"); 
 			String filename = user.getUsername() + headimgFileName.substring(headimgFileName.lastIndexOf("."));

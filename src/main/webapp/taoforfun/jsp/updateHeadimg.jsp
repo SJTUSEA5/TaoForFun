@@ -16,11 +16,11 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")== null){
+	if(session.getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
-		user = (User)request.getSession().getAttribute("user");
+		user = (User)session.getAttribute("user");
 	}
 %>
 

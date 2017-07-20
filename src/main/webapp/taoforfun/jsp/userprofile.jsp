@@ -16,11 +16,11 @@
 
 <%
 	User user = new User();
-	if(request.getSession().getAttribute("user")== null){
+	if(session.getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
-		user = (User)request.getSession().getAttribute("user");
+		user = (User)session.getAttribute("user");
 %>
 
 <div class="topbar">
@@ -62,13 +62,19 @@
 			<p>Gender<input type="text" name="gender" value=""/></p>
 			<p>Age<input type="text" name="age" value=""/></p>
 			<p>City<input type="text" name="city" value=""/></p>
-			<p>Email<input type="text" name="email" value="<%=user.getEmail()%>"/></p>
 			<p>Birthday<input type="text" name="birthday" value=""/></p>
 			<p>Phone<input type="text" name="phone" value=""/></p>
 			<p>Introduction</p>
 			<textarea rows="8" cols="25" id="introContent" ></textarea><br>
 			<input type="hidden" name="intro" id="submitContent"/>
 			<input type="submit" value="Update" onclick="return getContent()"/>
+		</form>
+	</div>
+	
+	<div class="section-content">
+		<form action="updateEmailPro" method="post">
+			<p>Email<input type="text" name="email" value="<%=user.getEmail()%>"/></p>
+			<input type="submit" value="Update" />
 		</form>
 	</div>
 </div>

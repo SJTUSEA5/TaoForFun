@@ -13,9 +13,9 @@ public class User {
 	private String email;
 	private String role;
 	private String headimg;
-	private int status;
+	private int emailstatus;
 	private String validatecode;
-	private Date registertime;
+	private Date emailregistertime;
 	
 	
 	public User(){
@@ -36,15 +36,16 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.role = role;
-		this.status = status;
+		this.emailstatus = status;
 		this.validatecode = validatecode;
-		this.registertime = registertime;
+		this.emailregistertime = registertime;
 		
 	}
 	
-	public User(String username, String password){
+	public User(String username, String password, String role){
 		this.username = username;
 		this.password = password;
+		this.role = role;
 	}
 	
 	public int getUserid(){
@@ -95,12 +96,12 @@ public class User {
 		this.headimg = headimg;
 	}
 	
-	public int getStatus(){
-		return status;
+	public int getEmailstatus(){
+		return emailstatus;
 	}
 	
-	public void setStatus(int status){
-		this.status = status;
+	public void setEmailstatus(int emailstatus){
+		this.emailstatus = emailstatus;
 	}
 	
 	public String getValidatecode(){
@@ -111,12 +112,12 @@ public class User {
 		this.validatecode = validatecode;
 	}
 	
-	public Date getRegistertime(){
-		return registertime;
+	public Date getEmailregistertime(){
+		return emailregistertime;
 	}
 	
-	public void setRegistertime(Date registertime){
-		this.registertime = registertime;
+	public void setEmailregistertime(Date emailregistertime){
+		this.emailregistertime = emailregistertime;
 	}
 	
 	private Set<Usertag> usertags = new HashSet<Usertag>();
@@ -132,7 +133,7 @@ public class User {
 	@Transient
 	public Date getLastActivateTime(){
 		Calendar cl = Calendar.getInstance();
-		cl.setTime(registertime);
+		cl.setTime(emailregistertime);
 		cl.add(Calendar.DATE, 2);
 		return cl.getTime();
 	}

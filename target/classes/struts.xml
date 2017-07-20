@@ -10,7 +10,7 @@
 		
 		<!-- user account -->
 		<action name="homePro">
-			<result>/index.jsp</result>
+			<result type="redirect">/index.jsp</result>
 		</action>
 		<action name="loginPro" class="action.LoginAction">
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
@@ -18,10 +18,13 @@
 		</action>
 		<action name="registerPro" method="registerUser" class="action.RegisterAction">
 			<result name="input">/taoforfun/jsp/register.jsp</result>
-			<result name="success">/taoforfun/jsp/message.jsp</result>
+			<result name="success" type="redirectAction">loginPro?loginname=${username}&amp;password=${password}</result>
 			<result name="error">/taoforfun/jsp/register.jsp</result>
 		</action>
-		<action name="validateRegisterPro" class="action.ValidateRegisterAction">
+		<action name="updateEmailPro" class="action.UpdateEmailAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="validateUpdateEmailPro" class="action.ValidateUpdateEmailAction">
 			<result name="success">/taoforfun/jsp/message.jsp</result>
 		</action>
 		<action name="logoutPro" class="action.LogoutAction">
