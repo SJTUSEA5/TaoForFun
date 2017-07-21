@@ -4,14 +4,13 @@ import model.User;
 import service.UserService;
 
 public class RegisterAction extends BaseAction{
+	
 	private static final long serialVersionUID = 1L;
 
 	private String username;
-	private String email;
 	private String password;
 	private String confirmpassword;
 	
-
 	private UserService userService;
 	
 	public String getUsername() {
@@ -37,14 +36,6 @@ public class RegisterAction extends BaseAction{
 	public void setConfirmpassword(String confirmpassword) {
 		this.confirmpassword = confirmpassword;
 	}
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -52,22 +43,18 @@ public class RegisterAction extends BaseAction{
 	
 	public String registerUser() {
 		System.out.println(username);
+		session.put("message", "");
 		session.put("msg", "");
 		if(password.equals(confirmpassword)){
 			User user1 = userService.getUserByUsername(username); 
-        	User user2 = userService.getUserByEmail(email);
-        	if (user1 == null && user2 == null){  
-        		User newUser = new User(username,  password, email, "guest");
-        		if (userService.addUser(newUser) == true){
-        			session.put("user", newUser);
-        			return "success";
-        		}
-        		else{
-        			return "input";
-        		}
+        	if (user1 == null){  
+        		User newUser = new User(username,  password, "guest");
+        		userService.addUser(newUser);
+        		System.out.println(username);
+                return "success";
         	}
         	else{
-        		session.put("msg", "the username or email has been used");
+        		session.put("msg", "the username has been used");
         		return "input";
         	}
 		}

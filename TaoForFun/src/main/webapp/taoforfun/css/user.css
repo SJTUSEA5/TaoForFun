@@ -70,8 +70,25 @@ ol,ul,li{
 	line-height:30px;	
 	min-width:15%;
 }
+
+.nav ul li a:hover{
+	background:#ff7878;
+}
+
 .nav-head{
 	padding: 10px;
+	border-radius:50%;
+	overflow:hidden;
+}
+.nav .nav-head img{
+	width:100px;
+	height:100px;
+	border-radius:50%;
+}
+
+.friend-head-img{
+	width:75px;
+	height:75px;
 	border-radius:50%;
 }
 .nav-gap{
@@ -98,7 +115,7 @@ ol,ul,li{
 .nav a{
 	font-size:20px;
 }
-.nav a:hover,.tab a:hover{
+.tab a:hover{
 	background-color:#ff7878;
 }
 
@@ -161,10 +178,6 @@ ol,ul,li{
 	text-decoration:none;
 }
 
-.nav ul li a:hover{
-	background:#ff7878;
-}
-
 .signinform{
 	text-align:center;
 }
@@ -224,7 +237,20 @@ ol,ul,li{
 	height: 100%;
 }
 
+.write-weibo{
+	padding:10px;
+}
 
+.write-weibo a,.write-weibo a:hover{
+	text-align:center;
+}
+
+.write-weibo img{
+	background-position:50% 50%;
+    background-size:contain;
+	border-radius:50%;
+	background-color:#ff7878;
+}
 
 
 

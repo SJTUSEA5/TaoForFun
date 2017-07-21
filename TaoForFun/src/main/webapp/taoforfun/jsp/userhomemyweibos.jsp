@@ -37,10 +37,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -51,7 +51,13 @@
 
 <div class="nav">
 	<div class="nav-head">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
 	</div>
 	<div class="nav-gap"><p id="comment-adder"><%=user.getUsername() %></p></div>
 	<div class="nav-list">
@@ -76,8 +82,10 @@
 
 <br>
 <br>
-<div>
-<a href="<%=path %>/taoforfun/jsp/userhomewriteweibo.jsp">Write Weibo</a>
+<div class="write-weibo" style="text-align:center">
+<a href="<%=path%>/taoforfun/jsp/userhomewriteweibo.jsp">
+	<img src="<%=path%>/taoforfun/img/write.PNG" alt="writeWeibo" style="width:100px;height:100px;"/>
+</a>
 </div>
 <div class="section-content">
 <div id="dataTables">
@@ -117,7 +125,7 @@
 
 		<div class="section-data-footer">
 			<a href="deleteMyWeiboPro?weiboid=<%=myweibo.getWeiboid()%>&&username=<%=myweibo.getAdder()%>">
-				<button>delete</button>
+				<button onclick="return deleteconfirm()">delete</button>
 			</a>
 			<button>like</button>
 			<button class="showCommentlist" data-weiboid="<%=myweibo.getWeiboid()%>">show comment</button>
@@ -138,6 +146,14 @@ function openModal(obj) {
 	var element = document.getElementById("comment-submit");
 	element.dataset.weiboid = weiboid;
 	$('#commentModal').modal('show');
+}
+
+function deleteconfirm(){
+	if(confirm("are you sure to delete this?")){
+		return true;
+	}else{
+		return false;
+	}
 }
 </script>
 
@@ -173,6 +189,7 @@ function openModal(obj) {
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
 <script src="<%=path %>/taoforfun/js/comment.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 <script src="<%=path%>/taoforfun/js/jquery.dataTables.min.js"></script>
 <script src="<%=path%>/taoforfun/js/dataTables.bootstrap.min.js"></script>
 </body>

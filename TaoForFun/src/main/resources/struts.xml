@@ -10,7 +10,7 @@
 		
 		<!-- user account -->
 		<action name="homePro">
-			<result>/index.jsp</result>
+			<result type="redirect">/index.jsp</result>
 		</action>
 		<action name="loginPro" class="action.LoginAction">
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
@@ -18,8 +18,26 @@
 		</action>
 		<action name="registerPro" method="registerUser" class="action.RegisterAction">
 			<result name="input">/taoforfun/jsp/register.jsp</result>
-			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="success" type="redirectAction">loginPro?loginname=${username}&amp;password=${password}</result>
 			<result name="error">/taoforfun/jsp/register.jsp</result>
+		</action>
+		<action name="updateEmailPro" class="action.UpdateEmailAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="validateUpdateEmailPro" class="action.ValidateUpdateEmailAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="forgetPasswordPro" class="action.ForgetPasswordAction">
+			<result name="input">/taoforfun/jsp/findPassword.jsp</result>
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="changePasswordPro" class="action.ChangePasswordAction">
+			<result name="error">/taoforfun/jsp/message.jsp</result>
+			<result name="success">/taoforfun/jsp/changePassword.jsp</result>
+		</action>
+		<action name="updatePasswordPro" class="action.UpdatePasswordAction">
+			<result name="error">/taoforfun/jsp/changePassword.jsp</result>
+			<result name= "success" type="redirectAction">homePro</result>
 		</action>
 		<action name="logoutPro" class="action.LogoutAction">
 			<result name="success">/index.jsp</result>
@@ -58,7 +76,7 @@
 		<action name="getUserPermissionPro">
 			<result>/taoforfun/jsp/userpermission.jsp</result>
 		</action>
-		<action name="updateUserProfilePro" class="action.UpdateUserAction">
+		<action name="updateUserProfilePro" class="action.UpdateUserAction"><!-- UpdateUserProfileAction -->
 			<result name="input">/taoforfun/jsp/userprofile.jsp</result>
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
 		</action>
@@ -127,6 +145,10 @@
 		</action>
 		<action name="deleteWeiboPro" class="action.DeleteWeiboAction">
 			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
+		</action>
+		
+		<action name="searchPro" class="action.SearchAction">
+			<result name="success">/taoforfun/jsp/search.jsp</result>
 		</action>
 		
 		<action name="*">

@@ -47,7 +47,13 @@
 
 <div class="nav">
 	<div class="nav-head">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = admin.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
 	</div>
 	<div class="nav-gap"><p>*<%=admin.getUsername() %>*</p></div>
 	<div class="nav-list">	
@@ -98,6 +104,7 @@
 %>
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path%>/taoforfun/js/admin.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 <%
 }
 %>

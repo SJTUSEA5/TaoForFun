@@ -2,6 +2,13 @@ body{
 	background-color:#f47878;
 }
 
+#re{
+	text-align:center;
+	background-color:#fff8f8;
+	color:#ff1111;
+	padding:2px;
+}
+
 .button .button-login{
 	display:inline-block;
 	background-color:#ffffff;

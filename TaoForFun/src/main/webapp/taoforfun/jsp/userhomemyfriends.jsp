@@ -31,10 +31,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -45,7 +45,13 @@
 
 <div class="nav">
 	<div class="nav-head">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
 	</div>
 	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
 	<div class="nav-list">
@@ -80,20 +86,28 @@
 
 <div class="message firendForm">
 	<div class="section-data-header">
-		<p><img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:60px;height:60px;"/><%= friend.getUsername()%></p>
+	<%
+	String fimg = path+"/taoforfun/img/UserHeadImg/";
+	String fheadimgname = friend.getHeadimg();
+	if(fheadimgname == null)fheadimgname = "default.png";
+	fimg = fimg + fheadimgname;
+%>
+	<img class="friend-head-img" src="<%=fimg %>" alt="userPNG"/><%= friend.getUsername()%></p>
 	</div>
 	<div class="section-data-body">
-		<h4>Latest Weibo</h4>
+<!-- 		<h4>Latest Weibo</h4> -->
 	</div>
 	<div class="section-data-footer">
-		<form action="messageFriendPro" method="post">
+		<form action="messageFriendPro" method="post" name="messageForm">
 			<input type="hidden" name="receiveid" value="<%=friend.getUserid() %>"/>
-			<input type="submit" value="Message"/>
+<!-- 			<input type="submit" value="Message"/> -->
 		</form>
-		<form action="visitFriendHomePro" method="post">
+		<form action="visitFriendHomePro" method="post" name="visitForm">
 			<input type="hidden" name="userid" value="<%=friend.getUserid() %>"/>
-			<input type="submit" value="Visit"/>
+<!-- 			<input type="submit" value="Visit"/> -->
 		</form>
+		<button onclick="JavaScript:document.messageForm.submit();">Message</button>
+		<button onclick="JavaScript:document.visitForm.submit();">Visit</button>
 	</div>
 </div>
 <% 
@@ -106,6 +120,7 @@
 
 </div>
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 <%} %>
 </body>
 </html>

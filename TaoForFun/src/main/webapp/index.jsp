@@ -19,15 +19,14 @@
 	<h2>TaoForFun Project</h2>
 </div>
 
-<h1>${sessionScope.re}</h1>
+<p id="re">${sessionScope.re}</p>
 
 <div id="loginform">
 	<form action="loginPro" method="post">  
-       				<h2>Username:<input type="text" name="loginname"></h2> <br/><br/> 
+       				<h2>Username:<input type="text" name="loginname" oninput="document.getElementById('re').innerHTML=''"/></h2><br/> 
       				<h2>Password:<input type="password" name="password" value=""></h2> <br/><br/>  
     				<h2><input type="submit" value="Login" class="button button-login"></h2>
     			</form> 
-<!--     			<button>Login</button> -->
 </div>
 <br><br><br><br><br>
 <br><br><br><br><br>
@@ -35,5 +34,11 @@
 <a href="<%=path%>/taoforfun/jsp/findPassword.jsp">forget password?</a>
 <a href="<%=path%>/taoforfun/jsp/register.jsp">register now!</a>
 </div>
+<script>
+$(document).on("change", "input", function(){
+	$("#re").text("");
+})
+</script>
+
 </body>
 </html>

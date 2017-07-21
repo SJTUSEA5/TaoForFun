@@ -25,10 +25,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -39,7 +39,13 @@
 
 <div class="nav">
 	<div class="nav-head">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
 	</div>
 	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
 	<div class="nav-list">
@@ -53,15 +59,24 @@
 
 <div class="section">	
 <div class="section-content">
+	<h4>Validate email address for security:</h4>
+	<form action="updateEmailPro" method="post">
+		<p>Email<input type="text" name="email" value="<%=user.getEmail()%>"/></p>
+		<input type="submit" value="Update" />
+	</form>
+	<br><br><br>
+	<h4>Change password:</h4>
 	<form action="updateUserProfilePro" method="post">
 		<p>New Password<input type="password" name="newpassword"/></p>
 		<p>Confirm New Password<input type="password" name="confirmnew"/></p>
 		<p><input type="submit" value="Change Password"/>
 	</form>
-	
+	<br><br><br>
+	<h4>Delete this account:</h4>
+	<p>(warning: This operation cannot be undone!)</p>
 	<form action="deleteAccountPro" method="post">
 		<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
-		<input type="submit" value="Delete Account" onclick="return warnDelete()"/>Warning: This operation cannot be undone!
+		<input type="submit" value="Delete Account" onclick="return warnDelete()"/>
 	</form>
 </div>
 </div>
@@ -79,5 +94,6 @@ function warnDelete(){
 }
 </script>
 </div>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 </body>
 </html>

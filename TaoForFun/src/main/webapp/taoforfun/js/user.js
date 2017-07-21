@@ -22,6 +22,12 @@ $(document).ready(function() {
 			
 	});
 	
+//	$('#picpath').imgAreaSelect({
+//        handles: true,
+//        onSelectChange: preview,
+//        onSelectEnd: someFunction
+//    })
+	
 	function getObjectURL(file) {
         var url = null;
         if (window.createObjectURL != undefined) {
@@ -38,7 +44,7 @@ $(document).ready(function() {
 //    	var file = $(this).attr("data-file");
     	var formData = new FormData();
     	formData.append('headimg', $('input[name=pic]')[0].files[0]);
-    	alert(formData);
+    	//alert(formData);
     	$.ajax({
             type: "POST",
             url: "updateHeadimgPro.action",

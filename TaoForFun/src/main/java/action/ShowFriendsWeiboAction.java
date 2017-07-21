@@ -33,9 +33,11 @@ public class ShowFriendsWeiboAction extends BaseAction{
 		List<Friendpair> pairs = friendpairService.getPairByUsername(username);
 		List<String> friendnames = new ArrayList<String>();
 		for(Friendpair pair : pairs){
-			friendnames.add(pair.getUsername2());
+			if(!friendnames.contains(pair.getUsername1()))
+				friendnames.add(pair.getUsername1());
+			if(!friendnames.contains(pair.getUsername2()))
+				friendnames.add(pair.getUsername2());
 		}
-		friendnames.add(username);
 		List<Weibo> weibos = weiboService.getWeiboByFriendlist(friendnames, limitTime);
 		Collections.reverse(weibos);
 		request().setAttribute("weibos", weibos);

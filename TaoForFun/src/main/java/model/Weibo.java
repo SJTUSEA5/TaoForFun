@@ -65,4 +65,13 @@ public class Weibo {
 		this.comments = comments;
 	}
 	
+	private Set<Weibotag> weibotags = new HashSet<Weibotag>();
+
+	public Set<Weibotag> getWeibotags() {
+		return weibotags;
+	}
+
+	public void setWeibotags(Set<Weibotag> weibotags) {
+		this.weibotags = weibotags;
+	}
 }

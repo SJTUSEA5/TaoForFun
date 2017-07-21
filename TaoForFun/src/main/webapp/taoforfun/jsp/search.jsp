@@ -15,14 +15,14 @@
 <body>
 
 <%
-// 	User user = new User();
+	User user = new User();
 //  ArrayList<User> friends = new ArrayList<User>();
 //  ArrayList<Weibo> weibos = new ArrayList<Weibo>();
-// 	if(request.getSession().getAttribute("user")== null){
-// 		response.sendRedirect("homePro");
-// 	}
-// 	else{
-// 		user = (User)request.getSession().getAttribute("user");
+	if(request.getSession().getAttribute("user")== null){
+		response.sendRedirect("homePro");
+	}
+	else{
+		user = (User)request.getSession().getAttribute("user");
 //		if(request.getAttribute("friends")!=null)
 //			friends = (ArrayList<User>)request.getAttribute("friends");
 //		if(request.getAttribute("weibos")!=null)
@@ -33,10 +33,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -44,26 +44,19 @@
 </div>
 
 <div class="nav">
-<%-- 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/> --%>
-<!-- 	<ul> -->
-<%-- 		<li><%=user.getUsername() %></li> --%>
-<!-- 		<li><a href="getUserHomePro" class="active">Home</a></li> -->
-<!-- 		<li><a href="getUserProfilePro" class="active">Profile</a></li> -->
-<!-- 		<li><a href="getUserAccountPro" class="active">Account</a></li> -->
-<!-- 		<li><a href="getUserPermissionPro" class="active">Permissions</a></li> -->
-<!-- 		<li><a href="logoutPro" class="active">Log out</a></li> -->
-<!-- 	</ul> -->
-<div>
-<a href="writeWeiboPro">Write Weibo</a>
-</div>
-	<ul>
-		<li>Hot Weibos of this Topic</li>
-		<li>...</li>
-		<li>...</li>
-		<li>Hot Interests</li>
-		<li>...</li>
-		<li>...</li>
-	</ul>
+	<div class="write-weibo">
+	<a href="<%=path%>/taoforfun/jsp/userhomewriteweibo.jsp">
+		<img src="<%=path%>/taoforfun/img/write.PNG" alt="writeWeibo" style="width:100px;height:100px;"/>
+	</a>
+	</div>
+	<div class="nav-list">
+		<p>Hot Weibos of this Topic</p>
+		<p>...</p>
+		<p>...</p>
+		<p>Hot Interests</p>
+		<p>...</p>
+		<p>...</p>
+	</div>
 </div>
 
 <div class="section">
@@ -83,9 +76,10 @@
 
 </div>
 <%
-// }
+}
 %>
-<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 
 </body>
 </html>

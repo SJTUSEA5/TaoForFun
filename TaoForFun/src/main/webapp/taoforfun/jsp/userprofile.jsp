@@ -10,10 +10,11 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
 </head>
-<body>
+<body onload="setgender()">
 
 <%
 	User user = new User();
@@ -28,10 +29,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -42,7 +43,13 @@
 
 <div class="nav">
 	<div class="nav-head">
-	<img src="<%=path %>/taoforfun/img/UserHeadImg/<%=user.getHeadimg() %>" alt="userPNG" style="width:100px;height:100px;"/>
+<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
 	</div>
 	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
 	<div class="nav-list">
@@ -53,26 +60,39 @@
 			<p><a href="logoutPro">Log out</a></p>
 	</div>
 </div>
-
+<%
+	String intro = "";
+	if(user.getIntroduction() != null)intro = user.getIntroduction();
+	java.sql.Date birthday = new java.sql.Date(new java.util.Date().getTime());
+	if(user.getBirthday() != null)birthday = user.getBirthday();
+	String city = "";
+	if(user.getCity() != null)city = user.getCity();
+	String phone = "";
+	if(user.getPhone() != null)phone = user.getPhone();
+%>
 <div class="section">
 	<div class="section-content">
 		<form action="updateUserProfilePro" method="post">
 			<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
-			<p>Name<input type="text" name="username" value="<%=user.getUsername()%>"/> Gender<input type="text" name="gender" value=""/></p>
-			<p>Age<input type="text" name="age" value=""/> Birthday<input type="text" name="birthday" value=""/></p>
-			<p>Email<input type="text" name="email" value="<%=user.getEmail()%>"/> Phone<input type="text" name="phone" value=""/></p>
-			<p>City<input type="text" name="city" value=""/></p>
+			<p>Name<input type="text" name="username" value="<%=user.getUsername()%>"/> 
+			Gender<select id="select-gender"name="gender" data-value="<%=user.getGender()%>">
+					<option value="no" id="select-gender-no">   </option>
+					<option value="male" id="select-gender-male">Male</option>
+					<option value="female" id="select-gender-female">Female</option>
+				</select></p>
+			<p>Age<input type="text" name="age" value="<%=user.getAge() %>"/> 
+			Birthday<input type="text" name="birthday" value="<%=birthday %>"/></p>
+			<p>Phone<input type="text" name="phone" value="<%=phone %>"/> 
+			City<input type="text" name="city" value="<%=city %>"/></p>
 			<p>Introduction</p>
-			<textarea rows="8" cols="40" id="introContent" ></textarea><br>
-			<input type="hidden" name="intro" id="submitContent"/>
+			<textarea rows="8" cols="40" id="introContent" ><%=intro %></textarea><br>
+			<input type="hidden" name="introduction" id="submitContent"/>
 			<input type="submit" value="Update" onclick="return getContent()"/>
 		</form>
 			<br>
 			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#picModal">Upload Head Portrait</button>
 	</div>
 </div>
-
-
 
 <div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="picModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -82,7 +102,7 @@
                 <h4 class="modal-title" id="picModalLabel">Upload A Picture</h4>
             </div>
             <div class="modal-body">
-            	<p>nax size:2MB</p>
+            	<p>max size:2MB</p>
 	            <div class="img-body">
 	            	<form enctype="multipart/form-data" method="post" name="headimgform" id="headimgform">
 	            		<input type="file" name="pic" id="picpath" accept="image/*" />
@@ -111,18 +131,19 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
 <script src="<%=path %>/taoforfun/js/user.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
 <script>
 function getContent(){
 	var c = document.getElementById("introContent").value;
-	document.getElementById("submitContent").value = document.getElementById("introContent").value;
+	document.getElementById("submitContent").value = c;
 	return true;
 }
-
-// $(document).ready(function() {
-// 	$('#picModal').modal({
-//         keyboard: true
-//     });
-// });
+function setgender(){
+	var gender= $("#select-gender").attr("data-value");
+	$("#select-gender-"+gender).attr("selected",true);
+}
 </script>
 
 </body>

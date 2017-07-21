@@ -15,8 +15,9 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
 </head>
 <body>
 
@@ -39,10 +40,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form action="#" method="get" id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -76,6 +77,7 @@
 
 <div class="section-content">
 <%
+	java.sql.Timestamp ts = new java.sql.Timestamp(new java.util.Date().getTime());
 	for(int i = 0; i < weibos.size(); i++){
 		Weibo weibo = weibos.get(i);
 		Set<Comment> comments = weibo.getComments();
@@ -108,9 +110,11 @@
 		</div>
 
 		<div class="section-data-footer">
+		<%if(weibo.getAdder().equals(user.getUsername())){ %>
 			<a href="deleteMyWeiboPro?weiboid=<%=weibo.getWeiboid()%>&&username=<%=weibo.getAdder()%>">
 				<button>delete</button>
 			</a>
+		<%} %>
 			<button>like</button>
 			<button class="showCommentlist" data-weiboid="<%=weibo.getWeiboid()%>">show comment</button>
 		</div>			
@@ -118,7 +122,11 @@
 	<br>
 <% 
 	}
+	ts = weibos.get(weibos.size()-1).getTime();
 %>
+
+<button id="more-weibos" data-ts="<%=ts%>">More</button>
+
 </div>
 </div>
 
@@ -161,6 +169,7 @@ $(document).ready(function() {
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
 <script src="<%=path %>/taoforfun/js/comment.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 <script src="<%=path%>/taoforfun/js/jquery.dataTables.min.js"></script>
 <script src="<%=path%>/taoforfun/js/dataTables.bootstrap.min.js"></script>
 <%
