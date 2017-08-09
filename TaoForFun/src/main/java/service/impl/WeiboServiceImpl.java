@@ -1,5 +1,6 @@
 package service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import model.Weibo;
@@ -36,6 +37,11 @@ public class WeiboServiceImpl implements WeiboService{
 
 	public Weibo getWeiboByWeiboid(int weiboid) {
 		return weiboDao.getWeiboByWeiboid(weiboid);
+	}
+
+	@Override
+	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, Timestamp limitTime) {
+		return weiboDao.getWeiboByFriendlist(friendnames, limitTime);
 	}
 
 }

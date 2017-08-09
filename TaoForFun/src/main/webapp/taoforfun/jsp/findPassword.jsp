@@ -12,26 +12,33 @@
 <link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
 </head>
 <body>
-
+<%
+	String message = "";
+	if (session.getAttribute("message")!=null)
+		message = (String)session.getAttribute("message");
+%>
 <div class="topbar">
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="/TaoForFun/index.jsp">  Log in</a></li>
 </ul>
 </div>
 </div>
 
-<div class="section">
-<h2>Input your email address to change the password.</h2>
+<div class="full-section">
+<div class="full-section-content">
+<h2 id="sent-info">Input your email address to change the password.</h2>
+<p style="text-align:center"><%=message %></p>
+
 <div class="signinform">
-	<form action="" method="post">
+	<form action="forgetPasswordPro" method="post">
 		<p>Email<input type="text" name="email"/></p>
-		<input type="submit" value="Send" onclick="psfunc()"/>
+		<input type="submit" value="Send"/>
 	</form>
 <br>
 <br>
@@ -39,14 +46,11 @@
 <p id=sent></p>
 <br><br>
 <a href="/TaoForFun/index.jsp">Home page</a>
+<br>
+</div>
 </div>
 </div>
 
-<script>
-function psfunc(){
-	alert("We've sent an email to your email address. Please check it.");
-}
-</script>
-
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 </body>
 </html>

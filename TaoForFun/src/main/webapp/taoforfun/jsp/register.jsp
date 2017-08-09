@@ -17,23 +17,24 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="/TaoForFun/index.jsp">  Log in</a></li>
 </ul>
 </div>
 </div>
-
-<div class="section">
+<div class="page">
+<div class="full-section">
+<div class="full-section-content">
 <h2>Input your information to join us!</h2>
 <h2>${sessionScope.msg}</h2>
 <% session.setAttribute("msg", ""); %>
 <div class="signinform">
 	<form action="registerPro" method="post">
 		<p>UserName<input type="text" name="username"/></p>
-		<p>Email<input type="text" name="email"/></p>
+<!-- 		<p>Email<input type="text" name="email"/></p> -->
 		<p>Password<input type="password" name="password"/></p>
 		<p>Confirm Password<input type="password" name="confirmpassword"/></p>
 		<input type="submit" value="Sign in"/>
@@ -41,6 +42,8 @@
 	<a href="/TaoForFun/index.jsp">back</a>
 </div>
 </div>
-
+</div>
+</div>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 </body>
 </html>

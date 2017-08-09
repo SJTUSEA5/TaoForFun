@@ -14,35 +14,45 @@
 		<property name="password" type="java.lang.String">
 			<column name="password" />
 		</property>
-		<property name="role" type="java.lang.String">
-			<column name="role" />
-		</property>
 		<property name="email" type="java.lang.String">
 			<column name="email" />
 		</property>
-<!-- 		<property name="headsculptureAddr" type="java.lang.String"> -->
-<!-- 			<column name="headsculptureAddr" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="gender" type="java.lang.String"> -->
-<!-- 			<column name="gender" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="name" type="java.lang.String"> -->
-<!-- 			<column name="name" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="age" type="int"> -->
-<!-- 			<column name="age" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="birthday" type="java.sql.Date"> -->
-<!-- 			<column name="birthday" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="phone" type="java.lang.String"> -->
-<!-- 			<column name="phone" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="city" type="java.lang.String"> -->
-<!-- 			<column name="city" /> -->
-<!-- 		</property> -->
-<!-- 		<property name="introduction" type="java.lang.String"> -->
-<!-- 			<column name="introduction" /> -->
-<!-- 		</property> -->
+		<property name="role" type="java.lang.String">
+			<column name="role" />
+		</property>
+		<property name="headimg" type="java.lang.String">
+			<column name="headimg" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column name="gender" />
+		</property>
+		<property name="age" type="int">
+			<column name="age" />
+		</property>
+		<property name="birthday" type="java.sql.Date">
+			<column name="birthday" />
+		</property>
+		<property name="phone" type="java.lang.String">
+			<column name="phone" />
+		</property>
+		<property name="city" type="java.lang.String">
+			<column name="city" />
+		</property>
+		<property name="introduction" type="java.lang.String">
+			<column name="introduction" />
+		</property>
+			<property name="emailstatus" type="int">
+				<column name="emailstatus" />
+			</property>
+			<property name="validatecode" type="java.lang.String">
+				<column name="validatecode" />
+			</property>
+			<property name="emailregistertime" type="java.sql.Timestamp">
+				<column name="emailregistertime" />
+			</property>		
+			<set name="usertags" lazy="false" inverse="true">
+				<key column="userid" />
+				<one-to-many class="model.Usertag" />
+			</set>
 	</class>
 </hibernate-mapping>

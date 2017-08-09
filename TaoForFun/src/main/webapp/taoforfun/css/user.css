@@ -4,14 +4,6 @@ body{
 	padding:0;
 }
 
-/* a:link,a:visited,a:hover,a:active {  */
-/* 	color:#000000;  */
-/* 	text-decoration:none; */
-/* } */
-/* a:hover{ */
-/* 	background-color:#ff7878 */
-/* } */
-
 .topbody{
 	width:auto;
 	margin:0 auto;
@@ -55,30 +47,64 @@ ol,ul,li{
 	float:left;
 }
 
-.topbar,.nav,.section,.message{
+.page{
+	width:100%;
+}
+.topbar,.nav,.section,.message,.full-section{
 	box-shadow:10px 10px 8px #cccccc;
 	overflow:hidden;
 }
-.nav,.section{
-	margin:20px 20px 20px 50px;
+.nav,.section,.full-section{
+	margin:20px 20px 20px 20px;
 }
 
 .nav{
+	border:1px solid #aaaaaa;
+	border-radius:1%;
 	background-color:#ffffff;
 	height:auto;
-	width:120px;
-	padding:30px;
+	width:20%;
+	padding-bottom:20%;
 	float:left;
 	text-align:center;
 	line-height:30px;	
+	min-width:15%;
 }
-.nav img{
+
+.nav ul li a:hover{
+	background:#ff7878;
+}
+
+.nav-head{
+	padding: 10px;
+	border-radius:50%;
+	overflow:hidden;
+}
+.nav .nav-head img{
+	width:100px;
+	height:100px;
 	border-radius:50%;
 }
-.nav ul,.tab ul{
-	padding:4px 0;
-	margin:0;
+
+.friend-head-img{
+	width:75px;
+	height:75px;
+	border-radius:50%;
+}
+.nav-gap{
+	border-bottom:1px solid #aaaaaa;
+}
+
+
+.nav-list,.tab ul{
+	padding:5px 5px 5px 5px;
+	margin:auto;
+	display:table;
+	text-align:center;
 	overflow:hidden;
+}
+.nav-list p{
+	line-height:45px;
 }
 
 .nav a,.tab a{
@@ -86,30 +112,147 @@ ol,ul,li{
 	color:#000000;
 	display:block;
 }
-.nav a:hover,.tab a:hover{
+.nav a{
+	font-size:20px;
+}
+.tab a:hover{
 	background-color:#ff7878;
 }
 
+.full-section{
+	border:1px solid #aaaaaa;
+	border-radius:1%;
+	background-color:#ffffff;
+	height:auto;
+	width:90%;
+	float:left;
+	min-width:85%;
+}
+
+.full-section-content{
+	padding:40px;
+	overflow:hidden;
+	text-align:center;
+}
+
 .section{
+	border:1px solid #aaaaaa;
+	border-radius:1%;
 	background-color:#ffffff;
 	height:auto;
 	width:65%;
-	padding:30px;
+	float:right;
+	display:inline;
+	min-width:60%;
+}
+.section-content{
+	padding:40px;
 	float:left;
 	overflow:hidden;
+}
+
+.tab{
+	width:100%;
+	min-width:95%;
+}
+
+.tab ul{
+	width:100%;
+	margin:0px auto;
+	height:38px;
+	padding:0;
+}
+.tab ul li{
+	float:left;
+}
+
+.tab ul li a{
+	width:80px;
+	height:28px;
+	line-height:28px;
+	color:#000000;
+	margin:5px 10px;
+	font-size:16px;
+	display:block;
+	text-align:center;
+	text-decoration:none;
 }
 
 .signinform{
 	text-align:center;
 }
 
-.message .weiboForm{
+.message, .message .weiboForm{
 	border:1px solid #aaaaaa;
 	border-radius:1%;
 	height:auto;
-	width:55%;
+	width:500px;
 	padding:10px;
 }
+
+
  .message .head{
 	border-radius:50%;
 }
+
+.section-data-header{
+	border:1px solid #aaaaaa;
+	border-style:none none solid none;
+	padding:5px 5px 5px 5px;
+}
+.section-data-body{
+	border:1px solid #aaaaaa;
+	border-style:solid none solid none;
+	padding:5px 5px 5px 5px;
+}
+.section-data-footer{
+	border:1px solid #aaaaaa;
+	border-style:solid none none none;
+	padding:5px 5px 5px 5px;
+}
+
+.img-body, .img-view{
+	margin-right: 20px;
+	margin-top: 20px;
+	position: relative;
+	width: 300px;
+	height: 240px;
+	border: 1px solid red;
+	overflow: hidden;
+	border: 1px solid #aaaaaa;
+}
+.img-view{
+	width:100px;
+	height:100px;
+}
+
+#picpath{
+	position: absolute;
+	width: 300px;
+	height: 240px;
+	opacity: 0;
+}
+.img1{
+	width: auto;
+	height: 100%;
+}
+
+.write-weibo{
+	padding:10px;
+}
+
+.write-weibo a,.write-weibo a:hover{
+	text-align:center;
+}
+
+.write-weibo img{
+	background-position:50% 50%;
+    background-size:contain;
+	border-radius:50%;
+	background-color:#ff7878;
+}
+
+
+
+
+

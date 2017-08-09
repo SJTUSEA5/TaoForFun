@@ -24,34 +24,42 @@
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");	
-// 		if(request.getSession().getAttribute("myweibos")!= null)
-// 			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
 %>
 
 <div class="topbar">
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	<ul>
-		<li><%=user.getUsername() %></li>
-		<li><a href="getUserHomePro" class="active">Home</a></li>
-		<li><a href="getUserProfilePro">Profile</a></li>
-		<li><a href="getUserAccountPro">Account</a></li>
-		<li><a href="getUserPermissionPro">Permissions</a></li>
-		<li><a href="logoutPro">Log out</a></li>
-	</ul>
+	<div class="nav-head">
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
+	</div>
+	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
+	<div class="nav-list">
+			<p><a href="getUserHomePro">Home</a></p>
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">
@@ -64,33 +72,37 @@
 	</ul>
 <br>
 <br>
-<div>
-
-</div>
-	<div class="weiboForm">
+<div class="section-content">
 	<h2>Write Weibo</h2>
-	<form action="addPersonalWeiboPro" method="post" class="Form">
-		<div class="wordCount" id="wordCount">
-			<span id="weibowarn"></span><br>
-	    	<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+	<div class="weiboForm">
+		<form action="addPersonalWeiboPro" method="post" class="Form">
+			<div class="wordCount" id="wordCount">
+				<span id="weibowarn"></span><br>
+	    		<span class="wordage">words remaining: <span id="sy">140</span></span><br>
 				<input type="hidden" name="content" id="submitContent"/><br>
 				<textarea rows="12" cols="50" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
 				<input type="submit" value="submit" onclick="return getContent()"/>
-		</div>		
-	</form>
+			</div>		
+		</form>
 	
 
 <script type="text/javascript">
 function getContent(){
 	var c = document.getElementById("weiboContent").value;
-	document.getElementById("submitContent").value = document.getElementById("weiboContent").value;
+	
 	if(c == ""){
 		document.getElementById("weibowarn").innerHTML = "Empty content cannot be submitted!";
 		return false;
 	}
 	else{
-// 		alert("Ok!");
-		return true;
+		if(c.length > 140){
+			document.getElementById("weibowarn").innerHTML = "Too many words!";
+			return false;
+		}
+		else{
+			document.getElementById("submitContent").value = c;
+			return true;
+		}
 	}
 }
 
@@ -100,7 +112,7 @@ function checkLength(which) {
 	if(which.value.length > maxChars){
 		document.getElementById("weibowarn").innerHTML = "140 words only!";
 		
-		which.value = which.value.substring(0,maxChars);
+		//which.value = which.value.substring(0,maxChars);
 		return false;
 	}else{
 		var curr = maxChars - which.value.length; 
@@ -113,14 +125,15 @@ function clearDefault(el) {
 	   } 
 </script>	
 
-<% 
-}
-%>
-
 	</div>
 
 </div>
+</div>
 
+</div>
+<% 
+}
+%>
 <!-- <script type="text/javascript" src="jquery-1.11.1.min.js"></script> -->
 <script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
 </body>

@@ -10,7 +10,7 @@
 		
 		<!-- user account -->
 		<action name="homePro">
-			<result>/index.jsp</result>
+			<result type="redirect">/index.jsp</result>
 		</action>
 		<action name="loginPro" class="action.LoginAction">
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
@@ -18,8 +18,26 @@
 		</action>
 		<action name="registerPro" method="registerUser" class="action.RegisterAction">
 			<result name="input">/taoforfun/jsp/register.jsp</result>
-			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
+			<result name="success" type="redirectAction">loginPro?loginname=${username}&amp;password=${password}</result>
 			<result name="error">/taoforfun/jsp/register.jsp</result>
+		</action>
+		<action name="updateEmailPro" class="action.UpdateEmailAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="validateUpdateEmailPro" class="action.ValidateUpdateEmailAction">
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="forgetPasswordPro" class="action.ForgetPasswordAction">
+			<result name="input">/taoforfun/jsp/findPassword.jsp</result>
+			<result name="success">/taoforfun/jsp/message.jsp</result>
+		</action>
+		<action name="changePasswordPro" class="action.ChangePasswordAction">
+			<result name="error">/taoforfun/jsp/message.jsp</result>
+			<result name="success">/taoforfun/jsp/changePassword.jsp</result>
+		</action>
+		<action name="updatePasswordPro" class="action.UpdatePasswordAction">
+			<result name="error">/taoforfun/jsp/changePassword.jsp</result>
+			<result name= "success" type="redirectAction">homePro</result>
 		</action>
 		<action name="logoutPro" class="action.LogoutAction">
 			<result name="success">/index.jsp</result>
@@ -49,26 +67,31 @@
 		<action name="getUserProfilePro">
 			<result>/taoforfun/jsp/userprofile.jsp</result>
 		</action>
+		<action name="updateHeadimgPro" class="action.UpdateHeadimgAction">
+			<result name="success" type="redirectAction">getUserProfilePro</result>
+		</action>
 		<action name="getUserAccountPro">
 			<result>/taoforfun/jsp/useraccount.jsp</result>
 		</action>
 		<action name="getUserPermissionPro">
 			<result>/taoforfun/jsp/userpermission.jsp</result>
 		</action>
-		<action name="updateUserProfilePro" class="action.UpdateUserAction">
+		<action name="updateUserProfilePro" class="action.UpdateUserAction"><!-- UpdateUserProfileAction -->
 			<result name="input">/taoforfun/jsp/userprofile.jsp</result>
 			<result name="success">/taoforfun/jsp/userprofile.jsp</result>
 		</action>
 		<!-- friend -->
-		<action name="visitFriendHomePro">
+		<action name="visitFriendHomePro" class="action.ShowFriendHomeAction">
 			<result name="input">/taoforfun/jsp/userhomemyfriends.jsp</result>
 			<result name="success">/taoforfun/jsp/friendhome.jsp</result>
 		</action>
-		<action name="messageFriendPro">
-			<result name="success">/taoforfun/jsp/friendchat.jsp</result>
+		<action name="messageFriendPro" class="action.MessageBoxAction">
+			<result name="input">/taoforfun/jsp/userhomemyfriends.jsp</result>
+			<result name="success">/taoforfun/jsp/messagebox.jsp</result>
 		</action>
-		<action name="getMessageBoxPro">
-			<result name="success">/taoforfun/jsp/friendchat.jsp</result>
+		<action name="getMessageBoxPro" class="action.MessageBoxAction">
+			<result name="input">/taoforfun/jsp/friendhome.jsp</result>
+			<result name="success">/taoforfun/jsp/messagebox.jsp</result>
 		</action>
 <!-- 		<action name="deleteFriendPro" class="action.DeleteFriendAction"> -->
 <!-- 			<result name="success" type="redirectAction">getMyFriendsPro</result> -->
@@ -89,6 +112,20 @@
 		<action name="getFriendsWeibosPro" class="action.ShowFriendsWeiboAction">
 			<result name="success">/taoforfun/jsp/weibos.jsp</result>
 		</action>
+		<action name="commentMyWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
+		<action name="commentFriendsWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">visitFriendHomePro</result>
+		</action>
+		<action name="commentWeiboPro" class="action.AddCommentAction">
+			<result name="success" type="redirectAction">getAllWeibosPro</result>
+		</action>
+		
+		<!-- comments -->
+		<action name="deleteMyCommentPro" class="action.DeleteCommentAction">
+			<result name="success" type="redirectAction">getMyWeibosPro</result>
+		</action>
 		
 		<!-- admin -->
 		<action name="getAllUsersPro" class="action.AllUsersAction">
@@ -97,17 +134,34 @@
 		<action name="getAllWeibosPro" class="action.AllWeibosAction">
 			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
 		</action>
-		<action name="getAllFriendpairsPro" class="action.AllFriendpairsAction">
+		<action name="getAllFriendpairsPro">
 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result>
 		</action>
 <!-- 		<action name="getAllMessagesPro" class="action.AllMessagesAction"> -->
 <!-- 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result> -->
 <!-- 		</action> -->
+		<action name="deleteUserPro" class="action.DeleteUserAction">
+			<result name="success">/taoforfun/jsp/adminuser.jsp</result>
+		</action>
+		<action name="deleteWeiboPro" class="action.DeleteWeiboAction">
+			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
+		</action>
 		
+		<action name="searchPro" class="action.SearchAction">
+			<result name="success">/taoforfun/jsp/search.jsp</result>
+		</action>
 		
 		<action name="*">
 			<result>/{1}.jsp</result>
 		</action>
 		
+	</package>
+	<package name="json" extends="struts-default,json-default">
+<!-- 	<action name="commentMyWeiboPro" class="action.AddCommentAction"> -->
+<!-- 			<result type="json"> -->
+<!--                 <param name="root">jcomment</param> -->
+<!--             </result> -->
+<!-- 		</action> -->
+	
 	</package>
 </struts>

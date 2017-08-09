@@ -32,10 +32,10 @@
 <div class="topbody">
 <h2 class="title">Tao For Fun!</h2>
 <ul class="toplist">
-	<li><form id="search">
-		<input type="text" name="search" placeholder="search something"/>
-		<input type="submit" value="Search"/>
-	</form></li>
+	<li>
+		<input type="text" name="search" placeholder="search something" id="searchthing"/>
+		<button class="button" id="search-submit">Search</button>
+	</li>
 	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
 	<li><a href="getUserHomePro" class="active">  Me</a></li>
 </ul>
@@ -43,7 +43,13 @@
 </div>
 
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
 	<ul>
 <%-- 		<li><%=user.getUsername() %></li> --%>
 		<li><a href="getUserHomePro" class="active">Home</a></li>
@@ -100,6 +106,6 @@
 </div>
 
 <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
-
+<script src="<%=path %>/taoforfun/js/search.js"></script>
 </body>
 </html>

@@ -51,7 +51,7 @@ public class LoginAction extends BaseAction{
 			else{
 				User user = userService.getUserByUsername(loginname);
 				session.put("user", user);
-				return "success";
+				return "success";				
 			}
 		}
 		else{

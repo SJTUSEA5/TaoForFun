@@ -43,19 +43,31 @@
 </div>
 </div>
 
+<div class="page">
+
 <div class="nav">
-	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/>
-	<ul>
-		<li>*<%=admin.getUsername() %>*</li>
-		<li><a href="getAllUsersPro" class="active">Users</a></li>
-		<li><a href="getAllWeibosPro" class="active">Weibos</a></li>
-		<li><a href="getAllFriendpairsPro" class="active">Friendpairs</a></li>
-		<li><a href="getAllMessagesPro" class="active">Messages</a></li>
-		<li><a href="logoutPro" class="active">Log out</a></li>
-	</ul>
+	<div class="nav-head">
+	<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = admin.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG"/>
+	</div>
+	<div class="nav-gap"><p>*<%=admin.getUsername() %>*</p></div>
+	<div class="nav-list">	
+		<p><a href="getAllUsersPro" class="active">Users</a></p>
+		<p><a href="getAllWeibosPro" class="active">Weibos</a></p>
+		<p><a href="getAllFriendpairsPro" class="active">Friendpairs</a></p>
+		<p><a href="getAllMessagesPro" class="active">Messages</a></p>
+		<p><a href="logoutPro" class="active">Log out</a></p>
+	</div>
 </div>
 
 <div class="section">
+<div class="section-content">
+<h2>Users</h2>
 	<table>
 	<thead>
 	<tr>
@@ -78,7 +90,7 @@
 	<td><%=user.getPassword()%></td>
 	<td><%=user.getEmail()%></td>
 	<td><%=user.getRole()%></td>
-	<td></td>
+	<td><a href="Javascript: void(0)" class="user-delete" data-userid="<%=user.getUserid()%>">Delete</a></td>
 	</tr>
 <%
 }
@@ -86,19 +98,16 @@
 	</tbody>
 	</table>
 </div>
+</div>
 <%
 	}
+%>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="<%=path%>/taoforfun/js/admin.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
+<%
 }
 %>
-<script>
-function warnDelete(){
-	if(confirm("Are you sure to delete your account and all related information?")){
-		return true;
-	}else{
-		return false;
-	}
-		
-}
-</script>
+</div>
 </body>
 </html>

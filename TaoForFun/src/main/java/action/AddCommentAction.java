@@ -36,8 +36,7 @@ public class AddCommentAction extends BaseAction{
 	@Override
 	public String execute() throws Exception {
 		String username = ((User) session.get("user")).getUsername();
-		java.sql.Date time = new java.sql.Date(new java.util.Date().getTime());
-		//java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
+		java.sql.Timestamp time = new java.sql.Timestamp(new java.util.Date().getTime());
 		Comment comment = new Comment(weiboid, username, content, time);
 		if(commentService.addComment(comment))
 			return "success";
