@@ -8,7 +8,10 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/home.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="<%=path %>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path %>/taoforfun/css/home.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,21 +22,31 @@
 	<h2>TaoForFun Project</h2>
 </div>
 
-<p id="re">${sessionScope.re}</p>
-
-<div id="loginform">
-	<form action="loginPro" method="post">  
-       				<h2>Username:<input type="text" name="loginname" oninput="document.getElementById('re').innerHTML=''"/></h2><br/> 
-      				<h2>Password:<input type="password" name="password" value=""></h2> <br/><br/>  
-    				<h2><input type="submit" value="Login" class="button button-login"></h2>
-    			</form> 
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-3 col-md-6">
+			<form class="form-horizontal" action="loginPro" method="post" name="loginform">
+				<span class="heading">User Login</span>
+				<div class="form-group">
+					<p id="re">${sessionScope.re}</p>
+					<input type="text" class="form-control" id="inputName" name="loginname" 
+					oninput="document.getElementById('re').innerHTML=''" placeholder="Username or Email">
+				</div>
+				<div class="form-group help">
+					<input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn" onclick="JavaScript:document.loginform.submit();">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
-<br><br><br><br><br>
-<br><br><br><br><br>
 <div id="ps">
 <a href="<%=path%>/taoforfun/jsp/findPassword.jsp">forget password?</a>
 <a href="<%=path%>/taoforfun/jsp/register.jsp">register now!</a>
 </div>
+
 <script>
 $(document).on("change", "input", function(){
 	$("#re").text("");
