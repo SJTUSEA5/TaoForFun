@@ -1,13 +1,14 @@
 $(document).ready(function() {
-	$(".showCommentlist").click(function(){
- 		var weiboid = $(this).attr("data-weiboid");
- 		$("#c"+weiboid).fadeIn();
- 	});
-	
-	$(".closeCommentlist").click(function(){
- 		var weiboid = $(this).attr("data-weiboid");
- 		$("#c"+weiboid).fadeOut();
- 	});
+
+//	$(".showCommentlist").click(function(){
+// 		var weiboid = $(this).attr("data-weiboid");
+// 		$("#comment-append"+weiboid).fadeIn();
+// 	});
+//	
+//	$(".closeCommentlist").click(function(){
+// 		var weiboid = $(this).attr("data-weiboid");
+// 		$("#comment-append"+weiboid).fadeOut();
+// 	});
 	
 	$(document).on("click", ".deleteComment", function(){
  		var commentid = $(this).attr("data-commentid");

@@ -10,7 +10,10 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
+<link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -25,55 +28,74 @@
 		if(user.getRole().regionMatches(true,0,"admin",0,5))isadmin = true;
 %>
 
-<div class="topbar">
-<div class="topbody">
-<h2 class="title">Tao For Fun!</h2>
-<ul class="toplist">
-	<li>
-		<input type="text" name="search" placeholder="search something" id="searchthing"/>
-		<button class="button" id="search-submit">Search</button>
-	</li>
-	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
-	<li><a href="getUserHomePro" class="active">  Me</a></li>
-</ul>
+<nav>
+<h2 class="title" id="logo">Tao For Fun!</h2>
+<div id="nav-blocks">
+	<input type="text" name="search" placeholder="search something" id="searchthing"/>
+	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
+	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
+	<a id="sideMenu" style="cursor:pointer;margin:15px">  Me</a>
 </div>
-</div>
+</nav>
 
-<div class="page">
+<div id="page">
 
-<div class="nav">
-	<div class="nav-head">
-	<%
+<div id="sideMenuContainer">
+	<div id="side-head">
+<%
 	String headimg = path+"/taoforfun/img/UserHeadImg/";
 	String userheadimgname = user.getHeadimg();
 	if(userheadimgname == null)userheadimgname = "default.png";
 	headimg = headimg + userheadimgname;
 %>
-	<img src="<%=headimg %>" alt="userPNG"/>
+	<img src="<%=headimg %>" alt="userPNG" style="width:100px;height:100px;border-radius:50%;cursor:pointer"
+	 data-toggle="modal" data-target="#picModal"/>
 	</div>
-	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
-	<div class="nav-list">
-			<p><a href="getUserHomePro">Home</a></p>
+	<div id="side-gap"><p><%=user.getUsername() %></p></div>
+	<div id="side-list">
 			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getMyWeibosPro" class="active">My Weibos</a></p>
+			<p><a href="getMyFriendsPro">Friends</a></p>
+			<p><a href="getMyMessagesPro">Messages</a></p>
+			<p><a href="getMyNoticesPro">Notices</a></p>
 			<p><a href="getUserAccountPro">Account</a></p>
 			<p><a href="getUserPermissionPro">Permissions</a></p>
 			<p><a href="logoutPro">Log out</a></p>
 	</div>
 </div>
 
-<div class="section">
+<div id="section">
 	<div class="section-content">
+		<h2 class="heading">User Permission</h2>
+		<br/>
 		<p>Account authority level: <%=user.getRole() %></p>
-		<%if(isadmin){%><p>You are permitted to <a href="getAllUsersPro">Admin</a></p><%} %>
+		<%if(isadmin){%><p>You are permitted to <a href="getAllUsersPro" class="btn">Admin</a></p><%} %>
 		<form>
 			<p>Password:</p><input type="text" name="password"/>
-			<input type="submit" value="Change Authority"/>
+			<input type="submit" value="Change Authority" class="btn"/>
 		</form>
 	</div>
 </div>
 
 </div>
 <%} %>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
+<script src="<%=path %>/taoforfun/js/user.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+<script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
+<script>
+$(document).ready(function(){
+	  $('#sideMenu').sideToggle({
+		moving: '#sideMenuContainer',
+		direction: 'right'
+	  });
+
+	});
+
+	</script>>
 </body>
 </html>

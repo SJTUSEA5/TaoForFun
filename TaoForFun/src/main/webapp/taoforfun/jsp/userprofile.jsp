@@ -11,8 +11,9 @@
 	String path = request.getContextPath();
 %>
 <link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
+<link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body onload="setgender()">
 
@@ -25,36 +26,36 @@
 		user = (User)request.getSession().getAttribute("user");
 %>
 
-<div class="topbar">
-<div class="topbody">
-<h2 class="title">Tao For Fun!</h2>
-<ul class="toplist">
-	<li>
-		<input type="text" name="search" placeholder="search something" id="searchthing"/>
-		<button class="button" id="search-submit">Search</button>
-	</li>
-	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
-	<li><a href="getUserHomePro" class="active">  Me</a></li>
-</ul>
+<nav>
+<h2 class="title" id="logo">Tao For Fun!</h2>
+<div id="nav-blocks">
+	<input type="text" name="search" placeholder="search something" id="searchthing"/>
+	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
+	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
+	<a id="sideMenu" style="cursor:pointer;margin:15px">  Me</a>
 </div>
-</div>
+</nav>
 
-<div class="page">
+<div id="page">
 
-<div class="nav">
-	<div class="nav-head">
+<div id="sideMenuContainer">
+	<div id="side-head">
 <%
 	String headimg = path+"/taoforfun/img/UserHeadImg/";
 	String userheadimgname = user.getHeadimg();
 	if(userheadimgname == null)userheadimgname = "default.png";
 	headimg = headimg + userheadimgname;
 %>
-	<img src="<%=headimg %>" alt="userPNG"/>
+	<img src="<%=headimg %>" alt="userPNG" style="width:100px;height:100px;border-radius:50%;cursor:pointer"
+	 data-toggle="modal" data-target="#picModal"/>
 	</div>
-	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
-	<div class="nav-list">
-			<p><a href="getUserHomePro">Home</a></p>
+	<div id="side-gap"><p><%=user.getUsername() %></p></div>
+	<div id="side-list">
 			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getMyWeibosPro" class="active">My Weibos</a></p>
+			<p><a href="getMyFriendsPro">Friends</a></p>
+			<p><a href="getMyMessagesPro">Messages</a></p>
+			<p><a href="getMyNoticesPro">Notices</a></p>
 			<p><a href="getUserAccountPro">Account</a></p>
 			<p><a href="getUserPermissionPro">Permissions</a></p>
 			<p><a href="logoutPro">Log out</a></p>
@@ -70,8 +71,10 @@
 	String phone = "";
 	if(user.getPhone() != null)phone = user.getPhone();
 %>
-<div class="section">
+<div id="section">
 	<div class="section-content">
+		<h2 class="heading">User Profile</h2>
+		<br/>
 		<form action="updateUserProfilePro" method="post">
 			<input type="hidden" name="userid" value="<%=user.getUserid()%>"/>
 			<p>Name<input type="text" name="username" value="<%=user.getUsername()%>"/> 
@@ -85,13 +88,14 @@
 			<p>Phone<input type="text" name="phone" value="<%=phone %>"/> 
 			City<input type="text" name="city" value="<%=city %>"/></p>
 			<p>Introduction</p>
-			<textarea rows="8" cols="40" id="introContent" ><%=intro %></textarea><br>
-			<input type="hidden" name="introduction" id="submitContent"/>
-			<input type="submit" value="Update" onclick="return getContent()"/>
+			<textarea rows="8" cols="90" id="introContent" ><%=intro %></textarea><br>
+			<input type="hidden" name="introduction" id="submitContent"/><br/><br/><br/>
+			<div style="text-align:center">
+				<input type="submit" value="Update" onclick="return getContent()" class="btn"/>
+			</div>
 		</form>
-			<br>
-			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#picModal">Upload Head Portrait</button>
-	</div>
+			<br/>
+	</div>	
 </div>
 
 <div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="picModalLabel" aria-hidden="true">
@@ -99,7 +103,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="picModalLabel">Upload A Picture</h4>
+                <h4 class="modal-title" id="picModalLabel">Upload a Picture</h4>
             </div>
             <div class="modal-body">
             	<p>max size:2MB</p>
@@ -109,15 +113,14 @@
 	            	</form>
 	            	<span class="close close-img" style="display:none">&times;</span>
 	            	<img src="" class="img1" />
-					
 				</div>
 				<div class="img-view">
 					<img src="" class="img1" />
 				</div>
 			</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="pic-save">Save</button>
+                <button type="button" class="btn button-grey" data-dismiss="modal">Close</button>
+                <button type="button" class="btn" id="pic-save">Save</button>
             </div>
         </div>
     </div>
@@ -128,12 +131,15 @@
 %>	
 
 </div>
+
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
 <script src="<%=path %>/taoforfun/js/user.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+<script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 <script>
 function getContent(){
 	var c = document.getElementById("introContent").value;
@@ -144,6 +150,15 @@ function setgender(){
 	var gender= $("#select-gender").attr("data-value");
 	$("#select-gender-"+gender).attr("selected",true);
 }
+
+$(document).ready(function(){
+  $('#sideMenu').sideToggle({
+	moving: '#sideMenuContainer',
+	direction: 'right'
+  });
+
+});
+
 </script>
 
 </body>

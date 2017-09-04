@@ -15,8 +15,10 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
+<link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -35,44 +37,64 @@
 			fweibos = (ArrayList<Weibo>)request.getAttribute("fweibos");
 %>
 
-<div class="topbar">
-<div class="topbody">
-<h2 class="title">Tao For Fun!</h2>
-<ul class="toplist">
-	<li>
-		<input type="text" name="search" placeholder="search something" id="searchthing"/>
-		<button class="button" id="search-submit">Search</button>
-	</li>
-	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
-	<li><a href="getUserHomePro" class="active">  Me</a></li>
-</ul>
+<nav>
+<h2 class="title" id="logo">Tao For Fun!</h2>
+<div id="nav-blocks">
+	<input type="text" name="search" placeholder="search something" id="searchthing"/>
+	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
+	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
+	<a id="sideMenu" style="cursor:pointer;margin:15px">  Me</a>
 </div>
-</div>
+</nav>
 
-<div class="page">
-<div class="nav">
-	<div class="nav-head">
-	<%
+<div id="page">
+
+<div id="sideMenuContainer">
+	<div id="side-head">
+<%
 	String headimg = path+"/taoforfun/img/UserHeadImg/";
-	String userheadimgname = friend.getHeadimg();
+	String userheadimgname = user.getHeadimg();
 	if(userheadimgname == null)userheadimgname = "default.png";
 	headimg = headimg + userheadimgname;
 %>
-	<img src="<%=headimg %>" alt="userPNG"/>
+	<img src="<%=headimg %>" alt="userPNG" style="width:100px;height:100px;border-radius:50%;cursor:pointer"
+	 data-toggle="modal" data-target="#picModal"/>
 	</div>
-	<div class="nav-gap"><p><%=friend.getUsername() %></p></div>
-	<div class="nav-list">
-		<form action="getMessageBoxPro" method="post" name="messageform">
-			<input type="hidden" name="receiveid" value="<%=friend.getUserid() %>"/>
-		</form>
-		<p><a href="#" class="active">Home</a></p>
-		<p><a href="JavaScript:document.messageform.submit();">Send Message</a></p>
-		<p><a href="deleteFriendPro">Delete Friend</a></p>
+	<div id="side-gap"><p><%=user.getUsername() %></p></div>
+	<div id="side-list">
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getMyWeibosPro" class="active">My Weibos</a></p>
+			<p><a href="getMyFriendsPro">Friends</a></p>
+			<p><a href="getMyMessagesPro">Messages</a></p>
+			<p><a href="getMyNoticesPro">Notices</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
 	</div>
 </div>
 
-<div class="section">
-	<div class="section-content">
+<div id="section">
+<div class="section-content">
+	
+	<h2 class="heading">User Profile</h2>
+<%
+	String headimg2 = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname2 = friend.getHeadimg();
+	if(userheadimgname2 == null)userheadimgname2 = "default.png";
+	headimg2 = headimg2 + userheadimgname2;
+%>
+	<div style="text-align:center"><img src="<%=headimg2 %>" alt="userPNG"/></div>
+	<br>
+	<div style="text-align:center">
+		<form action="getMessageBoxPro" method="post" name="messageform">
+			<input type="hidden" name="receiveid" value="<%=friend.getUserid() %>"/>
+		</form>
+		<p><a href="#" class="btn-small">Home</a>
+		<a href="JavaScript:document.messageform.submit();" class="btn-small">Send Message</a>
+		<a href="deleteFriendPro" class="btn-small">Delete Friend</a></p>
+	</div>
+	<br>
+	<br>
 		<div id="friend-profile">
 			<p>Name: <%=friend.getUsername()%></p>
 			<p>Gender: </p>
@@ -85,7 +107,7 @@
 		</div>
 <br>
 		<div id="latest-weibo">
-			<h2>Latest Weibos</h2>
+			<h2 class="heading">Latest Weibos</h2>
 <%
 	int i = 0;
 	for(; i < fweibos.size(); i++){
@@ -120,8 +142,12 @@
 		</div>
 
 		<div class="section-data-footer">
-			<button>like</button>
-			<button class="showCommentlist" data-weiboid="<%=fweibo.getWeiboid()%>">show comment</button>
+			
+			<img src="<%=path%>/taoforfun/img/heart.PNG" alt="like" data-dir="<%=path%>/taoforfun/img/"
+			style="width:25px;height:auto;cursor:pointer;margin:0 5px;"/>
+			
+			<img src="<%=path%>/taoforfun/img/messages.PNG" alt="comment" style="width:25px;height:auto;cursor:pointer;margin:0 5px;"
+			class="writecommentWeiboid" onclick="return openModal(this)" id="<%=fweibo.getWeiboid()%>"/>
 		</div>			
 	</div>
 	<br>
@@ -173,9 +199,20 @@ $(document).ready(function() {
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
-<script src="<%=path %>/taoforfun/js/comment.js"></script>
+<script src="<%=path %>/taoforfun/js/user.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
-<script src="<%=path%>/taoforfun/js/jquery.dataTables.min.js"></script>
-<script src="<%=path%>/taoforfun/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+<script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
+<script>
+$(document).ready(function(){
+	  $('#sideMenu').sideToggle({
+		moving: '#sideMenuContainer',
+		direction: 'right'
+	  });
+
+	});
+</script>
 </body>
 </html>
