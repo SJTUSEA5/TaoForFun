@@ -16,8 +16,11 @@
 	String path = request.getContextPath();
 %>
 
+<link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
+<link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body>
 
@@ -36,48 +39,65 @@
 				weibos = (ArrayList<Weibo>)request.getAttribute("weibos");
 %>
 
-<div class="topbar">
-<div class="topbody">
-<h2 class="title">Tao For Fun!</h2>
-<ul class="toplist">
-	<li>
-		<input type="text" name="search" placeholder="search something" id="searchthing"/>
-		<button class="button" id="search-submit">Search</button>
-	</li>
-	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
-	<li><a href="getUserHomePro" class="active">  Me</a></li>
-</ul>
+<nav>
+<h2 class="title" id="logo">Tao For Fun!</h2>
+<div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
+	<input type="text" name="search" placeholder="search something" id="searchthing"/>
+	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
+	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
+	<a id="sideMenu" style="cursor:pointer;margin:15px">  Me</a>
 </div>
+</nav>
+
+<div id="page">
+
+<div id="sideMenuContainer">
+	<div id="side-head">
+<%
+	String headimg = path+"/taoforfun/img/UserHeadImg/";
+	String userheadimgname = user.getHeadimg();
+	if(userheadimgname == null)userheadimgname = "default.png";
+	headimg = headimg + userheadimgname;
+%>
+	<img src="<%=headimg %>" alt="userPNG" style="width:100px;height:100px;border-radius:50%"/>
+	</div>
+	<div id="side-gap"><p><%=user.getUsername() %></p></div>
+	<div id="side-list">
+			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getMyWeibosPro" class="active">My Weibos</a></p>
+			<p><a href="getMyFriendsPro">Friends</a></p>
+			<p><a href="getMyMessagesPro">Messages</a></p>
+			<p><a href="getMyNoticesPro">Notices</a></p>
+			<p><a href="getUserAccountPro">Account</a></p>
+			<p><a href="getUserPermissionPro">Permissions</a></p>
+			<p><a href="logoutPro">Log out</a></p>
+	</div>
 </div>
 
-<div class="nav">
-<%-- 	<img src="<%=path%>/taoforfun/img/user.png" alt="userPNG" style="width:100px;height:100px;"/> --%>
-<!-- 	<ul> -->
-<%-- 		<li><%=user.getUsername() %></li> --%>
-<!-- 		<li><a href="getUserHomePro" class="active">Home</a></li> -->
-<!-- 		<li><a href="getUserProfilePro" class="active">Profile</a></li> -->
-<!-- 		<li><a href="getUserAccountPro" class="active">Account</a></li> -->
-<!-- 		<li><a href="getUserPermissionPro" class="active">Permissions</a></li> -->
-<!-- 		<li><a href="logoutPro" class="active">Log out</a></li> -->
-<!-- 	</ul> -->
+<div id="section" style="padding:0;border:0 none;">
+<div class="section-left">
+
+<div class="write-weibo">
+	<a href="<%=path%>/taoforfun/jsp/userhomewriteweibo.jsp">
+	<img src="<%=path%>/taoforfun/img/write.PNG" alt="writeWeibo" style="width:100px;height:100px;"/>
+	</a><br/>
+</div>
+
 <div>
-<a href="writeWeiboPro">Write Weibo</a>
-</div>
-	<ul>
-		<li>Hot Weibos of this Topic</li>
-		<li>...</li>
-		<li>...</li>
-		<li>Hot Interests</li>
-		<li>...</li>
-		<li>...</li>
-	</ul>
+	<p>Hot Weibos of this Topic</p>
+	<p>Hot Interests</p>
 </div>
 
-<div class="section">
+</div>
+
+<div class="section-right">
 
 <div class="section-content">
 <%
 	java.sql.Timestamp ts = new java.sql.Timestamp(new java.util.Date().getTime());
+	if(weibos.size()>0){
 	for(int i = 0; i < weibos.size(); i++){
 		Weibo weibo = weibos.get(i);
 		Set<Comment> comments = weibo.getComments();
@@ -89,8 +109,8 @@
 		<div class="section-data-body">
 			<p><%= weibo.getContent()%></p>
 		</div>
-		<div class="section-data-body" id="c<%=weibo.getWeiboid()%>" style="display:none">
-			<h4>Comment</h4>
+		<div class="section-data-body">
+			<h4 class="heading">Comments</h4>
 			<div id="comment-append<%=weibo.getWeiboid()%>">
 <%
 		Iterator iterator = comments.iterator();     
@@ -99,79 +119,102 @@
 %>
 			<p><%=comment.getAdder() %>: <%=comment.getContent() %>
 			<%if(comment.getAdder().equals(user.getUsername())){ %>
-			<button class="deleteComment" data-commentid="<%=comment.getCommentid()%>">delete</button>
-			<%} %></p>
+				<div style="text-align:right;">
+				<a type="button" class="deleteComment" data-commentid="<%=comment.getCommentid()%>"
+				style="cursor:pointer;margin:0 5px;">&times;</a>
+				</div>
+			<%} %>
+			</p>
 			
 <%} %>
 			</div>
-			<button class="btn btn-primary btn-lg writecommentWeiboid" onclick="return openModal(this)"
-				id="<%=weibo.getWeiboid()%>">add comment</button>
-			<button class="closeCommentlist" data-weiboid="<%=weibo.getWeiboid()%>">close</button>
 		</div>
 
 		<div class="section-data-footer">
-		<%if(weibo.getAdder().equals(user.getUsername())){ %>
+			<img src="<%=path%>/taoforfun/img/messages.PNG" alt="comment" style="width:25px;height:auto;cursor:pointer;margin:0 5px;"
+			class="writecommentWeiboid" id="<%=weibo.getWeiboid()%>" data-adder="<%=user.getUsername()%>"/>
+			
+			<img src="<%=path%>/taoforfun/img/heart.PNG" alt="like" data-dir="<%=path%>/taoforfun/img/"
+			style="width:25px;height:auto;cursor:pointer;margin:0 5px;"/>
+			
+			<%if(weibo.getAdder().equals(user.getUsername())){ %>
 			<a href="deleteMyWeiboPro?weiboid=<%=weibo.getWeiboid()%>&&username=<%=weibo.getAdder()%>">
-				<button>delete</button>
-			</a>
-		<%} %>
-			<button>like</button>
-			<button class="showCommentlist" data-weiboid="<%=weibo.getWeiboid()%>">show comment</button>
+			<img src="<%=path%>/taoforfun/img/delete.PNG" alt="delete" style="width:25px;height:auto;margin:0 5px;"
+			onclick="return deleteconfirm()"/></a>
+			<%} %>
 		</div>			
 	</div>
 	<br>
 <% 
 	}
 	ts = weibos.get(weibos.size()-1).getTime();
+	}
 %>
 
-<button id="more-weibos" data-ts="<%=ts%>">More</button>
+<div class="loading-weibo"></div>
+
+<div style="text-align:center">
+
+<img src="<%=path%>/taoforfun/img/down.PNG" alt="writeWeibo" id="more-weibos" data-ts="<%=ts%>"
+ style="width:50px;height:50px;cursor:pointer;"/>
+
+</div>
+
 
 </div>
 </div>
+</div>
+
+<div style="clear:both"></div>
+</div>
+
+<!-- <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true"> -->
+<!-- <div class="modal-dialog"> -->
+<!-- <div class="modal-content"> -->
+<!-- <div class="modal-header"> -->
+<!-- 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!-- 	<h4 class="modal-title" id="commentModalLabel">COMMENT</h4><span id="commentwarn"></span> -->
+<!-- </div> -->
+<!-- <div class="modal-body"><textarea rows="5" cols="45" placeholder="Comment something!" class="promote" id="commentContent"></textarea></div> -->
+<!-- <div class="modal-footer"> -->
+<!-- 	<input id="comment-weiboid" type="hidden"> -->
+<!-- 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<%-- 	<button type="button" class="btn btn-primary" data-adder="<%=user.getUsername() %>" id="comment-submit">Submit</button> --%>
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
 
 <script>
-function openModal(obj) {
-	var weiboid = $(obj).attr("id");
-	var element = document.getElementById("comment-submit");
-	element.dataset.weiboid = weiboid;
-	$('#commentModal').modal('show');
+function deleteconfirm(){
+	if(confirm("are you sure to delete this?")){
+		return true;
+	}else{
+		return false;
+	}
 }
 </script>
 
-<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h4 class="modal-title" id="commentModalLabel">COMMENT</h4><span id="commentwarn"></span>
-</div>
-<div class="modal-body"><textarea rows="5" cols="45" placeholder="Comment something!" class="promote" id="commentContent"></textarea></div>
-<div class="modal-footer">
-	<input id="comment-weiboid" type="hidden">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	<button type="button" class="btn btn-primary" data-adder="<%=user.getUsername() %>" id="comment-submit">Submit</button>
-</div>
-</div>
-</div>
-</div>
+<script src="https://code.jquery.com/jquery.js"></script>
+<%-- <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script> --%>
+<script src="<%=path %>/taoforfun/js/user.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
+<script src="<%=path %>/taoforfun/js/comment.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+<script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery-1.7.2.js'></script>
+<script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 <script>
-$(document).ready(function() {
-	$('#dataTables').DataTable({
-		responsive : true
-	});
-	$('#commentModal').modal({
-        keyboard: true
-    });
+$(document).ready(function(){
+	  $('#sideMenu').sideToggle({
+		moving: '#sideMenuContainer',
+		direction: 'right'
+	  });
 });
 </script>
-
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
-<script src="<%=path %>/taoforfun/js/comment.js"></script>
-<script src="<%=path %>/taoforfun/js/search.js"></script>
-<script src="<%=path%>/taoforfun/js/jquery.dataTables.min.js"></script>
-<script src="<%=path%>/taoforfun/js/dataTables.bootstrap.min.js"></script>
 <%
 }
 %>

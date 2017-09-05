@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.User"%>
 <%@ page import="model.Weibo"%>
@@ -12,7 +12,12 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
+<link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -25,66 +30,89 @@
 	else{
 		user = (User)request.getSession().getAttribute("user");	
 %>
-
-<div class="topbar">
-<div class="topbody">
-<h2 class="title">Tao For Fun!</h2>
-<ul class="toplist">
-	<li>
-		<input type="text" name="search" placeholder="search something" id="searchthing"/>
-		<button class="button" id="search-submit">Search</button>
-	</li>
-	<li><a href="getFriendsWeibosPro" class="active">Weibos  </a></li>
-	<li><a href="getUserHomePro" class="active">  Me</a></li>
-</ul>
+<nav>
+<h2 class="title" id="logo">Tao For Fun!</h2>
+<div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
+	<input type="text" name="search" placeholder="search something" id="searchthing"/>
+	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
+	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
+	<a id="sideMenu" style="cursor:pointer;margin:15px">  Me</a>
 </div>
-</div>
+</nav>
 
-<div class="page">
+<div id="page">
 
-<div class="nav">
-	<div class="nav-head">
-	<%
+<div id="sideMenuContainer">
+	<div id="side-head">
+<%
 	String headimg = path+"/taoforfun/img/UserHeadImg/";
 	String userheadimgname = user.getHeadimg();
 	if(userheadimgname == null)userheadimgname = "default.png";
 	headimg = headimg + userheadimgname;
 %>
-	<img src="<%=headimg %>" alt="userPNG"/>
+	<img src="<%=headimg %>" alt="userPNG" style="width:100px;height:100px;border-radius:50%;cursor:pointer"
+	 data-toggle="modal" data-target="#picModal"/>
 	</div>
-	<div class="nav-gap"><p><%=user.getUsername() %></p></div>
-	<div class="nav-list">
-			<p><a href="getUserHomePro">Home</a></p>
+	<div id="side-gap"><p><%=user.getUsername() %></p></div>
+	<div id="side-list">
 			<p><a href="getUserProfilePro">Profile</a></p>
+			<p><a href="getMyWeibosPro" class="active">My Weibos</a></p>
+			<p><a href="getMyFriendsPro">Friends</a></p>
+			<p><a href="getMyMessagesPro">Messages</a></p>
+			<p><a href="getMyNoticesPro">Notices</a></p>
 			<p><a href="getUserAccountPro">Account</a></p>
 			<p><a href="getUserPermissionPro">Permissions</a></p>
 			<p><a href="logoutPro">Log out</a></p>
 	</div>
 </div>
 
-<div class="section">
-
-	<ul class="tab">
-		<li><a href="getMyFriendsPro">Friends</a></li>
-		<li><a href="getMyWeibosPro" class="active">My Weibos</a></li>
-		<li><a href="getMyMessagesPro">Messages</a></li>
-		<li><a href="getMyNoticesPro">Notices</a></li>
-	</ul>
-<br>
-<br>
+<div id="section">
 <div class="section-content">
-	<h2>Write Weibo</h2>
-	<div class="weiboForm">
-		<form action="addPersonalWeiboPro" method="post" class="Form">
-			<div class="wordCount" id="wordCount">
-				<span id="weibowarn"></span><br>
-	    		<span class="wordage">words remaining: <span id="sy">140</span></span><br>
-				<input type="hidden" name="content" id="submitContent"/><br>
-				<textarea rows="12" cols="50" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
-				<input type="submit" value="submit" onclick="return getContent()"/>
-			</div>		
-		</form>
+	<h2 class="heading">Write Weibo</h2>
 	
+	<div style="width:100%">
+	<div class="weiboForm">
+		<div class="writeweibo-box">
+			<form action="addPersonalWeiboPro" method="post" class="Form">
+				<div class="wordCount" id="wordCount">
+					<div style="margin:10px 120px;">
+		    			<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+		    			<span id="weibowarn"></span><br>
+		    		</div>
+					<input type="hidden" name="content" id="submitContent"/><br>
+					<div style="text-align:center">
+					<textarea rows="12" cols="70" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
+					</div>
+					
+					<div style="text-align:right;margin:10px 150px;">
+						<img id="addemoji" src="<%=path %>/taoforfun/img/emoji.PNG" alt="picPNG" style="width:30px;height:30px;cursor:pointer;"/>
+					</div>
+					
+					<div id="pictures" style="margin:10px 100px;">
+						<div class="img-view">
+							<form enctype="multipart/form-data" method="post" name="picform" id="picform">
+			            		<input type="file" name="pics" id="picpath" accept="image/*" style="cursor:pointer"/>
+			            	</form>
+			            	<span class="close close-img" style="display:none">&times;</span>
+							<img src="<%=path %>/taoforfun/img/pic.PNG" class="img1"/>
+						</div>
+					</div>
+					
+					<div style="border:1px solid #aaaaaa;border-style:none none solid none;margin:10px 100px;"></div>
+					
+					<div id="tags" style="margin:10px 100px;">
+						<div id="addtag" class="btn-small" style="width:60px;text-align:center;cursor:pointer;">+tag</div>
+					</div>
+
+					<div style="text-align:right;margin:20px 120px;">
+						<input type="submit" value="submit" onclick="return getContent()" class="btn"/>
+						<div class="btn" style="background:#aaaaaa;" onclick="javascript:history.back();">cancel</div>
+					</div>
+				</div>		
+			</form>
+		</div>
 
 <script type="text/javascript">
 function getContent(){
@@ -126,7 +154,7 @@ function clearDefault(el) {
 </script>	
 
 	</div>
-
+	</div>
 </div>
 </div>
 
@@ -134,7 +162,26 @@ function clearDefault(el) {
 <% 
 }
 %>
-<!-- <script type="text/javascript" src="jquery-1.11.1.min.js"></script> -->
-<script src="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
+<script src="<%=path %>/taoforfun/js/user.js"></script>
+<script src="<%=path %>/taoforfun/js/search.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+<script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery-1.7.2.js'></script>
+<script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
+<script>
+$(document).ready(function(){
+  $('#sideMenu').sideToggle({
+	moving: '#sideMenuContainer',
+	direction: 'right'
+  });
+
+});
+
+</script>
 </body>
 </html>

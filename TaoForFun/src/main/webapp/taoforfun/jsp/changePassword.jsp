@@ -9,7 +9,11 @@
 <%
 	String path = request.getContextPath();
 %>
-<link href="<%=path%>/taoforfun/css/user.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
+<link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body>
 <%
@@ -20,20 +24,20 @@ String message = "";
 	if (session.getAttribute("message")!=null)
 		message = (String)session.getAttribute("message");
 %>
-<div class="topbar">
-<div class="topbody">
-<h2 class="title">Tao For Fun!</h2>
-<ul class="toplist">
-	<li>
-		<input type="text" name="search" placeholder="search something" id="searchthing"/>
-		<button class="button" id="search-submit">Search</button>
-	</li>
-	<li><a href="/TaoForFun/index.jsp">  Log in</a></li>
-</ul>
+<nav>
+<h2 class="title" id="logo">Tao For Fun!</h2>
+<div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
+	<input type="text" name="search" placeholder="search something" id="searchthing"/>
+	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
+	<a href="/TaoForFun/index.jsp" style="margin:15px">  Log in</a>
 </div>
-</div>
+</nav>
 
-<div class="full-section">
+<div id="page">
+
+<div id="section">
 <div class="section-content">
 	<form action="updatePasswordPro" method="post">
 		<p><%=message %></p>
@@ -50,6 +54,14 @@ String message = "";
 <a href="/TaoForFun/index.jsp">Home page</a>
 </div>
 </div>
+</div>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
+<script src="<%=path %>/taoforfun/js/user.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
+<script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 </body>
 </html>

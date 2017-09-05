@@ -24,4 +24,6 @@ public interface UserDao {
 	
 	public List<User> getUserByEmailAndPassword(String email, String password);
 	
+	public List<User> getUserByWord(String word);
+	
 }

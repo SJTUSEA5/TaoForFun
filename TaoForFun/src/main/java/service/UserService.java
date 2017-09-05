@@ -22,4 +22,6 @@ public interface UserService {
 	
 	public boolean checkUser(String username, String password);
 	
+	public List<User> getUserByWord(String word);
+	
 }

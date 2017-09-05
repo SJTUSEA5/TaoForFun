@@ -63,4 +63,8 @@ public class UserServiceImpl implements UserService{
 		}	
 	}
 	
+	public List<User> getUserByWord(String word){
+		return userDao.getUserByWord(word);
+	}
+	
 }

@@ -43,5 +43,9 @@ public class WeiboServiceImpl implements WeiboService{
 	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, Timestamp limitTime) {
 		return weiboDao.getWeiboByFriendlist(friendnames, limitTime);
 	}
+	
+	public List<Weibo> getWeiboByWord(String word){
+		return weiboDao.getWeiboByWord(word);
+	}
 
 }

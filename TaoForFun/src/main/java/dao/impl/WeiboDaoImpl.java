@@ -53,4 +53,12 @@ public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 		return weibos;
 	}
 
+	public List<Weibo> getWeiboByWord(String word){
+		System.out.println(word);
+		@SuppressWarnings("unchecked")
+		List<Weibo> weibos = (List<Weibo>) getHibernateTemplate()
+				.find("from Weibo w where w.content like ?", "%"+word+"%");
+		return weibos;
+	}
+	
 }
