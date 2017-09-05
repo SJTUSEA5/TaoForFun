@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.User"%>
 <%@ page import="model.Weibo"%>
@@ -15,7 +15,9 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
 <link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -31,6 +33,8 @@
 <nav>
 <h2 class="title" id="logo">Tao For Fun!</h2>
 <div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
 	<input type="text" name="search" placeholder="search something" id="searchthing"/>
 	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
 	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
@@ -73,16 +77,38 @@
 		<div class="writeweibo-box">
 			<form action="addPersonalWeiboPro" method="post" class="Form">
 				<div class="wordCount" id="wordCount">
-					<span id="weibowarn"></span><br>
 					<div style="margin:10px 120px;">
 		    			<span class="wordage">words remaining: <span id="sy">140</span></span><br>
+		    			<span id="weibowarn"></span><br>
 		    		</div>
 					<input type="hidden" name="content" id="submitContent"/><br>
 					<div style="text-align:center">
 					<textarea rows="12" cols="70" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
 					</div>
+					
+					<div style="text-align:right;margin:10px 150px;">
+						<img id="addemoji" src="<%=path %>/taoforfun/img/emoji.PNG" alt="picPNG" style="width:30px;height:30px;cursor:pointer;"/>
+					</div>
+					
+					<div id="pictures" style="margin:10px 100px;">
+						<div class="img-view">
+							<form enctype="multipart/form-data" method="post" name="picform" id="picform">
+			            		<input type="file" name="pics" id="picpath" accept="image/*" style="cursor:pointer"/>
+			            	</form>
+			            	<span class="close close-img" style="display:none">&times;</span>
+							<img src="<%=path %>/taoforfun/img/pic.PNG" class="img1"/>
+						</div>
+					</div>
+					
+					<div style="border:1px solid #aaaaaa;border-style:none none solid none;margin:10px 100px;"></div>
+					
+					<div id="tags" style="margin:10px 100px;">
+						<div id="addtag" class="btn-small" style="width:60px;text-align:center;cursor:pointer;">+tag</div>
+					</div>
+
 					<div style="text-align:right;margin:20px 120px;">
 						<input type="submit" value="submit" onclick="return getContent()" class="btn"/>
+						<div class="btn" style="background:#aaaaaa;" onclick="javascript:history.back();">cancel</div>
 					</div>
 				</div>		
 			</form>
@@ -143,6 +169,9 @@ function clearDefault(el) {
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
 <script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery-1.7.2.js'></script>
 <script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 <script>
 $(document).ready(function(){

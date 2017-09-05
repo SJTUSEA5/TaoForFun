@@ -66,4 +66,11 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 				.find("from User u where u.email=? and u.password=?", email, password);
 		return users;
 	}
+	
+	public List<User> getUserByWord(String word){
+		@SuppressWarnings("unchecked")
+		List<User> users = (List<User>)getHibernateTemplate()
+				.find("from User u where u.username like ? ", "%"+word+"%");
+		return users;
+	}
 }

@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
 <link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body onload="setgender()">
@@ -29,6 +30,8 @@
 <nav>
 <h2 class="title" id="logo">Tao For Fun!</h2>
 <div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
 	<input type="text" name="search" placeholder="search something" id="searchthing"/>
 	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
 	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
@@ -54,13 +57,15 @@
 			<p><a href="getUserProfilePro">Profile</a></p>
 			<p><a href="getMyWeibosPro" class="active">My Weibos</a></p>
 			<p><a href="getMyFriendsPro">Friends</a></p>
-			<p><a href="getMyMessagesPro">Messages</a></p>
+			<p><a id="side-list-messages" href="getMyMessagesPro">Messages</a></p>
+			<p class="tip-message"><span class="tippoint">0</span></p>
 			<p><a href="getMyNoticesPro">Notices</a></p>
 			<p><a href="getUserAccountPro">Account</a></p>
 			<p><a href="getUserPermissionPro">Permissions</a></p>
 			<p><a href="logoutPro">Log out</a></p>
 	</div>
 </div>
+
 <%
 	String intro = "";
 	if(user.getIntroduction() != null)intro = user.getIntroduction();
@@ -107,6 +112,7 @@
             </div>
             <div class="modal-body">
             	<p>max size:2MB</p>
+            	<p id="sizeErr"></p>
 	            <div class="img-body">
 	            	<form enctype="multipart/form-data" method="post" name="headimgform" id="headimgform">
 	            		<input type="file" name="pic" id="picpath" accept="image/*" />
@@ -139,6 +145,9 @@
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
 <script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery-1.7.2.js'></script>
 <script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 <script>
 function getContent(){
@@ -152,11 +161,10 @@ function setgender(){
 }
 
 $(document).ready(function(){
-  $('#sideMenu').sideToggle({
-	moving: '#sideMenuContainer',
-	direction: 'right'
-  });
-
+	$('#sideMenu').sideToggle({
+		moving: '#sideMenuContainer',
+		direction: 'right'
+	  });
 });
 
 </script>

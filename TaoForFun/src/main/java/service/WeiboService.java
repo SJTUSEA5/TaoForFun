@@ -19,4 +19,6 @@ public interface WeiboService {
 
 	public List<Weibo> getWeiboByFriendlist(List<String> friendnames, Timestamp limitTime);
 
+	public List<Weibo> getWeiboByWord(String word);
+	
 }

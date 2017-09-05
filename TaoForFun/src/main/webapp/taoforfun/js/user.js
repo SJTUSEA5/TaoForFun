@@ -1,6 +1,20 @@
 $(document).ready(function() {
+	
+	//check messages
+	if($(".tip-message").text() == "0"){
+		$(".tip-message").hide();
+	}else{
+		
+	}
+
+	
 	$(document).on("change", "#picpath", function(){
+		$("sizeErr").text("");
 		var srcs = getObjectURL(this.files[0]);//input
+		if($('input[name=pic]')[0].files[0].size > 2*1024*1024){
+    		$("#sizeErr").text("your file is too large!");
+    		return;
+    	}
 		$("#pic-save").attr("data-src", srcs);
 		$("#pic-save").attr("data-file",this.files[0]);
 		$(this).hide();
@@ -65,6 +79,26 @@ $(document).ready(function() {
             }
         });
     	
+    });
+    
+    $(document).on("click", "#addpic", function(){
+    	
+    });
+    
+    $(document).on("click", "#addemoji", function(){
+    	jeBox.open({
+            boxSize:["500px","240px"],
+            content:'<div style="padding:20px;">emojis</div>',
+            maskLock : true
+        })
+    });
+    
+    $(document).on("click", "#addtag", function(){
+    	jeBox.open({
+            boxSize:["500px","240px"],
+            content:'<div style="padding:20px;">tags</div>',
+            maskLock : true
+        })
     });
     
 });		

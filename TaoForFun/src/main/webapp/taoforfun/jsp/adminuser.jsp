@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
 <link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -35,6 +36,8 @@
 <nav>
 <h2 class="title" id="logo">Tao For Fun!</h2>
 <div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
 	<input type="text" name="search" placeholder="search something" id="searchthing"/>
 	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
 	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
@@ -69,7 +72,7 @@
 <div id="section">
 <div class="section-content">
 <h2 class="heading">Users</h2>
-	<table style="font-size:16px;">
+	<table style="font-size:16px;border-collapse:separate;border-spacing:50px 10px;">
 	<thead>
 	<tr>
 	<th>User ID</th>
@@ -106,11 +109,14 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
 <script src="<%=path %>/taoforfun/js/user.js"></script>
+<script src="<%=path %>/taoforfun/js/admin.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
-<script src="<%=path%>/taoforfun/js/admin.js"></script>
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
 <script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery-1.7.2.js'></script>
 <script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 <script>
 $(document).ready(function(){

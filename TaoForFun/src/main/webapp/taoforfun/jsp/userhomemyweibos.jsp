@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="<%=path%>/taoforfun/css/imgareaselect-default.css" />
 <link href="<%=path %>/taoforfun/css/font-awesome.min.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/bootstrap.min.css" rel="stylesheet">
+<link href="<%=path%>/taoforfun/css/default.css" rel="stylesheet">
 <link href="<%=path%>/taoforfun/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -37,6 +38,8 @@
 <nav>
 <h2 class="title" id="logo">Tao For Fun!</h2>
 <div id="nav-blocks">
+	<form id="searchForm" action="searchPro" method="post">	
+	</form>
 	<input type="text" name="search" placeholder="search something" id="searchthing"/>
 	<button class="btn btn-default" id="search-submit" style="margin:0 15px">Search  </button>
 	<a href="getFriendsWeibosPro" class="active" style="margin:15px">  Weibos  </a>
@@ -103,10 +106,11 @@
 %>
 			<p><%=comment.getAdder() %>: <%=comment.getContent() %>
 			<%if(comment.getAdder().equals(user.getUsername())){ %>
-			<div style="text-align:right;">
-			<a type="button" class="deleteComment" data-commentid="<%=comment.getCommentid()%>"
-			style="cursor:pointer;margin:0 5px;">&times;</a>
-			</div><%} %>
+				<div style="text-align:right;">
+				<a type="button" class="deleteComment" data-commentid="<%=comment.getCommentid()%>"
+				style="cursor:pointer;margin:0 5px;">&times;</a>
+				</div>
+			<%} %>
 			</p>
 			
 <%} %>
@@ -116,7 +120,7 @@
 		<div class="section-data-footer">
 		<div style="text-align:right;margin:0 10px;">
 			<img src="<%=path%>/taoforfun/img/messages.PNG" alt="comment" style="width:25px;height:auto;cursor:pointer;margin:0 5px;"
-			class="writecommentWeiboid" onclick="return openModal(this)" id="<%=myweibo.getWeiboid()%>"/>
+			class="writecommentWeiboid" id="<%=myweibo.getWeiboid()%>" data-adder="<%=user.getUsername()%>"/>
 			
 			<img src="<%=path%>/taoforfun/img/heart.PNG" alt="like" data-dir="<%=path%>/taoforfun/img/"
 			style="width:25px;height:auto;cursor:pointer;margin:0 5px;"/>
@@ -139,13 +143,6 @@
 </div>
 
 <script>
-function openModal(obj) {
-	var weiboid = $(obj).attr("id");
-	var element = document.getElementById("comment-submit");
-	element.dataset.weiboid = weiboid;
-	$('#commentModal').modal('show');
-}
-
 function deleteconfirm(){
 	if(confirm("are you sure to delete this?")){
 		return true;
@@ -155,31 +152,34 @@ function deleteconfirm(){
 }
 </script>
 
-<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h4 class="modal-title" id="commentModalLabel">COMMENT</h4><span id="commentwarn"></span>
-</div>
-<div class="modal-body"><textarea rows="5" cols="45" placeholder="Comment something!" class="promote" id="commentContent"></textarea></div>
-<div class="modal-footer">
-	<input id="comment-weiboid" type="hidden">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	<button type="button" class="btn btn-primary" data-adder="<%=user.getUsername() %>" id="comment-submit">Submit</button>
-</div>
-</div>
-</div>
-</div>
+<!-- <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true"> -->
+<!-- <div class="modal-dialog"> -->
+<!-- <div class="modal-content"> -->
+<!-- <div class="modal-header"> -->
+<!-- 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+<!-- 	<h4 class="modal-title" id="commentModalLabel">COMMENT</h4><span id="commentwarn"></span> -->
+<!-- </div> -->
+<!-- <div class="modal-body"><textarea rows="5" cols="45" placeholder="Comment something!" class="promote" id="commentContent"></textarea></div> -->
+<!-- <div class="modal-footer"> -->
+<!-- 	<input id="comment-weiboid" type="hidden"> -->
+<!-- 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<%-- 	<button type="button" class="btn btn-primary" data-adder="<%=user.getUsername() %>" id="comment-submit">Submit</button> --%>
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
 
 <script src="https://code.jquery.com/jquery.js"></script>
-<script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
+<%-- <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script> --%>
 <script src="<%=path %>/taoforfun/js/user.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
 <script src="<%=path %>/taoforfun/js/comment.js"></script>
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
 <script src='<%=path %>/taoforfun/js/velocity.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery.jebox.min.js'></script>
+<script src='<%=path %>/taoforfun/js/jquery-1.7.2.js'></script>
 <script src='<%=path %>/taoforfun/js/sideToggleExtended.js'></script>
 <script>
 $(document).ready(function(){

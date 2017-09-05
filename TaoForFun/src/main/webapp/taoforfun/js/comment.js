@@ -1,14 +1,4 @@
 $(document).ready(function() {
-
-//	$(".showCommentlist").click(function(){
-// 		var weiboid = $(this).attr("data-weiboid");
-// 		$("#comment-append"+weiboid).fadeIn();
-// 	});
-//	
-//	$(".closeCommentlist").click(function(){
-// 		var weiboid = $(this).attr("data-weiboid");
-// 		$("#comment-append"+weiboid).fadeOut();
-// 	});
 	
 	$(document).on("click", ".deleteComment", function(){
  		var commentid = $(this).attr("data-commentid");
@@ -28,7 +18,7 @@ $(document).ready(function() {
 		})
  	});
 	
-	$("#comment-submit").click(function(){
+	$(document).on("click","#comment-submit", function(){
 		var weiboid = $(this).attr("data-weiboid");
 		var content = document.getElementById("commentContent").value;
 		var adder = $(this).attr("data-adder");
@@ -55,11 +45,32 @@ $(document).ready(function() {
 //					var adder = data.adder;
 //					var content = data.content;
 //					var commentid = data.commentid;
-					$('#commentModal').modal('hide');
+					jeBox.closeAll();
 //					$("#comment-append"+weiboid).append("<p>"+adder+": "+content+
 //							"<button class='deleteComment' data-commentid="+commentid+">delete</button></p>");
 				}
 			})
 		}
 	});
+	
+	$(document).on("click", ".writecommentWeiboid", function(){
+		var weiboid = $(this).attr("id");
+		var username = $(this).attr("data-adder");
+		jeBox.open({
+            boxSize:["500px","350px"],
+            content:
+            	"<div style='padding:10px 20px;'><h2 class='heading'>Comment</h2><span id='commentwarn'>  </span>"+
+            	"<div style='text-align:center'>"+
+            	"<textarea rows='8' cols='60' placeholder='Comment something!' class='promote' id='commentContent'></textarea>"+
+            	"</div>"+
+            	"<div style='text-align:right;margin:5px 20px;'>"+
+            	"<button type='button' class='btn' data-adder="+username+" id='comment-submit' data-weiboid="+
+            	weiboid+
+            	">Submit</button>"+
+            	"</div></div>",
+            maskLock : true
+        })
+	});
+	
+	
 });		
