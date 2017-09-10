@@ -12,7 +12,11 @@ $(document).ready(function() {
 				},
 			dataType :"text",
 			error : function(){
-				alert("error!");
+				jeBox.open({
+		            boxSize:["200px","50px"],
+		            content:'<div style="text-align:center;">error!</div>',
+		            maskLock : true
+		        })
 			},
 			success:function(data){}
 		})
@@ -38,7 +42,11 @@ $(document).ready(function() {
 					},
 				dataType :"text",//json
 				error : function(){
-					alert("error!");
+					jeBox.open({
+			            boxSize:["200px","50px"],
+			            content:'<div style="text-align:center;">error!</div>',
+			            maskLock : true
+			        })
 				},
 				success:function(data){
 //					var weiboid = data.weiboid;

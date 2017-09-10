@@ -1,18 +1,22 @@
 package model;
 
+//import model.Tag;
+//import java.util.Set;
+//import java.util.HashSet;
+
 public class Usertag {
 	
 	private int tagid;
 	private int userid;
-	private String tag;
-		
+//	private Set<Tag> tags = new HashSet<Tag>();
+	
 	public Usertag(){
 		
 	}
 	
-	public Usertag(int userid, String tag){
+	public Usertag(int tagid, int userid){
+		this.tagid = tagid;
 		this.userid = userid;
-		this.tag = tag;
 	}
 	
 	public int getTagid(){
@@ -30,12 +34,12 @@ public class Usertag {
 	public void setUserid(int userid){
 		this.userid = userid;
 	}
-	
-	public String getTag(){
-		return tag;
-	}
-	
-	public void setTag(String tag){
-		this.tag = tag;
-	}
+
+//	public Set<Tag> getTags() {
+//		return tags;
+//	}
+//
+//	public void setTags(Set<Tag> tags) {
+//		this.tags = tags;
+//	}
 }

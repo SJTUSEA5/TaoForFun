@@ -75,39 +75,47 @@
 	<div style="width:100%">
 	<div class="weiboForm">
 		<div class="writeweibo-box">
-			<form action="addPersonalWeiboPro" method="post" class="Form">
+			<form action="addPersonalWeiboPro" enctype="multipart/form-data" method="post" class="Form">
 				<div class="wordCount" id="wordCount">
 					<div style="margin:10px 120px;">
 		    			<span class="wordage">words remaining: <span id="sy">140</span></span><br>
 		    			<span id="weibowarn"></span><br>
 		    		</div>
 					<input type="hidden" name="content" id="submitContent"/><br>
+					<input type="hidden" name="tags" id="submitTag"/><br>
 					<div style="text-align:center">
 					<textarea rows="12" cols="70" id="weiboContent" onkeyup="checkLength(this);"></textarea><br>
 					</div>
 					
-					<div style="text-align:right;margin:10px 150px;">
-						<img id="addemoji" src="<%=path %>/taoforfun/img/emoji.PNG" alt="picPNG" style="width:30px;height:30px;cursor:pointer;"/>
-					</div>
+<!-- 					<div style="text-align:right;margin:10px 150px;"> -->
+<%-- 						<img id="addemoji" src="<%=path %>/taoforfun/img/emoji.PNG" alt="picPNG" style="width:30px;height:30px;cursor:pointer;"/> --%>
+<!-- 					</div> -->
 					
-					<div id="pictures" style="margin:10px 100px;">
-						<div class="img-view">
-							<form enctype="multipart/form-data" method="post" name="picform" id="picform">
-			            		<input type="file" name="pics" id="picpath" accept="image/*" style="cursor:pointer"/>
-			            	</form>
-			            	<span class="close close-img" style="display:none">&times;</span>
-							<img src="<%=path %>/taoforfun/img/pic.PNG" class="img1"/>
-						</div>
-					</div>
-					
+<!-- 					<div id="pictures" style="margin:5px 100px;"> -->
+<!-- 						<div class="btn-small" style="width:90px;height:26px;text-align:center"> -->
+<!-- 		            			<input type="file" name="pics" id="picspath" accept="image/*" style="cursor:pointer;"/> -->
+<!-- 						+pictures -->
+<!-- 		            	</div> -->
+<!-- 					<div id="pics-preview"> -->
+<!-- 						<div class="img-view" style="float:left"> -->
+<!-- 				            <span class="close close-img" style="display:none">&times; -->
+<!-- 							<img src="" class="img1 emptyimg" style="width: 300px;height: 240px;"/></span> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					</div> -->
+<!-- 					<div style="clear:both"></div> -->
 					<div style="border:1px solid #aaaaaa;border-style:none none solid none;margin:10px 100px;"></div>
 					
-					<div id="tags" style="margin:10px 100px;">
-						<div id="addtag" class="btn-small" style="width:60px;text-align:center;cursor:pointer;">+tag</div>
+					<div id="tags" style="margin:10px 100px;" data-tagid="">
+						<div id="addtag" class="btn-small" style="cursor:pointer;width:60px;text-align:center;">+tag</div>
+						
+						<div id="tags-preview">
+							
+						</div>
 					</div>
 
 					<div style="text-align:right;margin:20px 120px;">
-						<input type="submit" value="submit" onclick="return getContent()" class="btn"/>
+						<input type="submit" value="submit" id="weiboSubmit" class="btn"/>
 						<div class="btn" style="background:#aaaaaa;" onclick="javascript:history.back();">cancel</div>
 					</div>
 				</div>		
@@ -115,25 +123,6 @@
 		</div>
 
 <script type="text/javascript">
-function getContent(){
-	var c = document.getElementById("weiboContent").value;
-	
-	if(c == ""){
-		document.getElementById("weibowarn").innerHTML = "Empty content cannot be submitted!";
-		return false;
-	}
-	else{
-		if(c.length > 140){
-			document.getElementById("weibowarn").innerHTML = "Too many words!";
-			return false;
-		}
-		else{
-			document.getElementById("submitContent").value = c;
-			return true;
-		}
-	}
-}
-
 function checkLength(which) {
 	var maxChars = 140;
 	document.getElementById("weibowarn").innerHTML = "";
@@ -148,6 +137,7 @@ function checkLength(which) {
 		return true;
 	}
 }
+
 function clearDefault(el) { 
 	if (el.defaultValue==el.value) el.value = "" 
 	   } 

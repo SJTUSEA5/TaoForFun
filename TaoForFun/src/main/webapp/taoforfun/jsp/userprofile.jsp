@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="model.Tag"%>
 <%@ page import="model.User"%>
+<%@ page import="model.Usertag"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,11 +26,17 @@
 
 <%
 	User user = new User();
+	ArrayList<Usertag> usertags = new ArrayList<Usertag>();
+	HashMap<Integer, Tag> tags = new HashMap<Integer, Tag>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
 	else{
 		user = (User)request.getSession().getAttribute("user");
+		if(request.getSession().getAttribute("usertags")!= null)
+			usertags = (ArrayList<Usertag>)request.getSession().getAttribute("usertags");
+		if(request.getSession().getAttribute("tags")!= null)
+			tags = (HashMap<Integer, Tag>)request.getSession().getAttribute("tags");
 %>
 
 <nav>
@@ -100,6 +112,13 @@
 			</div>
 		</form>
 			<br/>
+			
+	<h2 class="heading">Tags Interested</h2>
+	<%for(int i = 0; i < usertags.size(); i++){
+		Tag tag = tags.get(usertags.get(i).getTagid());	
+	%>
+		<div class="btn-small tagbtn"  style="margin:5px;text-align:center;cursor:pointer;width:<%=tag.getTagname().length()%>9px;" data-searchthis="<%=tag.getTagname() %>"><%=tag.getTagname() %></div>
+	<%} %>
 	</div>	
 </div>
 
@@ -125,7 +144,7 @@
 				</div>
 			</div>
             <div class="modal-footer">
-                <button type="button" class="btn button-grey" data-dismiss="modal">Close</button>
+                <button type="button" class="btn" style="background:#aaaaaa" data-dismiss="modal">Close</button>
                 <button type="button" class="btn" id="pic-save">Save</button>
             </div>
         </div>

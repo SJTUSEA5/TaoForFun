@@ -18,12 +18,11 @@ public class WeibotagDaoImpl extends HibernateDaoSupport implements WeibotagDao{
 		getHibernateTemplate().delete(weibotag);
 	}
 	
-	public Weibotag getWeibotagByTagid(int tagid){
+	public List<Weibotag> getWeibotagByTagid(int tagid){
 		@SuppressWarnings("unchecked")
 		List<Weibotag> weibotags = (List<Weibotag>) getHibernateTemplate().find(
 				"from Weibotag as wt where wt.tagid=?", tagid);
-		Weibotag weibotag = weibotags.size() > 0 ? weibotags.get(0) : null;
-		return weibotag;
+		return weibotags;
 	}
 	
 	public List<Weibotag> getWeibotagByWeiboid(int weiboid){
@@ -33,14 +32,20 @@ public class WeibotagDaoImpl extends HibernateDaoSupport implements WeibotagDao{
 		return weibotags;
 	}
 	
-	public List<Integer> getWeiboidByTag(String tag){
-		String hql = "from Weibotag as wt where w.tag = :tag";
+	public List<Integer> getWeiboidByTagid(int tagid){
+		String hql = "from Weibotag as wt where w.tagid = :tagid";
 		Query query = getSession().createQuery(hql);
-		query.setParameter("tag", tag);
+		query.setParameter("tagid", tagid);
 		query.setMaxResults(5);
 		@SuppressWarnings("unchecked")
 		List<Integer> weiboids = query.list();
 		return weiboids;
 	}
-
+	
+	public List<Weibotag> getAllWeibotags(){
+		@SuppressWarnings("unchecked")
+		List<Weibotag> weibotags = (List<Weibotag>)getHibernateTemplate()
+				.find("from Weibotag");
+		return weibotags;
+	}
 }

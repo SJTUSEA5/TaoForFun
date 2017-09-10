@@ -17,10 +17,13 @@
 		<property name="time" type="java.sql.Timestamp">
 			<column name="time" />
 		</property>
-		<set name="comments" lazy="false" inverse="true">
+		<property name="thumbups" type="int">
+			<column name="thumbups" />
+		</property>
+		<bag name="comments" lazy="false" cascade="all">
 			<key column="weiboid" />
 			<one-to-many class="model.Comment" />
-		</set>
+		</bag>
 		<set name="weibotags" lazy="false" inverse="true">
 			<key column="weiboid" />
 			<one-to-many class="model.Weibotag" />

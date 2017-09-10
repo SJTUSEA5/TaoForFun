@@ -1,17 +1,21 @@
 package model;
 
+//import model.Tag;
+//import java.util.Set;
+//import java.util.HashSet;
+
 public class Weibotag {
 	private int tagid;
 	private int weiboid;
-	private String tag;
+//	private Set<Tag> tags = new HashSet<Tag>();
 		
 	public Weibotag(){
 		
 	}
 	
-	public Weibotag(int weiboid, String tag){
+	public Weibotag(int tagid, int weiboid){
+		this.tagid = tagid;
 		this.weiboid = weiboid;
-		this.tag = tag;
 	}
 	
 	public int getTagid(){
@@ -30,12 +34,11 @@ public class Weibotag {
 		this.weiboid = weiboid;
 	}
 	
-	public String getTag(){
-		return tag;
-	}
-	
-	public void setTag(String tag){
-		this.tag = tag;
-	}
-	
+//	public Set<Tag> getTags() {
+//		return tags;
+//	}
+//	
+//	public void setTags(Set<Tag> tags) {
+//		this.tags = tags;
+//	}	
 }

@@ -134,8 +134,11 @@
 		<action name="getAllWeibosPro" class="action.AllWeibosAction">
 			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
 		</action>
-		<action name="getAllFriendpairsPro">
-			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result>
+<!-- 		<action name="getAllFriendpairsPro"> -->
+<!-- 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result> -->
+<!-- 		</action> -->
+		<action name="getAllTagInfoPro" class="action.AllTagInfoAction">
+			<result name="success">/taoforfun/jsp/admintag.jsp</result>
 		</action>
 <!-- 		<action name="getAllMessagesPro" class="action.AllMessagesAction"> -->
 <!-- 			<result name="success">/taoforfun/jsp/adminfriendpair.jsp</result> -->
@@ -145,6 +148,9 @@
 		</action>
 		<action name="deleteWeiboPro" class="action.DeleteWeiboAction">
 			<result name="success">/taoforfun/jsp/adminweibo.jsp</result>
+		</action>
+		<action name="deleteTagPro" class="action.DeleteTagAction">
+			<result name="success">/taoforfun/jsp/admintag.jsp</result>
 		</action>
 		
 		<action name="searchPro" class="action.SearchAction">
@@ -157,11 +163,16 @@
 		
 	</package>
 	<package name="json" extends="struts-default,json-default">
-<!-- 	<action name="commentMyWeiboPro" class="action.AddCommentAction"> -->
-<!-- 			<result type="json"> -->
-<!--                 <param name="root">jcomment</param> -->
-<!--             </result> -->
-<!-- 		</action> -->
+		<action name="thumbupPro" class="action.ThumbupAction"> 
+            <result type="json">
+            	<param name="root">result</param>
+        	</result>         
+        </action>
+        <action name="searchTagPro" class="action.SearchTagAction"> 
+            <result type="json">
+	            <param name="root">result</param>
+	        </result>         
+        </action>
 	
 	</package>
 </struts>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Tao For Fun - User Account</title>
+<title>Tao For Fun - Weibo Admin</title>
 
 <%
 	String path = request.getContextPath();
@@ -63,8 +63,7 @@
 	<div id="side-list">
 		<p><a href="getAllUsersPro">Users</a></p>
 		<p><a href="getAllWeibosPro">Weibos</a></p>
-		<p><a href="getAllFriendpairsPro">Friendpairs</a></p>
-		<p><a href="getAllMessagesPro">Messages</a></p>
+		<p><a href="getAllTagInfoPro">Tags</a></p>
 		<p><a href="getUserProfilePro">Admin Quit</a></p>
 		<p><a href="logoutPro">Log out</a></p>
 	</div>

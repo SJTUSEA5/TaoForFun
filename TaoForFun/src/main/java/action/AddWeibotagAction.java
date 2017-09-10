@@ -1,5 +1,6 @@
 package action;
 
+import model.Tag;
 import model.Weibotag;
 import service.WeibotagService;
 
@@ -8,7 +9,7 @@ public class AddWeibotagAction extends BaseAction{
 	private static final long serialVersionUID = 1L;
 	
 	private int weiboid;
-	private String tag;
+	private int tagid;
 	
 	private WeibotagService weibotagService;
 	
@@ -20,12 +21,12 @@ public class AddWeibotagAction extends BaseAction{
 		this.weiboid = weiboid;
 	}
 	
-	public String getTag(){
-		return tag;
+	public int getTagid(){
+		return tagid;
 	}
 	
-	public void setTag(String tag){
-		this.tag = tag;
+	public void setTagid(int tagid){
+		this.tagid = tagid;
 	}
 	
 	public void setWeibotagService(WeibotagService weibotagService){
@@ -34,7 +35,7 @@ public class AddWeibotagAction extends BaseAction{
 	
 	@Override
 	public String execute() throws Exception{
-		Weibotag weibotag = new Weibotag(weiboid, tag);
+		Weibotag weibotag = new Weibotag(tagid, weiboid);
 		weibotagService.addWeibotag(weibotag);
 		return SUCCESS;
 	}

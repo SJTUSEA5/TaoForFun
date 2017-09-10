@@ -30,12 +30,16 @@ public class WeibotagServiceImpl implements WeibotagService{
 		return weibotagDao.getWeibotagByWeiboid(weiboid);
 	}
 	
-	public Weibotag getWeibotagByTagid(int tagid){
+	public List<Weibotag> getWeibotagByTagid(int tagid){
 		return weibotagDao.getWeibotagByTagid(tagid);
 	}
 
-	public List<Integer> getWeiboidByTag(String tag){
-		return weibotagDao.getWeiboidByTag(tag);
+	public List<Integer> getWeiboidByTagid(int tagid){
+		return weibotagDao.getWeiboidByTagid(tagid);
+	}
+	
+	public List<Weibotag> getAllWeibotags(){
+		return weibotagDao.getAllWeibotags();
 	}
 	
 }

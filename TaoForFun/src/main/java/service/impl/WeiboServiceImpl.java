@@ -48,4 +48,9 @@ public class WeiboServiceImpl implements WeiboService{
 		return weiboDao.getWeiboByWord(word);
 	}
 
+	@Override
+	public void updateWeibo(Weibo weibo) {
+		weiboDao.update(weibo);
+	}
+
 }
