@@ -30,9 +30,12 @@ public class UsertagServiceImpl implements UsertagService{
 		return usertagDao.getUsertagByUserid(userid);
 	}
 	
-	public Usertag getUsertagByTagid(int tagid){
+	public List<Usertag> getUsertagByTagid(int tagid){
 		return usertagDao.getUsertagByTagid(tagid);
 	}
 
+	public List<Usertag> getAllUsertags(){
+		return usertagDao.getAllUsertags();
+	}
 
 }

@@ -6,14 +6,18 @@
 	<class name="model.Weibotag" table="weibotags">
 		<id name="tagid" type="int">
 			<column name="tagid" />
-			<generator class="assigned" />
+<!-- 			<generator class="assigned" /> -->
 		</id>
 		<property name="weiboid" type="int">
 			<column name="weiboid" />
 		</property>
-		<property name="tag" type="java.lang.String">
-			<column name="tag" />
-		</property>
-
+<!-- 		<property name="tag" type="java.lang.String"> -->
+<!-- 			<column name="tag" /> -->
+<!-- 		</property> -->
+<!-- 		<set name="tags" lazy="false" inverse="true"> -->
+<!-- 			<key column="tagid" /> -->
+<!-- 			<one-to-many class="model.Tag" /> -->
+<!-- 		</set> -->
+		
 	</class>
 </hibernate-mapping>

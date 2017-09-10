@@ -12,6 +12,8 @@ public interface UsertagService {
 	
 	public List<Usertag> getUsertagByUserid(int userid);
 	
-	public Usertag getUsertagByTagid(int tagid);
+	public List<Usertag> getUsertagByTagid(int tagid);
+
+	public List<Usertag> getAllUsertags();
 
 }

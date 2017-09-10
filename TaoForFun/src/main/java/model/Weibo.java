@@ -5,12 +5,15 @@ import model.Comment;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Weibo {
 	private int weiboid;
 	private String adder;
 	private String content;
 	private Timestamp time;
+	private int thumbups;
 	
 	
 	public Weibo(){
@@ -55,13 +58,21 @@ public class Weibo {
 		this.time = time;
 	}
 	
-	private Set<Comment> comments = new HashSet<Comment>();
+	public int getThumbups(){
+		return thumbups;
+	}
+	
+	public void setThumbups(int thumbups){
+		this.thumbups = thumbups;
+	}
+	
+	private List<Comment> comments = new ArrayList<Comment>();
 
-	public Set<Comment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 	

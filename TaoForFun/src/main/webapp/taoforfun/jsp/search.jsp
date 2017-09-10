@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
+<%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Set"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="model.Tag"%>
 <%@ page import="model.User"%>
+<%@ page import="model.Usertag"%>
 <%@ page import="model.Weibo"%>
+<%@ page import="model.Weibotag"%>
 <%@ page import="model.Comment"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,6 +33,9 @@
 	User user = new User();
 	ArrayList<User> userResult = new ArrayList<User>();
 	ArrayList<Weibo> weiboResult = new ArrayList<Weibo>();
+	ArrayList<Tag> tagResult = new ArrayList<Tag>();
+	HashMap<Integer, Tag> tags = new HashMap<Integer, Tag>();
+	HashMap<Integer, Boolean> check = new HashMap<Integer, Boolean>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
@@ -36,6 +45,12 @@
 			userResult = (ArrayList<User>)request.getAttribute("userResult");
 		if(request.getAttribute("weiboResult")!=null)
 			weiboResult = (ArrayList<Weibo>)request.getAttribute("weiboResult");
+		if(request.getAttribute("tagResult")!=null)
+			tagResult = (ArrayList<Tag>)request.getAttribute("tagResult");
+		if(request.getAttribute("thumbupCheck")!= null)
+			check = (HashMap<Integer, Boolean>)request.getAttribute("thumbupCheck");
+		if(request.getSession().getAttribute("tags")!= null)
+			tags = (HashMap<Integer, Tag>)request.getSession().getAttribute("tags");
 %>
 
 <nav>
@@ -83,15 +98,45 @@
 		</a><br/>
 	</div>
 
-	<div class="nav-list">
-		<p>Hot Weibos of this Topic</p>
-		<p>Hot Interests</p>
-	</div>
+<div id="hot-promote">
+	<p class="heading-side">Hot Weibos of this Topic</p>
+</div>
+<div id="hot-tags">
+	<p class="heading-side">Hot Interests</p>
+<% for(int t = 0; t < ((tags.size()<10)?tags.size():10); t++){
+	Integer It = new Integer(t+1);
+	if(tags.containsKey(It)){
+%>
+	<div class="btn-small tagbtn" style="margin:5px;cursor:pointer;"data-searchthis="<%=tags.get(It).getTagname() %>"><%=tags.get(It).getTagname() %></div>
+<%}} %>
+</div>
 </div>
 
 <div class="section-right">
 
 <div class="section-content">
+
+<h2 class="heading">Interest tags</h2>
+	
+<%
+for(int i = 0; i < tagResult.size(); i++){
+	Tag atag = tagResult.get(i);
+// 	Set<Weibotag> wts = atag.getWeibotags();
+// 	Set<Usertag> uts = atag.getUsertags();
+%>
+	<div class="message">
+		<div class="btn-small" style="margin:0 100px;text-align:center;"><%=atag.getTagname() %></div>
+		<p style="margin:10px;"><%=atag.getDescription()%></p>
+<!-- 		<h3 class="heading-side">Related Weibos</h3> -->
+<%-- 		<%for(int wn = 0; wn < ((wts.size()<3)?wts.size():3); wn++){ %> --%>
+<!-- 		<div class="message weiboForm"> -->
+			
+<!-- 		</div> -->
+<%-- 		<%} %> --%>
+	</div>
+<%} %>
+	
+
 <h2 class="heading">Users</h2>
 <%
 for(int i = 0; i < userResult.size();i++){
@@ -108,7 +153,6 @@ for(int i = 0; i < userResult.size();i++){
 	<img class="friend-head-img" src="<%=fimg %>" alt="userPNG"/><%= auser.getUsername()%></p>
 	</div>
 	<div class="section-data-body">
-<!-- 		<h4>Latest Weibo</h4> -->
 	</div>
 	<div class="section-data-footer">
 	<div style="text-align:right">
@@ -130,11 +174,23 @@ for(int i = 0; i < userResult.size();i++){
 <%
 for(int u = 0; u < weiboResult.size(); u++){
 	Weibo aweibo = weiboResult.get(u);	
-	Set<Comment> comments = aweibo.getComments();
+	List<Comment> comments = aweibo.getComments();
+	Set<Weibotag> weibotags =  aweibo.getWeibotags();
 %>
 	<div  class="message weiboForm">
 		<div class="section-data-header">
 			<p><%= aweibo.getAdder()%>   <%= aweibo.getTime()%></p>
+			<p>
+			<%
+			for(Weibotag wt : weibotags){
+				Tag tag = new Tag();
+				if(tags.containsKey(wt.getTagid())){tag = tags.get(wt.getTagid());}
+			%>
+				<span class="tag" data-tagid="<%=tag.getTagid() %>"><%=tag.getTagname() %></span>
+			<%
+			}
+			%>
+			</p>
 		</div>
 		<div class="section-data-body">
 			<p><%= aweibo.getContent()%></p>
@@ -143,37 +199,43 @@ for(int u = 0; u < weiboResult.size(); u++){
 			<h4 class="heading">Comments</h4>
 			<div id="comment-append<%=aweibo.getWeiboid()%>">
 <%
-		Iterator iterator = comments.iterator();     
-		while(iterator.hasNext()){
-			Comment comment = (Comment)iterator.next();
+		if(!comments.isEmpty()){  
+		for(int v = 0; v < comments.size(); v++){
+			Comment comment = comments.get(v);
 %>
-			<p><%=comment.getAdder() %>: <%=comment.getContent() %>
+			<p>
 			<%if(comment.getAdder().equals(user.getUsername())){ %>
-			<div style="text-align:right;">
 			<a type="button" class="deleteComment" data-commentid="<%=comment.getCommentid()%>"
-			style="cursor:pointer;margin:0 5px;">&times;</a>
-			</div><%} %>
-			</p>
+				style="cursor:pointer;padding:2px;background:#aaaaaa;border-radius:100%;">&times;</a>
+			<%} %>
+			<%=comment.getAdder() %> :  <%=comment.getContent() %></p>
 			
-<%} %>
+<%}} %>
 			</div>
 		</div>
 
 		<div class="section-data-footer">
 		<div style="text-align:right;margin:0 10px;">
-			<img src="<%=path%>/taoforfun/img/messages.PNG" alt="comment" style="width:25px;height:auto;cursor:pointer;margin:0 5px;"
-			class="writecommentWeiboid" onclick="return openModal(this)" id="<%=aweibo.getWeiboid()%>"/>
+			<div style="float:right;margin:0 10px;">
+				<img src="<%=path%>/taoforfun/img/messages.PNG" alt="comment" style="width:25px;height:auto;cursor:pointer;margin:0 5px;"
+				class="bubble writecommentWeiboid" id="<%=aweibo.getWeiboid()%>" data-adder="<%=aweibo.getAdder()%>"/>
+				
+				<span class="likecount" data-count="<%=aweibo.getThumbups()%>">(<%=aweibo.getThumbups()%>)</span>
+			<%
+String heart = "whiteheart";
+String icon = "heart.PNG";
+Integer wid=new Integer(aweibo.getWeiboid());
+if(check.get(wid)){heart = "redheart"; icon = "like.png";} 
+%>
+				<img class="<%=heart %>" src="<%=path%>/taoforfun/img/<%=icon %>" alt="like" data-dir="<%=path%>/taoforfun/img/"
+				style="width:25px;height:auto;cursor:pointer;margin:0 5px;" data-weiboid="<%=aweibo.getWeiboid()%>"/>
 			
-			<img src="<%=path%>/taoforfun/img/heart.PNG" alt="like" data-dir="<%=path%>/taoforfun/img/"
-			style="width:25px;height:auto;cursor:pointer;margin:0 5px;"/>
-			
-			<%if(aweibo.getAdder().equals(user.getUsername())){ %>
-			<a href="deleteMyWeiboPro?weiboid=<%=aweibo.getWeiboid()%>&&username=<%=aweibo.getAdder()%>">
-			<img src="<%=path%>/taoforfun/img/delete.PNG" alt="delete" style="width:25px;height:auto;margin:0 5px;"
-			onclick="return deleteconfirm()"/></a>
-			<%} %>
-			
-			
+				<%if(aweibo.getAdder().equals(user.getUsername())){ %>
+				<a href="deleteMyWeiboPro?weiboid=<%=aweibo.getWeiboid()%>&&username=<%=aweibo.getAdder()%>">
+				<img class="trash" src="<%=path%>/taoforfun/img/delete.PNG" alt="delete" style="width:25px;height:auto;margin:0 5px;"
+				onclick="return deleteconfirm()"/></a>
+				<%} %>
+			</div>	
 		</div>
 		</div>			
 	</div>
@@ -189,6 +251,7 @@ for(int u = 0; u < weiboResult.size(); u++){
 <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script>
 <script src="<%=path %>/taoforfun/js/user.js"></script>
 <script src="<%=path %>/taoforfun/js/search.js"></script>
+<script src="<%=path %>/taoforfun/js/comment.js"></script>
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/jquery.imgareaselect.pack.js"></script>
 <script src='<%=path %>/taoforfun/js/velocity.min.js'></script>

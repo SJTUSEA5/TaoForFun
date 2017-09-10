@@ -10,10 +10,12 @@ public interface WeibotagDao {
 
 	public void delete(Weibotag weibotag);
 	
-	public Weibotag getWeibotagByTagid(int tagid);
+	public List<Weibotag> getWeibotagByTagid(int tagid);
 	
 	public List<Weibotag> getWeibotagByWeiboid(int weiboid);
-	
-	public List<Integer> getWeiboidByTag(String tag);
+
+	public List<Integer> getWeiboidByTagid(int tagid);
+
+	public List<Weibotag> getAllWeibotags();
 
 }

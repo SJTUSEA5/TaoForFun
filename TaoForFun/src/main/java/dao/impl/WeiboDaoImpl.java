@@ -60,5 +60,10 @@ public class WeiboDaoImpl extends HibernateDaoSupport implements WeiboDao{
 				.find("from Weibo w where w.content like ?", "%"+word+"%");
 		return weibos;
 	}
+
+	public void update(Weibo weibo) {
+		getHibernateTemplate().merge(weibo);
+		
+	}
 	
 }

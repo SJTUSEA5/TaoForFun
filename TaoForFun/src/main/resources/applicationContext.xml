@@ -27,8 +27,11 @@
 				<value>model/Comment.hbm.xml</value>
 				<value>model/Friendapplication.hbm.xml</value>
 				<value>model/Friendpair.hbm.xml</value>
+				<value>model/Tag.hbm.xml</value>
 				<value>model/Usertag.hbm.xml</value>
 				<value>model/Weibotag.hbm.xml</value>
+				<value>model/Message.hbm.xml</value>
+				<value>model/Thumbup.hbm.xml</value>
 			</list>
 		</property>
 		<!-- Hibernate SessionFatory -->
@@ -58,10 +61,19 @@
 	<bean id="friendpairDao" class="dao.impl.FriendpairDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	<bean id="tagDao" class="dao.impl.TagDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<bean id="weibotagDao" class="dao.impl.WeibotagDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="usertagDao" class="dao.impl.UsertagDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="messageDao" class="dao.impl.MessageDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="thumbupDao" class="dao.impl.ThumbupDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -81,11 +93,20 @@
 	<bean id="friendpairService" class="service.impl.FriendpairServiceImpl">
 		<property name="friendpairDao" ref="friendpairDao"></property>
 	</bean>
+	<bean id="tagService" class="service.impl.TagServiceImpl">
+		<property name="tagDao" ref="tagDao"></property>
+	</bean>
 	<bean id="weibotagService" class="service.impl.WeibotagServiceImpl">
 		<property name="weibotagDao" ref="weibotagDao"></property>
 	</bean>
 	<bean id="usertagService" class="service.impl.UsertagServiceImpl">
 		<property name="usertagDao" ref="usertagDao"></property>
+	</bean>
+	<bean id="messageService" class="service.impl.MessageServiceImpl">
+		<property name="messageDao" ref="messageDao"></property>
+	</bean>
+	<bean id="thumbupService" class="service.impl.ThumbupServiceImpl">
+		<property name="thumbupDao" ref="thumbupDao"></property>
 	</bean>
 
 	<!-- HibernateTransactionManager -->
@@ -106,15 +127,21 @@
 		<aop:pointcut id="commentbeanPointcut" expression="bean(commentService)" />
 		<aop:pointcut id="friendapplicationbeanPointcut" expression="bean(friendapplicationService)" />
 		<aop:pointcut id="friendpairbeanPointcut" expression="bean(friendpairService)" />
+		<aop:pointcut id="tagbeanPointcut" expression="bean(tagService)" />
 		<aop:pointcut id="weibotagbeanPointcut" expression="bean(weibotagService)" />
 		<aop:pointcut id="usertagbeanPointcut" expression="bean(usertagService)" />
+		<aop:pointcut id="messagebeanPointcut" expression="bean(messageService)" />
+		<aop:pointcut id="thumbupbeanPointcut" expression="bean(thumbupService)" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="userbeanPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="weibobeanPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="commentbeanPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="friendapplicationbeanPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="friendpairbeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="tagbeanPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="weibotagbeanPointcut" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="usertagbeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="messagebeanPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="thumbupbeanPointcut" />
 	</aop:config>
 
 </beans>

@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.Iterator"%>  
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.Iterator"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="java.util.List"%>
 <%@ page import="java.util.Set"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="model.Tag"%>
 <%@ page import="model.User"%>
 <%@ page import="model.Weibo"%>
+<%@ page import="model.Weibotag"%>
 <%@ page import="model.Comment"%>
+<%@ page import="model.Thumbup"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,6 +32,8 @@
 <%
 	User user = new User();
 	ArrayList<Weibo>myweibos = new ArrayList<Weibo>();
+	HashMap<Integer, Tag> tags = new HashMap<Integer, Tag>();
+	HashMap<Integer, Boolean> check = new HashMap<Integer, Boolean>();
 	if(request.getSession().getAttribute("user")== null){
 		response.sendRedirect("homePro");
 	}
@@ -33,6 +41,10 @@
 		user = (User)request.getSession().getAttribute("user");	
 		if(request.getSession().getAttribute("myweibos")!= null)
 			myweibos = (ArrayList<Weibo>)request.getSession().getAttribute("myweibos");
+		if(request.getAttribute("thumbupCheck")!= null)
+			check = (HashMap<Integer, Boolean>)request.getAttribute("thumbupCheck");
+		if(request.getSession().getAttribute("tags")!= null)
+			tags = (HashMap<Integer, Tag>)request.getSession().getAttribute("tags");
 %>
 
 <nav>
@@ -87,11 +99,23 @@
 	int i = 0;
 	for(; i < myweibos.size(); i++){
 		Weibo myweibo = myweibos.get(i);
-		Set<Comment> comments = myweibo.getComments();
+		List<Comment> comments = myweibo.getComments();
+		Set<Weibotag> weibotags =  myweibo.getWeibotags();
 %>
 	<div  class="message weiboForm">
 		<div class="section-data-header">
 			<p><%= myweibo.getAdder()%>   <%= myweibo.getTime()%></p>
+			<p>
+			<%
+			for(Weibotag wt : weibotags){
+				Tag tag = new Tag();
+				if(tags.containsKey(wt.getTagid())){tag = tags.get(wt.getTagid());}
+			%>
+				<span class="btn-small" data-tagid="<%=tag.getTagid() %>"><%=tag.getTagname() %></span>
+			<%
+			}
+			%>
+			</p>
 		</div>
 		<div class="section-data-body">
 			<p><%= myweibo.getContent()%></p>
@@ -100,33 +124,38 @@
 			<h4 class="heading">Comments</h4>
 			<div id="comment-append<%=myweibo.getWeiboid()%>">
 <%
-		Iterator iterator = comments.iterator();     
-		while(iterator.hasNext()){
-			Comment comment = (Comment)iterator.next();
+		if(!comments.isEmpty()){
+		for(int u = 0; u <  comments.size(); u++){
+			Comment comment = comments.get(u);
 %>
-			<p><%=comment.getAdder() %>: <%=comment.getContent() %>
+			<p>
 			<%if(comment.getAdder().equals(user.getUsername())){ %>
-				<div style="text-align:right;">
 				<a type="button" class="deleteComment" data-commentid="<%=comment.getCommentid()%>"
-				style="cursor:pointer;margin:0 5px;">&times;</a>
-				</div>
+				style="cursor:pointer;padding:2px;background:#aaaaaa;border-radius:100%;">&times;</a>
 			<%} %>
-			</p>
+			<%=comment.getAdder() %> :  <%=comment.getContent() %></p>
 			
-<%} %>
+<%}} %>
 			</div>
 		</div>
-
 		<div class="section-data-footer">
-		<div style="text-align:right;margin:0 10px;">
+		<div style="float:right;margin:0 10px;">
 			<img src="<%=path%>/taoforfun/img/messages.PNG" alt="comment" style="width:25px;height:auto;cursor:pointer;margin:0 5px;"
-			class="writecommentWeiboid" id="<%=myweibo.getWeiboid()%>" data-adder="<%=user.getUsername()%>"/>
+			class="bubble writecommentWeiboid" id="<%=myweibo.getWeiboid()%>" data-adder="<%=user.getUsername()%>"/>
 			
-			<img src="<%=path%>/taoforfun/img/heart.PNG" alt="like" data-dir="<%=path%>/taoforfun/img/"
-			style="width:25px;height:auto;cursor:pointer;margin:0 5px;"/>
+			<span class="likecount" data-count="<%=myweibo.getThumbups()%>">(<%=myweibo.getThumbups()%>)</span>
+
+<%
+String heart = "whiteheart";
+String icon = "heart.PNG";
+Integer wid=new Integer(myweibo.getWeiboid());
+if(check.get(wid)){heart = "redheart"; icon = "like.png";} 
+%>
+			<img class="<%=heart %>" src="<%=path%>/taoforfun/img/<%=icon %>" alt="like" data-dir="<%=path%>/taoforfun/img/"
+			style="width:25px;height:auto;cursor:pointer;margin:0 5px;" data-weiboid="<%=myweibo.getWeiboid()%>"/>
 			
 			<a href="deleteMyWeiboPro?weiboid=<%=myweibo.getWeiboid()%>&&username=<%=myweibo.getAdder()%>">
-			<img src="<%=path%>/taoforfun/img/delete.PNG" alt="delete" style="width:25px;height:auto;margin:0 5px;"
+			<img class="trash" src="<%=path%>/taoforfun/img/delete.PNG" alt="delete" style="width:25px;height:auto;margin:0 5px;"
 			onclick="return deleteconfirm()"/></a>
 		</div>
 		</div>			
@@ -143,6 +172,9 @@
 </div>
 
 <script>
+function checklike(){
+	alert("check.");
+}
 function deleteconfirm(){
 	if(confirm("are you sure to delete this?")){
 		return true;
@@ -151,23 +183,6 @@ function deleteconfirm(){
 	}
 }
 </script>
-
-<!-- <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true"> -->
-<!-- <div class="modal-dialog"> -->
-<!-- <div class="modal-content"> -->
-<!-- <div class="modal-header"> -->
-<!-- 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-<!-- 	<h4 class="modal-title" id="commentModalLabel">COMMENT</h4><span id="commentwarn"></span> -->
-<!-- </div> -->
-<!-- <div class="modal-body"><textarea rows="5" cols="45" placeholder="Comment something!" class="promote" id="commentContent"></textarea></div> -->
-<!-- <div class="modal-footer"> -->
-<!-- 	<input id="comment-weiboid" type="hidden"> -->
-<!-- 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-<%-- 	<button type="button" class="btn btn-primary" data-adder="<%=user.getUsername() %>" id="comment-submit">Submit</button> --%>
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <%-- <script src="<%=path %>/taoforfun/js/bootstrap.min.js"></script> --%>

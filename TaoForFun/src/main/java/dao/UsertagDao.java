@@ -10,8 +10,10 @@ public interface UsertagDao {
 
 	public void delete(Usertag usertag);
 	
-	public Usertag getUsertagByTagid(int tagid);
+	public List<Usertag> getUsertagByTagid(int tagid);
 	
 	public List<Usertag> getUsertagByUserid(int userid);
+
+	public List<Usertag> getAllUsertags();
 
 }

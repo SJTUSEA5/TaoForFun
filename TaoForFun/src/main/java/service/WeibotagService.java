@@ -12,8 +12,10 @@ public interface WeibotagService {
 	
 	public List<Weibotag> getWeibotagByWeiboid(int weiboid);
 	
-	public Weibotag getWeibotagByTagid(int tagid);
+	public List<Weibotag> getWeibotagByTagid(int tagid);
 	
-	public List<Integer> getWeiboidByTag(String tag);
+	public List<Integer> getWeiboidByTagid(int tagid);
+	
+	public List<Weibotag> getAllWeibotags();
 	
 }
